@@ -13,7 +13,7 @@ before_install:
   - export M2_HOME=$PWD/apache-maven-3.5.0
   - export PATH=$M2_HOME/bin:$PATH
   - echo "MAVEN_OPTS='-Dmaven.repo.local=$HOME/.m2/repository -Xmx1g -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss:SSS'" > ~/.mavenrc
-  - wget https://github.com/jburse/jekejeke-devel/releases/download/v1.3.6/interpreter.jar -O /home/travis/build/prolobjectlink/prolobjectlink-jpi-jeckpro/interpreter.jar
+  - wget https://github.com/jburse/jekejeke-devel/releases/download/v1.3.6/interpreter.jar
   - mvn install:install-file -Dfile=interpreter.jar -DgroupId=com.xlog -DartifactId=interpreter -Dversion=1.3.6 -Dpackaging=jar
 
 install:
