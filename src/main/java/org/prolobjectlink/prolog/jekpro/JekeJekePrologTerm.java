@@ -48,7 +48,6 @@ import jekpro.tools.term.Knowledgebase;
 import jekpro.tools.term.TermAtomic;
 import jekpro.tools.term.TermCompound;
 import jekpro.tools.term.TermVar;
-import matula.util.data.ListArray;
 import matula.util.data.MapEntry;
 
 /**
@@ -59,7 +58,6 @@ import matula.util.data.MapEntry;
 abstract class JekeJekePrologTerm extends AbstractTerm implements PrologTerm {
 
 	protected jekpro.tools.term.AbstractTerm value;
-	private static ListArray<String> listArray = new ListArray<String>();
 	private static Knowledgebase know = new Knowledgebase(ToolkitLibrary.DEFAULT);
 	private static Interpreter prolog = know.iterable();
 
@@ -143,6 +141,34 @@ abstract class JekeJekePrologTerm extends AbstractTerm implements PrologTerm {
 
 	public final boolean isCompound() {
 		return value instanceof TermCompound;
+	}
+
+	public final boolean isTrueType() {
+		return false;
+	}
+
+	public final boolean isFalseType() {
+		return false;
+	}
+
+	public final boolean isNullType() {
+		return false;
+	}
+
+	public final boolean isVoidType() {
+		return false;
+	}
+
+	public final boolean isObjectType() {
+		return false;
+	}
+
+	public final boolean isReference() {
+		return false;
+	}
+
+	public final Object getObject() {
+		return null;
 	}
 
 	public final PrologTerm getTerm() {

@@ -232,6 +232,10 @@ public class JekejekeProlog extends AbstractProvider implements PrologProvider {
 		return new JekejekePrologStructure(this, left, operator, right);
 	}
 
+	public PrologTerm newReference(Object reference) {
+		throw new UnsupportedOperationException("newReference(Object reference)");
+	}
+
 	public PrologJavaConverter getJavaConverter() {
 		return new JekejekePrologJavaConverter(this);
 	}
