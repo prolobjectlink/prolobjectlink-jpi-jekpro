@@ -224,7 +224,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<mainClass>
-								org.prolobjectlink.prolog.jekpro.JekejekePrologConsole
+								io.github.prolobjectlink.prolog.jekpro.JekejekePrologConsole
 							</mainClass>
 						</manifest>
 						<manifestEntries>
