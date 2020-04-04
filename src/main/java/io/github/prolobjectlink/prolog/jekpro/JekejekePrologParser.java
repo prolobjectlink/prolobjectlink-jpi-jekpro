@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-jpi-ip
+ * prolobjectlink-jpi-jekpro
  * %%
  * Copyright (C) 2019 Prolobjectlink Project
  * %%
