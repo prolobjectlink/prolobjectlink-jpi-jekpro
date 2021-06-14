@@ -54,17 +54,17 @@ import matula.util.data.MapEntry;
  * @author Jose Zalacain
  * @since 1.0
  */
-abstract class JekeJekePrologTerm extends AbstractTerm implements PrologTerm {
+abstract class JekejekePrologTerm extends AbstractTerm implements PrologTerm {
 
 	protected jekpro.tools.term.AbstractTerm value;
 	private static Knowledgebase know = new Knowledgebase(ToolkitLibrary.DEFAULT);
 	private static Interpreter prolog = know.iterable();
 
-	public JekeJekePrologTerm(int type, PrologProvider provider) {
+	public JekejekePrologTerm(int type, PrologProvider provider) {
 		super(type, provider);
 	}
 
-	public JekeJekePrologTerm(int type, PrologProvider provider, jekpro.tools.term.AbstractTerm value) {
+	public JekejekePrologTerm(int type, PrologProvider provider, jekpro.tools.term.AbstractTerm value) {
 		super(type, provider);
 		this.value = value;
 	}
@@ -142,31 +142,31 @@ abstract class JekeJekePrologTerm extends AbstractTerm implements PrologTerm {
 		return value instanceof TermCompound;
 	}
 
-	public final boolean isTrueType() {
+	public boolean isTrueType() {
 		return false;
 	}
 
-	public final boolean isFalseType() {
+	public boolean isFalseType() {
 		return false;
 	}
 
-	public final boolean isNullType() {
+	public boolean isNullType() {
 		return false;
 	}
 
-	public final boolean isVoidType() {
+	public boolean isVoidType() {
 		return false;
 	}
 
-	public final boolean isObjectType() {
+	public boolean isObjectType() {
 		return false;
 	}
 
-	public final boolean isReference() {
+	public boolean isReference() {
 		return false;
 	}
 
-	public final Object getObject() {
+	public Object getObject() {
 		return null;
 	}
 
@@ -195,7 +195,7 @@ abstract class JekeJekePrologTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	public final int compareTo(PrologTerm o) {
-		JekeJekePrologTerm ot = (JekeJekePrologTerm) o;
+		JekejekePrologTerm ot = (JekejekePrologTerm) o;
 		Object alpha = value.getSkel();
 		Object beta = ot.value.getSkel();
 		int result = AbstractSkel.f(alpha, beta);
@@ -223,9 +223,9 @@ abstract class JekeJekePrologTerm extends AbstractTerm implements PrologTerm {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof JekeJekePrologTerm))
+		if (!(obj instanceof JekejekePrologTerm))
 			return false;
-		JekeJekePrologTerm other = (JekeJekePrologTerm) obj;
+		JekejekePrologTerm other = (JekejekePrologTerm) obj;
 		if (value == null) {
 			if (other.value != null)
 				return false;

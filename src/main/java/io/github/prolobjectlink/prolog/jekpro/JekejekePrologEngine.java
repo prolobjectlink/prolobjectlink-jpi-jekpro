@@ -179,6 +179,19 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 	}
 
 	@Override
+	public void asserta(PrologTerm term) {
+		AbstractTerm asserta = fromTerm(term, AbstractTerm.class);
+		try {
+			asserta = prolog.parseTerm("asserta(" + asserta + ")", EMPTY);
+			accessor = prolog.iterator(asserta).next();
+		} catch (InterpreterMessage e1) {
+			getLogger().error(getClass(), IO, e1);
+		} catch (InterpreterException e1) {
+			getLogger().error(getClass(), IO, e1);
+		}
+	}
+
+	@Override
 	public void asserta(PrologTerm head, PrologTerm... body) {
 		AbstractTerm asserta = fromTerm(head, body, AbstractTerm.class);
 		try {
@@ -205,6 +218,19 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 	}
 
 	@Override
+	public void assertz(PrologTerm term) {
+		AbstractTerm assertz = fromTerm(term, AbstractTerm.class);
+		try {
+			assertz = prolog.parseTerm("assertz(" + assertz + ")", EMPTY);
+			accessor = prolog.iterator(assertz).next();
+		} catch (InterpreterMessage e1) {
+			getLogger().error(getClass(), IO, e1);
+		} catch (InterpreterException e1) {
+			getLogger().error(getClass(), IO, e1);
+		}
+	}
+
+	@Override
 	public void assertz(PrologTerm head, PrologTerm... body) {
 		AbstractTerm assertz = fromTerm(head, body, AbstractTerm.class);
 		try {
@@ -222,6 +248,24 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 		AbstractTerm clause;
 		try {
 			clause = prolog.parseTerm("clause(" + stringClause + ")", EMPTY);
+			prolog.iterator(clause).next().close();
+			CallIn callin = prolog.iterator(clause);
+			if (callin.hasNext()) {
+				return true;
+			}
+		} catch (InterpreterMessage e1) {
+			getLogger().error(getClass(), IO, e1);
+		} catch (InterpreterException e1) {
+			getLogger().error(getClass(), IO, e1);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean clause(PrologTerm term) {
+		AbstractTerm clause = fromTerm(term, AbstractTerm.class);
+		try {
+			clause = prolog.parseTerm("clause(" + clause + ")", EMPTY);
 			prolog.iterator(clause).next().close();
 			CallIn callin = prolog.iterator(clause);
 			if (callin.hasNext()) {
@@ -267,6 +311,19 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 	}
 
 	@Override
+	public void retract(PrologTerm term) {
+		AbstractTerm retract = fromTerm(term, AbstractTerm.class);
+		try {
+			retract = prolog.parseTerm("retract(" + retract + ")", EMPTY);
+			accessor = prolog.iterator(retract).next();
+		} catch (InterpreterMessage e1) {
+			getLogger().error(getClass(), IO, e1);
+		} catch (InterpreterException e1) {
+			getLogger().error(getClass(), IO, e1);
+		}
+	}
+
+	@Override
 	public void retract(PrologTerm head, PrologTerm... body) {
 		AbstractTerm retract = fromTerm(head, body, AbstractTerm.class);
 		try {
@@ -282,6 +339,11 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 	@Override
 	public PrologQuery query(String query) {
 		return new JekejekePrologQuery(this, query);
+	}
+
+	@Override
+	public PrologQuery query(PrologTerm goal) {
+		return query("" + goal + ".");
 	}
 
 	public final PrologQuery query(PrologTerm[] terms) {

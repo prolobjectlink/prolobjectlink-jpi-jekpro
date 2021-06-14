@@ -38,7 +38,7 @@ import jekpro.tools.term.TermCompound;
  * @author Jose Zalacain
  * @since 1.0
  */
-class JekejekePrologList extends JekeJekePrologTerm implements PrologList {
+class JekejekePrologList extends JekejekePrologTerm implements PrologList {
 
 	static final TermAtomic EMPTY = new TermAtomic("[]");
 
@@ -58,14 +58,14 @@ class JekejekePrologList extends JekeJekePrologTerm implements PrologList {
 		super(LIST_TYPE, provider);
 		value = EMPTY;
 		for (int i = arguments.length - 1; i >= 0; --i) {
-			value = new TermCompound(".", ((JekeJekePrologTerm) arguments[i]).value, value);
+			value = new TermCompound(".", ((JekejekePrologTerm) arguments[i]).value, value);
 		}
 	}
 
 	protected JekejekePrologList(PrologProvider provider, PrologTerm head, PrologTerm tail) {
 		super(LIST_TYPE, provider);
-		AbstractTerm h = ((JekeJekePrologTerm) head).value;
-		AbstractTerm t = ((JekeJekePrologTerm) tail).value;
+		AbstractTerm h = ((JekejekePrologTerm) head).value;
+		AbstractTerm t = ((JekejekePrologTerm) tail).value;
 		value = new TermCompound(".", h, t);
 	}
 
@@ -116,14 +116,6 @@ class JekejekePrologList extends JekeJekePrologTerm implements PrologList {
 
 	public String getFunctor() {
 		return ".";
-	}
-
-	public String getIndicator() {
-		return getFunctor() + "/" + getArity();
-	}
-
-	public boolean hasIndicator(String functor, int arity) {
-		return getFunctor().equals(functor) && getArity() == arity;
 	}
 
 	public PrologTerm[] getArguments() {

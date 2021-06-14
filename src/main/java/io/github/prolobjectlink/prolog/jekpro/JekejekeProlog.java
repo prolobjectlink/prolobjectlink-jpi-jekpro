@@ -231,8 +231,47 @@ public class JekejekeProlog extends AbstractProvider implements PrologProvider {
 		return new JekejekePrologStructure(this, left, operator, right);
 	}
 
+	public final PrologTerm newEntry(PrologTerm key, PrologTerm value) {
+		return new JekejekePrologEntry(this, key, value);
+	}
+
+	public final PrologTerm newEntry(Object key, Object value) {
+		PrologJavaConverter transformer = getJavaConverter();
+		PrologTerm keyTerm = transformer.toTerm(key);
+		PrologTerm valueTerm = transformer.toTerm(value);
+		return new JekejekePrologEntry(this, keyTerm, valueTerm);
+	}
+
+	public final PrologTerm newMap(Map<PrologTerm, PrologTerm> map) {
+		return new JekejekePrologMap(this, map);
+	}
+
+	public final PrologTerm newMap(int initialCapacity) {
+		return new JekejekePrologMap(this, initialCapacity);
+	}
+
+	public final PrologTerm newMap() {
+		return new JekejekePrologMap(this);
+	}
+
 	public PrologTerm newReference(Object reference) {
-		throw new UnsupportedOperationException("newReference(Object reference)");
+		return new JekejekePrologReference(this, reference);
+	}
+
+	public PrologTerm falseReference() {
+		return newReference(false);
+	}
+
+	public PrologTerm trueReference() {
+		return newReference(true);
+	}
+
+	public PrologTerm nullReference() {
+		return newReference(null);
+	}
+
+	public PrologTerm voidReference() {
+		return newReference(void.class);
 	}
 
 	public PrologJavaConverter getJavaConverter() {

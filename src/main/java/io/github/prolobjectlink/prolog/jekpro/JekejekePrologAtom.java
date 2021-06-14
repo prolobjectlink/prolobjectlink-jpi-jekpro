@@ -31,7 +31,7 @@ import jekpro.tools.term.TermAtomic;
  * @author Jose Zalacain
  * @since 1.0
  */
-final class JekejekePrologAtom extends JekeJekePrologTerm implements PrologAtom {
+final class JekejekePrologAtom extends JekejekePrologTerm implements PrologAtom {
 
 	JekejekePrologAtom(PrologProvider provider, String value) {
 		super(ATOM_TYPE, provider, new TermAtomic(value));
@@ -55,14 +55,6 @@ final class JekejekePrologAtom extends JekeJekePrologTerm implements PrologAtom 
 
 	public String getFunctor() {
 		return "" + value + "";
-	}
-
-	public String getIndicator() {
-		return getFunctor() + "/" + getArity();
-	}
-
-	public boolean hasIndicator(String functor, int arity) {
-		return getFunctor().equals(functor) && getArity() == arity;
 	}
 
 }

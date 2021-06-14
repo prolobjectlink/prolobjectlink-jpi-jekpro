@@ -23,7 +23,6 @@ import static io.github.prolobjectlink.prolog.PrologTermType.INTEGER_TYPE;
 
 import io.github.prolobjectlink.prolog.ArityError;
 import io.github.prolobjectlink.prolog.FunctorError;
-import io.github.prolobjectlink.prolog.IndicatorError;
 import io.github.prolobjectlink.prolog.PrologDouble;
 import io.github.prolobjectlink.prolog.PrologFloat;
 import io.github.prolobjectlink.prolog.PrologInteger;
@@ -37,7 +36,7 @@ import jekpro.tools.term.TermAtomic;
  * @author Jose Zalacain
  * @since 1.0
  */
-final class JekejekePrologInteger extends JekeJekePrologTerm implements PrologInteger {
+final class JekejekePrologInteger extends JekejekePrologTerm implements PrologInteger {
 
 	JekejekePrologInteger(PrologProvider provider, Number value) {
 		super(INTEGER_TYPE, provider, new TermAtomic(value.intValue()));
@@ -85,14 +84,6 @@ final class JekejekePrologInteger extends JekeJekePrologTerm implements PrologIn
 
 	public String getFunctor() {
 		throw new FunctorError(this);
-	}
-
-	public String getIndicator() {
-		throw new IndicatorError(this);
-	}
-
-	public boolean hasIndicator(String functor, int arity) {
-		return false;
 	}
 
 }

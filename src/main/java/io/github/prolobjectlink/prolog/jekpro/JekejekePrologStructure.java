@@ -32,13 +32,13 @@ import jekpro.tools.term.TermCompound;
  * @author Jose Zalacain
  * @since 1.0
  */
-final class JekejekePrologStructure extends JekeJekePrologTerm implements PrologStructure {
+final class JekejekePrologStructure extends JekejekePrologTerm implements PrologStructure {
 
 	JekejekePrologStructure(PrologProvider provider, String functor, PrologTerm... arguments) {
 		super(STRUCTURE_TYPE, provider);
 		Object[] terms = new Object[arguments.length];
 		for (int i = 0; i < arguments.length; i++) {
-			terms[i] = ((JekeJekePrologTerm) arguments[i]).value;
+			terms[i] = ((JekejekePrologTerm) arguments[i]).value;
 		}
 		value = new TermCompound(removeQuoted(functor), terms);
 	}
@@ -50,8 +50,8 @@ final class JekejekePrologStructure extends JekeJekePrologTerm implements Prolog
 
 	JekejekePrologStructure(PrologProvider provider, PrologTerm left, String operator, PrologTerm right) {
 		super(STRUCTURE_TYPE, provider);
-		AbstractTerm leftOperand = ((JekeJekePrologTerm) left).value;
-		AbstractTerm rightOperand = ((JekeJekePrologTerm) right).value;
+		AbstractTerm leftOperand = ((JekejekePrologTerm) left).value;
+		AbstractTerm rightOperand = ((JekejekePrologTerm) right).value;
 		value = new TermCompound(operator, leftOperand, rightOperand);
 	}
 
@@ -82,14 +82,6 @@ final class JekejekePrologStructure extends JekeJekePrologTerm implements Prolog
 	public String getFunctor() {
 		TermCompound structure = (TermCompound) value;
 		return structure.getFunctor();
-	}
-
-	public String getIndicator() {
-		return getFunctor() + "/" + getArity();
-	}
-
-	public boolean hasIndicator(String functor, int arity) {
-		return getFunctor().equals(functor) && getArity() == arity;
 	}
 
 	public final PrologTerm getRight() {

@@ -49,14 +49,4 @@ final class JekejekePrologEmpty extends JekejekePrologList implements PrologList
 		return "[]";
 	}
 
-	@Override
-	public String getIndicator() {
-		return getFunctor() + "/" + getArity();
-	}
-
-	@Override
-	public boolean hasIndicator(String functor, int arity) {
-		return getFunctor().equals(functor) && getArity() == arity;
-	}
-
 }

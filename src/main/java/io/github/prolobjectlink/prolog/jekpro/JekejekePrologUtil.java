@@ -28,7 +28,7 @@ import java.util.Map.Entry;
 import jekpro.tools.term.AbstractTerm;
 
 /**
- * Util class for {@link JekeJekePrologTerm}
+ * Util class for {@link JekejekePrologTerm}
  * 
  * @author Jose Zalacain
  * @since 1.0
