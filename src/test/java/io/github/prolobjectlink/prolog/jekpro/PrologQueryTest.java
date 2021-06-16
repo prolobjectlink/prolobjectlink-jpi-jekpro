@@ -145,6 +145,10 @@ public class PrologQueryTest extends PrologBaseTest {
 
 	@Test
 	public final void testOneVariablesSolution() {
+
+		Map<String, PrologTerm> map = query.oneVariablesSolution();
+		System.out.println(map);
+
 		assertEquals(mcardon, query.oneVariablesSolution().get("Name"));
 		assertEquals(one, query.oneVariablesSolution().get("Dpto"));
 		assertEquals(five, query.oneVariablesSolution().get("Scale"));

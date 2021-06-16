@@ -74,10 +74,6 @@ public class JekejekeProlog extends AbstractProvider implements PrologProvider {
 		super(converter);
 	}
 
-	public boolean isCompliant() {
-		return false;
-	}
-
 	public PrologTerm prologNil() {
 		return new JekejekePrologNil(this);
 	}

@@ -504,12 +504,14 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 	@Override
 	public String getVersion() {
 		return ForeignEngine.sysPrologVersion(prolog);
-		// return "1.3.6"
+	}
+
+	public final String getVendor() {
+		return ForeignEngine.sysPrologVendor(prolog);
 	}
 
 	@Override
 	public String getName() {
-		// return ForeignEngine.sysPrologVendor(prolog)
 		return "Jekejeke Prolog";
 	}
 

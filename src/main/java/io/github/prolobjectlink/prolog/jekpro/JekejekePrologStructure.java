@@ -38,6 +38,7 @@ final class JekejekePrologStructure extends JekejekePrologTerm implements Prolog
 		super(STRUCTURE_TYPE, provider);
 		Object[] terms = new Object[arguments.length];
 		for (int i = 0; i < arguments.length; i++) {
+//			terms[i] = ((JekejekePrologTerm) arguments[i]).value.getDisplay();
 			terms[i] = ((JekejekePrologTerm) arguments[i]).value;
 		}
 		value = new TermCompound(removeQuoted(functor), terms);
@@ -52,7 +53,7 @@ final class JekejekePrologStructure extends JekejekePrologTerm implements Prolog
 		super(STRUCTURE_TYPE, provider);
 		AbstractTerm leftOperand = ((JekejekePrologTerm) left).value;
 		AbstractTerm rightOperand = ((JekejekePrologTerm) right).value;
-		value = new TermCompound(operator, leftOperand, rightOperand);
+		value = new TermCompound(operator, leftOperand.getDisplay(), rightOperand.getDisplay());
 	}
 
 	JekejekePrologStructure(PrologProvider provider, Object left, String functor, Object right) {

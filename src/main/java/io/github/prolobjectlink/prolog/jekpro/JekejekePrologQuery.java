@@ -24,6 +24,7 @@ import static io.github.prolobjectlink.prolog.jekpro.JekejekePrologList.EMPTY;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,7 +54,8 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 	private String query;
 
 	private final List<Object> variables = new ArrayList<Object>();
-	private final List<String> names = new ArrayList<String>();
+	private final Map<String, String> directNames = new LinkedHashMap<String, String>();
+	private final Map<String, String> inverseNames = new LinkedHashMap<String, String>();
 
 	private void enumerateVariables(List<Object> vector, Object term) {
 		if (!(term instanceof TermVar) && (term instanceof TermCompound)) {
@@ -113,7 +115,7 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 	@Override
 	public PrologTerm[] oneSolution() {
 		try {
-			if (callIn.hasNext()) {
+			if (hasSolution()) {
 				int l = variables.size();
 				PrologTerm[] one = new PrologTerm[l];
 				for (int i = 0; i < variables.size(); i++) {
@@ -138,14 +140,12 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 	public Map<String, PrologTerm> oneVariablesSolution() {
 		Map<String, PrologTerm> map = new HashMap<String, PrologTerm>();
 		try {
-			if (callIn.hasNext()) {
+			if (hasSolution()) {
 				for (int i = 0; i < variables.size(); i++) {
 					Object object = variables.get(i);
 					AbstractTerm variable = (AbstractTerm) object;
 					String term = prolog.unparseTerm(variable, EMPTY);
-//					System.out.println(variable + "=" + getProvider().parseTerm(term));
 					map.put("" + variable + "", getProvider().parseTerm(term));
-//					map.put(names.get(i), getProvider().parseTerm(term));
 				}
 			}
 		} catch (NullPointerException e) {
@@ -161,7 +161,7 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 	@Override
 	public PrologTerm[] nextSolution() {
 		try {
-			if (callIn.hasNext()) {
+			if (hasSolution()) {
 				int l = variables.size();
 				PrologTerm[] one = new PrologTerm[l];
 				for (int i = 0; i < variables.size(); i++) {
@@ -187,14 +187,12 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 	public Map<String, PrologTerm> nextVariablesSolution() {
 		Map<String, PrologTerm> map = new HashMap<String, PrologTerm>();
 		try {
-			if (callIn.hasNext()) {
+			if (hasSolution()) {
 				for (int i = 0; i < variables.size(); i++) {
 					Object object = variables.get(i);
 					AbstractTerm variable = (AbstractTerm) object;
 					String term = prolog.unparseTerm(variable, EMPTY);
-//					System.out.println(variable + "=" + getProvider().parseTerm(term));
 					map.put("" + variable + "", getProvider().parseTerm(term));
-//					map.put(names.get(i), getProvider().parseTerm(term));
 				}
 				callIn.next();
 			}

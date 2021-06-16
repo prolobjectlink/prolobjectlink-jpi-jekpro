@@ -97,7 +97,6 @@ class JekejekePrologList extends JekejekePrologTerm implements PrologList {
 	}
 
 	public Iterator<PrologTerm> iterator() {
-//		TermCompound list = (TermCompound) value;
 		return new JekejekePrologListIter(value);
 	}
 
@@ -112,20 +111,20 @@ class JekejekePrologList extends JekejekePrologTerm implements PrologList {
 	}
 
 	public int getArity() {
-		if (value instanceof TermAtomic) {
-			return 0;
+		if (value instanceof TermCompound) {
+			TermCompound list = (TermCompound) value;
+			return list.getArity();
 		}
-		TermCompound list = (TermCompound) value;
-		return list.getArity();
+		return 0;
 	}
 
 	public String getFunctor() {
-		if (value instanceof TermAtomic) {
-			TermAtomic list = (TermAtomic) value;
-			return "" + list + "";
+		if (value instanceof TermCompound) {
+			TermCompound list = (TermCompound) value;
+			return list.getFunctor();
 		}
-		TermCompound list = (TermCompound) value;
-		return list.getFunctor();
+		TermAtomic list = (TermAtomic) value;
+		return "" + list + "";
 	}
 
 	public PrologTerm[] getArguments() {
@@ -159,12 +158,10 @@ class JekejekePrologList extends JekejekePrologTerm implements PrologList {
 		}
 
 		public boolean hasNext() {
-			return ptr instanceof TermCompound && ptr != null && !((TermCompound) ptr).getArg(0).equals(EMPTY);
+			return ptr instanceof TermCompound && !((TermCompound) ptr).getArg(0).equals(EMPTY);
 		}
 
 		public PrologTerm next() {
-			System.out.println(((TermCompound) ptr).getArg(0));
-			System.out.println(((TermCompound) ptr).getArg(1));
 			if (!hasNext()) {
 				throw new NoSuchElementException();
 			}

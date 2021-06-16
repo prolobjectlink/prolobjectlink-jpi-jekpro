@@ -167,10 +167,6 @@ abstract class JekejekePrologTerm extends AbstractTerm implements PrologTerm {
 		return isObjectType();
 	}
 
-	public Object getObject() {
-		return null;
-	}
-
 	public final PrologTerm getTerm() {
 		if (value instanceof TermVar) {
 			TermVar var = (TermVar) value;
