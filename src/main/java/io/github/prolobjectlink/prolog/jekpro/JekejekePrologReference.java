@@ -21,61 +21,14 @@
  */
 package io.github.prolobjectlink.prolog.jekpro;
 
-import static io.github.prolobjectlink.prolog.PrologTermType.OBJECT_TYPE;
-
+import io.github.prolobjectlink.prolog.AbstractReference;
 import io.github.prolobjectlink.prolog.PrologProvider;
 import io.github.prolobjectlink.prolog.PrologReference;
-import io.github.prolobjectlink.prolog.PrologTerm;
-import jekpro.tools.term.AbstractTerm;
 
-public class JekejekePrologReference extends JekejekePrologTerm implements PrologReference {
-
-	JekejekePrologReference(PrologProvider provider, AbstractTerm reference) {
-		super(OBJECT_TYPE, provider, reference);
-	}
+public class JekejekePrologReference extends AbstractReference implements PrologReference {
 
 	JekejekePrologReference(PrologProvider provider, Object reference) {
-		super(OBJECT_TYPE, provider, null);
-	}
-
-	public int getArity() {
-		return 0;
-	}
-
-	public String getFunctor() {
-		return "@";
-	}
-
-	public PrologTerm[] getArguments() {
-		return new PrologTerm[0];
-	}
-
-	public boolean isTrueType() {
-		return getObject().equals(true);
-	}
-
-	public boolean isFalseType() {
-		return getObject().equals(false);
-	}
-
-	public boolean isNullType() {
-		return getObject() == null;
-	}
-
-	public boolean isVoidType() {
-		return getObject() == void.class;
-	}
-
-	public boolean isObjectType() {
-		return getType() == OBJECT_TYPE;
-	}
-
-	public boolean isReference() {
-		return isObjectType() || isNullType();
-	}
-
-	public Object getObject() {
-		return null;
+		super(provider, reference);
 	}
 
 }

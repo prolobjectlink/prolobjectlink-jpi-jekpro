@@ -29,6 +29,7 @@ import static io.github.prolobjectlink.prolog.PrologTermType.FLOAT_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.INTEGER_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.LONG_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.NIL_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.OBJECT_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.TRUE_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.VARIABLE_TYPE;
 import static jekpro.tools.term.AbstractTerm.unifyTerm;
@@ -142,28 +143,28 @@ abstract class JekejekePrologTerm extends AbstractTerm implements PrologTerm {
 		return value instanceof TermCompound;
 	}
 
-	public boolean isTrueType() {
-		return false;
+	public final boolean isTrueType() {
+		return getObject().equals(true);
 	}
 
-	public boolean isFalseType() {
-		return false;
+	public final boolean isFalseType() {
+		return getObject().equals(false);
 	}
 
-	public boolean isNullType() {
-		return false;
+	public final boolean isNullType() {
+		return isObjectType() && getObject() == null;
 	}
 
-	public boolean isVoidType() {
-		return false;
+	public final boolean isVoidType() {
+		return getObject() == void.class;
 	}
 
-	public boolean isObjectType() {
-		return false;
+	public final boolean isObjectType() {
+		return getType() == OBJECT_TYPE;
 	}
 
-	public boolean isReference() {
-		return false;
+	public final boolean isReference() {
+		return isObjectType();
 	}
 
 	public Object getObject() {
@@ -185,7 +186,55 @@ abstract class JekejekePrologTerm extends AbstractTerm implements PrologTerm {
 
 	private boolean unify(jekpro.tools.term.AbstractTerm t2) {
 		try {
-			if (unifyTerm(prolog, value, t2)) {
+
+			//
+			if (value instanceof TermVar) {
+				TermVar var = (TermVar) value;
+				jekpro.tools.term.AbstractTerm instanc = var.derefWrapped();
+				if (instanc == var) {
+					/* b b= */TermVar.markBind(prolog);
+					return true;
+				} else if (unifyTerm(prolog, instanc, t2)) {
+					return true;
+				}
+			} else if (value instanceof TermVariable) {
+				TermVariable x = (TermVariable) value;
+				TermVar var = x.getVar();
+				jekpro.tools.term.AbstractTerm instanc = var.derefWrapped();
+				if (instanc == var) {
+					/* b b= */TermVar.markBind(prolog);
+					return true;
+				} else if (unifyTerm(prolog, instanc, t2)) {
+					return true;
+				}
+			}
+
+			//
+			if (t2 instanceof TermVar) {
+				TermVar var = (TermVar) t2;
+				jekpro.tools.term.AbstractTerm instanc = var.derefWrapped();
+				if (instanc == var) {
+					/* b b= */TermVar.markBind(prolog);
+					return true;
+				} else if (unifyTerm(prolog, instanc, value)) {
+					return true;
+				}
+			} else if (t2 instanceof TermVariable) {
+				TermVariable x = (TermVariable) t2;
+				TermVar var = x.getVar();
+				jekpro.tools.term.AbstractTerm instanc = var.derefWrapped();
+				if (instanc == var) {
+					/* b b= */TermVar.markBind(prolog);
+					return true;
+				} else if (unifyTerm(prolog, instanc, value)) {
+					return true;
+				}
+			}
+
+			// FIXME occurss check
+
+			//
+			else if (unifyTerm(prolog, value, t2)) {
 				return true;
 			}
 		} catch (InterpreterException e) {
@@ -198,6 +247,21 @@ abstract class JekejekePrologTerm extends AbstractTerm implements PrologTerm {
 		JekejekePrologTerm ot = (JekejekePrologTerm) o;
 		Object alpha = value.getSkel();
 		Object beta = ot.value.getSkel();
+
+		if (alpha instanceof Number && beta instanceof Number) {
+
+			Number n1 = (Number) alpha;
+			Number n2 = (Number) beta;
+
+			if (n1.doubleValue() < n2.doubleValue()) {
+				return -1;
+			} else if (n1.doubleValue() > n2.doubleValue()) {
+				return 1;
+			}
+			return 0;
+
+		}
+
 		int result = AbstractSkel.f(alpha, beta);
 		if (result < 0) {
 			return -1;

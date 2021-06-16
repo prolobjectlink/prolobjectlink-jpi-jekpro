@@ -31,7 +31,6 @@ import org.junit.Test;
 
 import io.github.prolobjectlink.prolog.ArityError;
 import io.github.prolobjectlink.prolog.FunctorError;
-import io.github.prolobjectlink.prolog.IndicatorError;
 import io.github.prolobjectlink.prolog.PrologAtom;
 import io.github.prolobjectlink.prolog.PrologDouble;
 import io.github.prolobjectlink.prolog.PrologFloat;
@@ -100,12 +99,12 @@ public class PrologIntegerTest extends PrologBaseTest {
 		assertEquals(100.0, integer.getFloatValue(), 0);
 	}
 
-	@Test(expected = IndicatorError.class)
+	@Test(expected = FunctorError.class)
 	public final void testGetKey() {
 		integer.getIndicator();
 	}
 
-	@Test
+	@Test(expected = FunctorError.class)
 	public final void testHasIndicator() {
 		assertFalse(integer.hasIndicator("100", 0));
 	}
@@ -253,17 +252,17 @@ public class PrologIntegerTest extends PrologBaseTest {
 		PrologLong lValue = provider.newLong(28);
 		PrologLong lValue1 = provider.newLong(100);
 		// true because are equals
-		assertEquals(1, iValue.compareTo(lValue));
+		assertEquals(0, iValue.compareTo(lValue));
 		// false because they are different
-		assertEquals(1, iValue.compareTo(lValue1));
+		assertEquals(-1, iValue.compareTo(lValue1));
 
 		// with float
 		PrologFloat fValue = provider.newFloat(36.47);
-		assertEquals(0, iValue.compareTo(fValue));
+		assertEquals(-1, iValue.compareTo(fValue));
 
 		// with double
 		PrologDouble dValue = provider.newDouble(36.47);
-		assertEquals(0, iValue.compareTo(dValue));
+		assertEquals(-1, iValue.compareTo(dValue));
 
 		// with variable
 		PrologVariable variable = provider.newVariable("X", 0);

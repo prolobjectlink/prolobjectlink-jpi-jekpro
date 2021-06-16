@@ -24,6 +24,7 @@ import static io.github.prolobjectlink.prolog.PrologTermType.LIST_TYPE;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import io.github.prolobjectlink.prolog.AbstractIterator;
 import io.github.prolobjectlink.prolog.PrologList;
@@ -96,26 +97,35 @@ class JekejekePrologList extends JekejekePrologTerm implements PrologList {
 	}
 
 	public Iterator<PrologTerm> iterator() {
+//		TermCompound list = (TermCompound) value;
 		return new JekejekePrologListIter(value);
 	}
 
 	public PrologTerm getHead() {
 		TermCompound list = (TermCompound) value;
-		return toTerm(list.getArg(1), PrologTerm.class);
+		return toTerm(list.getArg(0), PrologTerm.class);
 	}
 
 	public PrologTerm getTail() {
 		TermCompound list = (TermCompound) value;
-		return toTerm(list.getArg(2), PrologTerm.class);
+		return toTerm(list.getArg(1), PrologTerm.class);
 	}
 
 	public int getArity() {
+		if (value instanceof TermAtomic) {
+			return 0;
+		}
 		TermCompound list = (TermCompound) value;
 		return list.getArity();
 	}
 
 	public String getFunctor() {
-		return ".";
+		if (value instanceof TermAtomic) {
+			TermAtomic list = (TermAtomic) value;
+			return "" + list + "";
+		}
+		TermCompound list = (TermCompound) value;
+		return list.getFunctor();
 	}
 
 	public PrologTerm[] getArguments() {
@@ -149,13 +159,22 @@ class JekejekePrologList extends JekejekePrologTerm implements PrologList {
 		}
 
 		public boolean hasNext() {
-			// TODO Auto-generated method stub
-			return false;
+			return ptr instanceof TermCompound && ptr != null && !((TermCompound) ptr).getArg(0).equals(EMPTY);
 		}
 
 		public PrologTerm next() {
-			// TODO Auto-generated method stub
-			return null;
+			System.out.println(((TermCompound) ptr).getArg(0));
+			System.out.println(((TermCompound) ptr).getArg(1));
+			if (!hasNext()) {
+				throw new NoSuchElementException();
+			}
+			PrologTerm next = toTerm(((TermCompound) ptr).getArg(0), PrologTerm.class);
+			if (((TermCompound) ptr).getArg(1) instanceof TermCompound) {
+				ptr = (TermCompound) ((TermCompound) ptr).getArg(1);
+			} else {
+				ptr = null;
+			}
+			return next;
 		}
 
 	}

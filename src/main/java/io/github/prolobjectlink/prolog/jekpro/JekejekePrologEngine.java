@@ -55,6 +55,7 @@ import jekpro.model.c.c;
 import jekpro.model.c.e;
 import jekpro.model.c.p;
 import jekpro.model.d.k;
+import jekpro.reference.bootload.ForeignEngine;
 import jekpro.tools.call.CallIn;
 import jekpro.tools.call.Interpreter;
 import jekpro.tools.call.InterpreterException;
@@ -431,7 +432,18 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 		for (MapEntry<String, c> mapEntry : source) {
 			k[] opsinv = mapEntry.value.snapshotOpersInv();
 			for (k op : opsinv) {
-				operators.add(new JekejekePrologOperator(op.getLevel(), "" + op.getBits() + "", op.getKey()));
+				String x = null;
+				int level = op.getLevel();
+				String bits = "" + op.getBits() + "";
+				String key = op.getKey();
+				if (bits.equals("512") || bits.equals("514")) {
+					x = "fx";
+				} else if (bits.equals("513") || bits.equals("529") || bits.equals("561")) {
+					x = "xfy";
+				} else if (bits.equals("515")) {
+					x = "xfx";
+				}
+				operators.add(new JekejekePrologOperator(level, x, key));
 			}
 		}
 		return operators;
@@ -491,11 +503,13 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 
 	@Override
 	public String getVersion() {
-		return "1.3.6";
+		return ForeignEngine.sysPrologVersion(prolog);
+		// return "1.3.6"
 	}
 
 	@Override
 	public String getName() {
+		// return ForeignEngine.sysPrologVendor(prolog)
 		return "Jekejeke Prolog";
 	}
 

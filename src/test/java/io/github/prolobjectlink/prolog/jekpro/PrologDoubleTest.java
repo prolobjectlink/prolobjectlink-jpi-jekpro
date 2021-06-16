@@ -31,7 +31,6 @@ import org.junit.Test;
 
 import io.github.prolobjectlink.prolog.ArityError;
 import io.github.prolobjectlink.prolog.FunctorError;
-import io.github.prolobjectlink.prolog.IndicatorError;
 import io.github.prolobjectlink.prolog.PrologAtom;
 import io.github.prolobjectlink.prolog.PrologDouble;
 import io.github.prolobjectlink.prolog.PrologFloat;
@@ -184,12 +183,12 @@ public class PrologDoubleTest extends PrologBaseTest {
 		assertFalse(double1.isEvaluable());
 	}
 
-	@Test(expected = IndicatorError.class)
+	@Test(expected = FunctorError.class)
 	public void testGetKey() {
 		double1.getIndicator();
 	}
 
-	@Test
+	@Test(expected = FunctorError.class)
 	public void testHasIndicator() {
 		assertFalse(double1.hasIndicator("1.6180339887", 0));
 	}
@@ -251,11 +250,11 @@ public class PrologDoubleTest extends PrologBaseTest {
 
 		// with integer
 		PrologInteger iValue = provider.newInteger(28);
-		assertEquals(-1, dValue.compareTo(iValue));
+		assertEquals(1, dValue.compareTo(iValue));
 
 		// with long
 		PrologLong lValue = provider.newLong(28);
-		assertEquals(0, dValue.compareTo(lValue));
+		assertEquals(1, dValue.compareTo(lValue));
 
 		// with float
 		PrologFloat fValue1 = provider.newFloat(100.98);
