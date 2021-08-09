@@ -29,6 +29,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -106,7 +107,7 @@ public class PrologProviderTest extends PrologBaseTest {
 
 	@Test
 	public final void testIsCompilant() {
-		assertFalse(provider.isCompliant());
+		assertTrue(provider.isCompliant());
 	}
 
 	@Test
