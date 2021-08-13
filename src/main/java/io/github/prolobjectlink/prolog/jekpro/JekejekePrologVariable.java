@@ -26,13 +26,14 @@ import io.github.prolobjectlink.prolog.FunctorError;
 import io.github.prolobjectlink.prolog.PrologProvider;
 import io.github.prolobjectlink.prolog.PrologTerm;
 import io.github.prolobjectlink.prolog.PrologVariable;
+import jekpro.tools.term.AbstractTerm;
 
 /**
  * 
  * @author Jose Zalacain
  * @since 1.0
  */
-final class JekejekePrologVariable extends JekejekePrologTerm implements PrologVariable {
+class JekejekePrologVariable extends JekejekePrologTerm implements PrologVariable {
 
 	JekejekePrologVariable(PrologProvider provider) {
 		super(VARIABLE_TYPE, provider, new TermVariable());
@@ -40,6 +41,18 @@ final class JekejekePrologVariable extends JekejekePrologTerm implements PrologV
 
 	JekejekePrologVariable(PrologProvider provider, String name) {
 		super(VARIABLE_TYPE, provider, new TermVariable(name));
+	}
+
+	JekejekePrologVariable(int type, PrologProvider provider) {
+		super(type, provider);
+	}
+
+	JekejekePrologVariable(int type, PrologProvider provider, String name) {
+		super(type, provider, new TermVariable(name));
+	}
+
+	JekejekePrologVariable(int type, PrologProvider provider, AbstractTerm var) {
+		super(type, provider, var);
 	}
 
 	public boolean isAnonymous() {

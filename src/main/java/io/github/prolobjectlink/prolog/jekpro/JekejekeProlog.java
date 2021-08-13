@@ -270,6 +270,60 @@ public class JekejekeProlog extends AbstractProvider implements PrologProvider {
 		return newReference(void.class);
 	}
 
+	public PrologTerm newField(PrologTerm name) {
+		return new JekejekePrologField(this, name);
+	}
+
+	public PrologTerm newField(String name) {
+		return new JekejekePrologField(this, name);
+	}
+
+	public PrologTerm newField(PrologTerm name, PrologTerm type) {
+		return new JekejekePrologTypedField(this, name, type);
+	}
+
+	public PrologTerm newField(String name, String type) {
+		PrologTerm oname = newVariable(name, 0);
+		PrologTerm otype = newVariable(type, 1);
+		return new JekejekePrologTypedField(this, oname, otype);
+	}
+
+	public PrologTerm newResult(PrologTerm name) {
+		return new JekejekePrologResult(this, name);
+	}
+
+	public PrologTerm newResult(String name) {
+		return new JekejekePrologResult(this, name);
+	}
+
+	public PrologTerm newResult(PrologTerm name, PrologTerm type) {
+		return new JekejekePrologTypedResult(this, name, type);
+	}
+
+	public PrologTerm newResult(String name, String type) {
+		PrologTerm oname = newVariable(name, 0);
+		PrologTerm otype = newVariable(type, 1);
+		return new JekejekePrologTypedResult(this, oname, otype);
+	}
+
+	public PrologTerm newParameter(PrologTerm name) {
+		return new JekejekePrologParameter(this, name);
+	}
+
+	public PrologTerm newParameter(String name) {
+		return new JekejekePrologParameter(this, name);
+	}
+
+	public PrologTerm newParameter(PrologTerm name, PrologTerm type) {
+		return new JekejekePrologTypedParameter(this, name, type);
+	}
+
+	public PrologTerm newParameter(String name, String type) {
+		PrologTerm oname = newVariable(name, 0);
+		PrologTerm otype = newVariable(type, 1);
+		return new JekejekePrologTypedParameter(this, oname, otype);
+	}
+
 	public PrologJavaConverter getJavaConverter() {
 		return new JekejekePrologJavaConverter(this);
 	}
