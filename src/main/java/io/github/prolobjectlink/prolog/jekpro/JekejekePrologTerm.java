@@ -167,7 +167,7 @@ abstract class JekejekePrologTerm extends AbstractTerm implements PrologTerm {
 		return isObjectType();
 	}
 
-	public final PrologTerm getTerm() {
+	public PrologTerm getTerm() {
 		if (value instanceof TermVar) {
 			TermVar var = (TermVar) value;
 			AbstractTerm i = (AbstractTerm) var.deref();
@@ -268,7 +268,7 @@ abstract class JekejekePrologTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	@Override
-	public final int hashCode() {
+	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + type;
@@ -278,7 +278,7 @@ abstract class JekejekePrologTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	@Override
-	public final boolean equals(Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)

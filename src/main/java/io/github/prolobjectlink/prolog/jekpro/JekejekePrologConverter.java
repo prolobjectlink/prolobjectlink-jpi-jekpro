@@ -29,6 +29,7 @@ import static io.github.prolobjectlink.prolog.PrologTermType.INTEGER_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.LIST_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.LONG_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.NIL_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.OBJECT_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.STRUCTURE_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.TRUE_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.VARIABLE_TYPE;
@@ -246,6 +247,9 @@ final class JekejekePrologConverter extends AbstractConverter<Object> implements
 			PrologTerm[] terms = term.getArguments();
 			Object[] arguments = fromTermArray(terms);
 			return new TermCompound(functor, arguments);
+		case OBJECT_TYPE:
+			arguments = new Object[] { new TermAtomic("'" + term.getObject() + "'") };
+			return new TermCompound("'@'", arguments);
 		default:
 			throw new UnknownTermError(term);
 		}
