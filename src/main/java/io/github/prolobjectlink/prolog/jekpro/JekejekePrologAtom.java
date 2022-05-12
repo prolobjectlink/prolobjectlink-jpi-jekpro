@@ -46,7 +46,7 @@ final class JekejekePrologAtom extends JekejekePrologTerm implements PrologAtom 
 	}
 
 	public PrologTerm[] getArguments() {
-		return new JekejekePrologAtom[0];
+		return new PrologTerm[0];
 	}
 
 	public int getArity() {

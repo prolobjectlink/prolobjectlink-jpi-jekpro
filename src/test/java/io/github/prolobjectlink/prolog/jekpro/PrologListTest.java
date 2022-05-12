@@ -258,7 +258,7 @@ public class PrologListTest extends PrologBaseTest {
 		// with atom
 		PrologAtom atom = provider.newAtom("John Doe");
 		assertEquals(0, flattened.compareTo(atom));
-		assertEquals(1, headTail.compareTo(atom));
+		assertEquals(0, headTail.compareTo(atom));
 		assertEquals(1, empty.compareTo(atom));
 
 		// with integer

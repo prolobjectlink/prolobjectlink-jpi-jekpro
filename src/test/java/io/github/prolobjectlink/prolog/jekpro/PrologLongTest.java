@@ -271,7 +271,7 @@ public class PrologLongTest extends PrologBaseTest {
 
 		// with variable
 		PrologVariable variable = provider.newVariable("X", 0);
-		assertEquals(1, lValue.compareTo(variable));
+		assertEquals(0, lValue.compareTo(variable));
 
 		// with predicate
 		PrologStructure structure = provider.parseStructure("some_predicate(a,b,c)");

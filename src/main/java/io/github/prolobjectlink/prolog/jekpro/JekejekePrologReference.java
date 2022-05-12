@@ -1,22 +1,20 @@
-/*-
+/*
  * #%L
- * prolobjectlink-jpi-tuprolog
+ * prolobjectlink-jpi-jekpro
  * %%
- * Copyright (C) 2020 - 2021 Prolobjectlink Project
+ * Copyright (C) 2019 Prolobjectlink Project
  * %%
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
+ *      http://www.apache.org/licenses/LICENSE-2.0
  * 
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * #L%
  */
 package io.github.prolobjectlink.prolog.jekpro;
@@ -27,78 +25,34 @@ import io.github.prolobjectlink.prolog.PrologProvider;
 import io.github.prolobjectlink.prolog.PrologReference;
 import io.github.prolobjectlink.prolog.PrologTerm;
 import jekpro.tools.term.TermAtomic;
-import jekpro.tools.term.TermCompound;
 
 public class JekejekePrologReference extends JekejekePrologTerm implements PrologReference {
 
-	protected final Object reference;
-
 	protected JekejekePrologReference(PrologProvider provider, Object reference) {
-		super(OBJECT_TYPE, provider, new TermCompound("'@'", new Object[] { new TermAtomic("'" + reference + "'") }));
-		this.reference = reference;
+		super(OBJECT_TYPE, provider, new TermAtomic(reference));
 	}
 
-	@Override
 	public int getArity() {
-		return 1;
+		return 0;
 	}
 
-	@Override
 	public String getFunctor() {
-		return "@";
+		return "" + value + "";
 	}
 
 	@Override
 	public PrologTerm[] getArguments() {
-		String string = reference.toString();
-		PrologTerm tag = provider.newAtom(string);
-		return new PrologTerm[] { tag };
-	}
-
-	@Override
-	public PrologTerm getTerm() {
-		String string = reference.toString();
-		PrologTerm tag = provider.newAtom(string);
-		return provider.newStructure(getFunctor(), tag);
+		return new PrologTerm[0];
 	}
 
 	@Override
 	public Class<?> getReferenceType() {
-		return reference.getClass();
+		return ((TermAtomic) value).getValue().getClass();
 	}
 
+	@Override
 	public Object getObject() {
-		return reference;
+		return ((TermAtomic) value).getValue();
 	}
 
-	@Override
-	public String toString() {
-		return "" + getTerm() + "";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((reference == null) ? 0 : reference.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		JekejekePrologReference other = (JekejekePrologReference) obj;
-		if (reference == null) {
-			if (other.reference != null)
-				return false;
-		} else if (!reference.equals(other.reference)) {
-			return false;
-		}
-		return true;
-	}
 }

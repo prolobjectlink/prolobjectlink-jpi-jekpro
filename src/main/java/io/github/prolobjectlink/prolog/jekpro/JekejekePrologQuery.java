@@ -27,18 +27,20 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import io.github.prolobjectlink.prolog.AbstractEngine;
 import io.github.prolobjectlink.prolog.AbstractQuery;
 import io.github.prolobjectlink.prolog.PrologError;
 import io.github.prolobjectlink.prolog.PrologQuery;
 import io.github.prolobjectlink.prolog.PrologTerm;
-import io.github.prolobjectlink.prolog.PrologVariable;
 import jekpro.tools.call.CallIn;
 import jekpro.tools.call.Interpreter;
 import jekpro.tools.call.InterpreterException;
 import jekpro.tools.call.InterpreterMessage;
 import jekpro.tools.term.AbstractTerm;
+import jekpro.tools.term.SkelCompound;
+import jekpro.tools.term.SkelVar;
 import jekpro.tools.term.TermCompound;
 import jekpro.tools.term.TermVar;
 
@@ -69,23 +71,35 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 		}
 	}
 
-	private void enumerateVariables(List<String> vector, PrologTerm term) {
-		if (!(term.isVariable()) && (term.isCompound())) {
-			for (int i = 0; i < term.getArity(); i++) {
-				PrologTerm t = term.getArgument(i);
-				enumerateVariables(vector, t);
-			}
-		} else if (!vector.contains(((PrologVariable) term).getName())) {
-			vector.add(((PrologVariable) term).getName());
-		}
-	}
-
 	public JekejekePrologQuery(AbstractEngine engine, String query) {
 		super(engine);
 		this.query = query;
 		try {
+
+			List<String> names = new ArrayList<String>();
 			prolog = ((JekejekePrologEngine) engine).prolog;
+			StringTokenizer tokenizer = new StringTokenizer(query, ",() +-*/%");
+			while (tokenizer.hasMoreTokens()) {
+				String token = tokenizer.nextToken();
+				if (token.matches("[A-Z][A-Za-z0-9_]*") && !names.contains(token)) {
+					names.add(token);
+				}
+			}
+
 			AbstractTerm goal = prolog.parseTerm(query, EMPTY);
+			SkelCompound compound = (SkelCompound) goal.getSkel();
+			if (compound.vU instanceof SkelVar[]) {
+				SkelVar[] vars = (SkelVar[]) compound.vU;
+				for (int i = 0; i < vars.length; i++) {
+					directNames.put(names.get(i), vars[i].toString());
+					inverseNames.put(vars[i].toString(), names.get(i));
+				}
+			} else if (compound.vU instanceof SkelVar) {
+				SkelVar var = (SkelVar) compound.vU;
+				directNames.put(names.get(0), var.toString());
+				inverseNames.put(var.toString(), names.get(0));
+			}
+
 			enumerateVariables(variables, goal);
 			callIn = prolog.iterator(goal);
 		} catch (InterpreterMessage e) {
@@ -145,7 +159,8 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 					Object object = variables.get(i);
 					AbstractTerm variable = (AbstractTerm) object;
 					String term = prolog.unparseTerm(variable, EMPTY);
-					map.put("" + variable + "", getProvider().parseTerm(term));
+					String name = inverseNames.get(variable.toString());
+					map.put(name, getProvider().parseTerm(term));
 				}
 			}
 		} catch (NullPointerException e) {
@@ -192,7 +207,8 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 					Object object = variables.get(i);
 					AbstractTerm variable = (AbstractTerm) object;
 					String term = prolog.unparseTerm(variable, EMPTY);
-					map.put("" + variable + "", getProvider().parseTerm(term));
+					String name = inverseNames.get(variable.toString());
+					map.put(name, getProvider().parseTerm(term));
 				}
 				callIn.next();
 			}
@@ -223,7 +239,7 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 			PrologTerm[][] allSolutions = new PrologTerm[n][m];
 			for (int i = 0; i < n; i++) {
 				PrologTerm[] solution = all.get(i);
-				for (int j = 0; j < m; j++) {
+				for (int j = 0; j < m && j < solution.length; j++) {
 					allSolutions[i][j] = solution[j];
 				}
 			}
@@ -319,6 +335,8 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 	@Override
 	public void dispose() {
 		variables.clear();
+		directNames.clear();
+		inverseNames.clear();
 		try {
 			callIn.close();
 		} catch (InterpreterException e) {

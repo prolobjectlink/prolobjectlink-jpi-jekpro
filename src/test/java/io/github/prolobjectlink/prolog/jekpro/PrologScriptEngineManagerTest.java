@@ -32,8 +32,6 @@ import javax.script.ScriptException;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import io.github.prolobjectlink.prolog.jekpro.JekejekePrologScriptFactory;
-
 @Ignore
 public class PrologScriptEngineManagerTest extends PrologBaseTest {
 
