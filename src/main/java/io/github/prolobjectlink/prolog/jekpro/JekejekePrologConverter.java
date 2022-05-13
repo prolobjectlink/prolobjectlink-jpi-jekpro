@@ -239,24 +239,26 @@ final class JekejekePrologConverter extends AbstractConverter<Object> implements
 			PrologTerm[] array = term.getArguments();
 			AbstractTerm list = JekejekePrologList.EMPTY;
 			for (int i = array.length - 1; i >= 0; --i) {
-				list = new TermCompound(".", fromTerm(array[i]), list);
+				list = new TermCompound(".", array[i].getObject(), list);
 			}
 			return list;
 		case STRUCTURE_TYPE:
 			String functor = term.getFunctor();
 			PrologTerm[] terms = term.getArguments();
-			Object[] arguments = fromTermArray(terms);
+			Object[] arguments = new Object[terms.length];
+			for (int i = 0; i < terms.length; i++) {
+				arguments[i] = terms[i].getObject();
+			}
 			return new TermCompound(functor, arguments);
 		case OBJECT_TYPE:
-			arguments = new Object[] { new TermAtomic("'" + term.getObject() + "'") };
-			return new TermCompound("'@'", arguments);
+			return new TermAtomic(term.getObject());
 		default:
 			throw new UnknownTermError(term);
 		}
 	}
 
-	public Object[] fromTermArray(PrologTerm[] terms) {
-		Object[] prologTerms = new Object[terms.length];
+	public AbstractTerm[] fromTermArray(PrologTerm[] terms) {
+		AbstractTerm[] prologTerms = new AbstractTerm[terms.length];
 		for (int i = 0; i < terms.length; i++) {
 			prologTerms[i] = fromTerm(terms[i]);
 		}

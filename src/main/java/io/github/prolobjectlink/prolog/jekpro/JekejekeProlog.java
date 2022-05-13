@@ -150,24 +150,20 @@ public class JekejekeProlog extends AbstractProvider implements PrologProvider {
 			Knowledgebase.initKnowledgebase(prolog, true);
 			ToolkitLibrary.initPaths(prolog, listArray);
 			ToolkitLibrary.initCapas(prolog, listArray);
-			AbstractTerm term = prolog.parseTerm(stringTerms, e);
-			while (term instanceof TermCompound) {
-				TermCompound struct = (TermCompound) term;
-				if (struct.getFunctor().equals(",") && struct.getArity() == 2) {
-					list.add(toTerm(struct.getArg(0), PrologTerm.class));
-					term = (AbstractTerm) struct.getArg(1);
-				} else {
-					list.add(toTerm(term, PrologTerm.class));
-				}
+			AbstractTerm ptr = prolog.parseTerm(stringTerms, e);
+			while (ptr instanceof TermCompound && ((TermCompound) ptr).getFunctor().equals(",")
+					&& ((TermCompound) ptr).getArity() == 2) {
+				TermCompound struct = (TermCompound) ptr;
+				list.add(toTerm(struct.getArg(0), PrologTerm.class));
+				ptr = (AbstractTerm) struct.getArg(1);
 			}
+			list.add(toTerm(ptr, PrologTerm.class));
 		} catch (InterpreterMessage e1) {
 			getLogger().error(getClass(), SYNTAX_ERROR, e1);
 		} catch (InterpreterException e1) {
 			getLogger().error(getClass(), SYNTAX_ERROR, e1);
 		}
 		return list.toArray(new PrologTerm[0]);
-		// return toTermArray(JekejekePrologUtil.parseTerms(stringTerms),
-		// PrologTerm[].class)
 	}
 
 	// terms

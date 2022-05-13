@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JekejekePrologEngine.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-jekpro</a> &gt; <a href="index.source.html" class="el_package">io.github.prolobjectlink.prolog.jekpro</a> &gt; <span class="el_source">JekejekePrologEngine.java</span></div><h1>JekejekePrologEngine.java</h1><pre class="source lang-java linenums">/*
+ * #%L
+ * prolobjectlink-jpi-jekpro
+ * %%
+ * Copyright (C) 2019 Prolobjectlink Project
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+package io.github.prolobjectlink.prolog.jekpro;
+
+import static io.github.prolobjectlink.prolog.PrologLogger.DONT_WORRY;
+import static io.github.prolobjectlink.prolog.PrologLogger.IO;
+import static io.github.prolobjectlink.prolog.PrologLogger.RUNTIME_ERROR;
+import static io.github.prolobjectlink.prolog.jekpro.JekejekePrologList.EMPTY;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+import io.github.prolobjectlink.prolog.AbstractEngine;
+import io.github.prolobjectlink.prolog.ArrayIterator;
+import io.github.prolobjectlink.prolog.Licenses;
+import io.github.prolobjectlink.prolog.PrologClause;
+import io.github.prolobjectlink.prolog.PrologEngine;
+import io.github.prolobjectlink.prolog.PrologIndicator;
+import io.github.prolobjectlink.prolog.PrologOperator;
+import io.github.prolobjectlink.prolog.PrologProgram;
+import io.github.prolobjectlink.prolog.PrologProvider;
+import io.github.prolobjectlink.prolog.PrologQuery;
+import io.github.prolobjectlink.prolog.PrologTerm;
+import io.github.prolobjectlink.prolog.PrologTermType;
+import jekpro.model.a.b;
+import jekpro.model.a.n;
+import jekpro.model.a.r;
+import jekpro.model.b.m;
+import jekpro.model.c.c;
+import jekpro.model.c.e;
+import jekpro.model.c.p;
+import jekpro.model.d.k;
+import jekpro.reference.bootload.ForeignEngine;
+import jekpro.tools.call.CallIn;
+import jekpro.tools.call.Interpreter;
+import jekpro.tools.call.InterpreterException;
+import jekpro.tools.call.InterpreterMessage;
+import jekpro.tools.term.AbstractSkel;
+import jekpro.tools.term.AbstractTerm;
+import jekpro.tools.term.SkelAtom;
+import jekpro.tools.term.SkelCompound;
+import matula.util.data.MapEntry;
+
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
+public class JekejekePrologEngine extends AbstractEngine implements PrologEngine {
+
+	final Interpreter prolog;
+	private CallIn accessor;
+
+	public JekejekePrologEngine(PrologProvider provider, Interpreter prolog) {
+<span class="fc" id="L82">		super(provider);</span>
+<span class="fc" id="L83">		this.prolog = prolog;</span>
+<span class="fc" id="L84">	}</span>
+
+	@Override
+	public void consult(String path) {
+		AbstractTerm consult;
+		try {
+<span class="nc" id="L90">			consult = prolog.parseTerm(&quot;consult('&quot; + path + &quot;')&quot;, EMPTY);</span>
+<span class="nc" id="L91">			accessor = prolog.iterator(consult).next();</span>
+<span class="nc" id="L92">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L93">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L94">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L95">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L96">		}</span>
+<span class="nc" id="L97">	}</span>
+
+	@Override
+	public void consult(Reader reader) {
+		AbstractTerm consult;
+		try {
+<span class="nc" id="L103">			consult = prolog.parseTerm(reader, EMPTY);</span>
+<span class="nc" id="L104">			accessor = prolog.iterator(consult).next();</span>
+<span class="nc" id="L105">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L106">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L107">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L108">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L109">		}</span>
+<span class="nc" id="L110">	}</span>
+
+	@Override
+	public void include(String path) {
+		AbstractTerm include;
+		try {
+<span class="nc" id="L116">			include = prolog.parseTerm(&quot;include('&quot; + path + &quot;')&quot;, EMPTY);</span>
+<span class="nc" id="L117">			accessor = prolog.iterator(include).next();</span>
+<span class="nc" id="L118">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L119">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L120">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L121">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L122">		}</span>
+<span class="nc" id="L123">	}</span>
+
+	@Override
+	public void include(Reader reader) {
+		AbstractTerm include;
+		try {
+<span class="nc" id="L129">			include = prolog.parseTerm(reader, EMPTY);</span>
+<span class="nc" id="L130">			accessor = prolog.iterator(include).next();</span>
+<span class="nc" id="L131">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L132">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L133">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L134">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L135">		}</span>
+<span class="nc" id="L136">	}</span>
+
+	@Override
+	public void persist(String path) {
+<span class="nc" id="L140">		PrintWriter writer = null;</span>
+<span class="nc" id="L141">		List&lt;AbstractSkel&gt; l = listClauses();</span>
+		try {
+<span class="nc" id="L143">			writer = new PrintWriter(path);</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">			for (AbstractSkel abstractSkel : l) {</span>
+<span class="nc" id="L145">				writer.println(abstractSkel);</span>
+<span class="nc" id="L146">			}</span>
+<span class="nc" id="L147">		} catch (IOException e) {</span>
+<span class="nc" id="L148">			getLogger().warn(getClass(), IO + path, e);</span>
+<span class="nc" id="L149">			getLogger().info(getClass(), DONT_WORRY + path);</span>
+		} finally {
+<span class="nc bnc" id="L151" title="All 6 branches missed.">			if (writer != null) {</span>
+<span class="nc" id="L152">				writer.close();</span>
+			}
+		}
+<span class="nc" id="L155">	}</span>
+
+	@Override
+	public void abolish(String functor, int arity) {
+		AbstractTerm abolish;
+		try {
+<span class="nc" id="L161">			String key = functor + &quot;/&quot; + arity;</span>
+<span class="nc" id="L162">			abolish = prolog.parseTerm(&quot;abolish(&quot; + key + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L163">			accessor = prolog.iterator(abolish).next();</span>
+<span class="nc" id="L164">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L165">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L166">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L167">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L168">		}</span>
+<span class="nc" id="L169">	}</span>
+
+	@Override
+	public void asserta(String stringClause) {
+		AbstractTerm asserta;
+		try {
+<span class="nc" id="L175">			asserta = prolog.parseTerm(&quot;asserta(&quot; + stringClause + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L176">			accessor = prolog.iterator(asserta).next();</span>
+<span class="nc" id="L177">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L178">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L179">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L180">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L181">		}</span>
+<span class="nc" id="L182">	}</span>
+
+	@Override
+	public void asserta(PrologTerm term) {
+<span class="nc" id="L186">		AbstractTerm asserta = fromTerm(term, AbstractTerm.class);</span>
+		try {
+<span class="nc" id="L188">			asserta = prolog.parseTerm(&quot;asserta(&quot; + asserta + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L189">			accessor = prolog.iterator(asserta).next();</span>
+<span class="nc" id="L190">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L191">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L192">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L193">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L194">		}</span>
+<span class="nc" id="L195">	}</span>
+
+	@Override
+	public void asserta(PrologTerm head, PrologTerm... body) {
+<span class="nc" id="L199">		AbstractTerm asserta = fromTerm(head, body, AbstractTerm.class);</span>
+		try {
+<span class="nc" id="L201">			asserta = prolog.parseTerm(&quot;asserta(&quot; + asserta + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L202">			accessor = prolog.iterator(asserta).next();</span>
+<span class="nc" id="L203">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L204">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L205">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L206">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L207">		}</span>
+<span class="nc" id="L208">	}</span>
+
+	@Override
+	public void assertz(String stringClause) {
+		AbstractTerm assertz;
+		try {
+<span class="fc" id="L214">			assertz = prolog.parseTerm(&quot;assertz(&quot; + stringClause + &quot;)&quot;, EMPTY);</span>
+<span class="fc" id="L215">			accessor = prolog.iterator(assertz).next();</span>
+<span class="nc" id="L216">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L217">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L218">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L219">			getLogger().error(getClass(), IO, e1);</span>
+<span class="pc" id="L220">		}</span>
+<span class="fc" id="L221">	}</span>
+
+	@Override
+	public void assertz(PrologTerm term) {
+<span class="nc" id="L225">		AbstractTerm assertz = fromTerm(term, AbstractTerm.class);</span>
+		try {
+<span class="nc" id="L227">			assertz = prolog.parseTerm(&quot;assertz(&quot; + assertz + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L228">			accessor = prolog.iterator(assertz).next();</span>
+<span class="nc" id="L229">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L230">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L231">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L232">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L233">		}</span>
+<span class="nc" id="L234">	}</span>
+
+	@Override
+	public void assertz(PrologTerm head, PrologTerm... body) {
+<span class="nc" id="L238">		AbstractTerm assertz = fromTerm(head, body, AbstractTerm.class);</span>
+		try {
+<span class="nc" id="L240">			assertz = prolog.parseTerm(&quot;assertz(&quot; + assertz + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L241">			accessor = prolog.iterator(assertz).next();</span>
+<span class="nc" id="L242">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L243">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L244">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L245">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L246">		}</span>
+<span class="nc" id="L247">	}</span>
+
+	@Override
+	public boolean clause(String stringClause) {
+		AbstractTerm clause;
+		try {
+<span class="nc" id="L253">			clause = prolog.parseTerm(&quot;clause(&quot; + stringClause + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L254">			prolog.iterator(clause).next().close();</span>
+<span class="nc" id="L255">			CallIn callin = prolog.iterator(clause);</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">			if (callin.hasNext()) {</span>
+<span class="nc" id="L257">				return true;</span>
+			}
+<span class="nc" id="L259">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L260">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L261">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L262">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L263">		}</span>
+<span class="nc" id="L264">		return false;</span>
+	}
+
+	@Override
+	public boolean clause(PrologTerm term) {
+<span class="nc" id="L269">		AbstractTerm clause = fromTerm(term, AbstractTerm.class);</span>
+		try {
+<span class="nc" id="L271">			clause = prolog.parseTerm(&quot;clause(&quot; + clause + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L272">			prolog.iterator(clause).next().close();</span>
+<span class="nc" id="L273">			CallIn callin = prolog.iterator(clause);</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">			if (callin.hasNext()) {</span>
+<span class="nc" id="L275">				return true;</span>
+			}
+<span class="nc" id="L277">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L278">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L279">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L280">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L281">		}</span>
+<span class="nc" id="L282">		return false;</span>
+	}
+
+	@Override
+	public boolean clause(PrologTerm head, PrologTerm... body) {
+<span class="nc" id="L287">		AbstractTerm clause = fromTerm(head, body, AbstractTerm.class);</span>
+		try {
+<span class="nc" id="L289">			clause = prolog.parseTerm(&quot;clause(&quot; + clause + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L290">			prolog.iterator(clause).next().close();</span>
+<span class="nc" id="L291">			CallIn callin = prolog.iterator(clause);</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">			if (callin.hasNext()) {</span>
+<span class="nc" id="L293">				return true;</span>
+			}
+<span class="nc" id="L295">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L296">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L297">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L298">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L299">		}</span>
+<span class="nc" id="L300">		return false;</span>
+	}
+
+	@Override
+	public void retract(String stringClause) {
+		AbstractTerm retract;
+		try {
+<span class="nc" id="L307">			retract = prolog.parseTerm(&quot;retract(&quot; + stringClause + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L308">			accessor = prolog.iterator(retract).next();</span>
+<span class="nc" id="L309">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L310">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L311">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L312">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L313">		}</span>
+<span class="nc" id="L314">	}</span>
+
+	@Override
+	public void retract(PrologTerm term) {
+<span class="nc" id="L318">		AbstractTerm retract = fromTerm(term, AbstractTerm.class);</span>
+		try {
+<span class="nc" id="L320">			retract = prolog.parseTerm(&quot;retract(&quot; + retract + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L321">			accessor = prolog.iterator(retract).next();</span>
+<span class="nc" id="L322">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L323">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L324">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L325">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L326">		}</span>
+<span class="nc" id="L327">	}</span>
+
+	@Override
+	public void retract(PrologTerm head, PrologTerm... body) {
+<span class="nc" id="L331">		AbstractTerm retract = fromTerm(head, body, AbstractTerm.class);</span>
+		try {
+<span class="nc" id="L333">			retract = prolog.parseTerm(&quot;retract(&quot; + retract + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L334">			accessor = prolog.iterator(retract).next();</span>
+<span class="nc" id="L335">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L336">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L337">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L338">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L339">		}</span>
+<span class="nc" id="L340">	}</span>
+
+	@Override
+	public PrologQuery query(String query) {
+<span class="fc" id="L344">		return new JekejekePrologQuery(this, query);</span>
+	}
+
+	@Override
+	public PrologQuery query(PrologTerm goal) {
+<span class="nc" id="L349">		return query(&quot;&quot; + goal + &quot;.&quot;);</span>
+	}
+
+	public final PrologQuery query(PrologTerm[] terms) {
+<span class="fc" id="L353">		Iterator&lt;PrologTerm&gt; i = new ArrayIterator&lt;PrologTerm&gt;(terms);</span>
+<span class="fc" id="L354">		StringBuilder buffer = new StringBuilder();</span>
+<span class="fc bfc" id="L355" title="All 2 branches covered.">		while (i.hasNext()) {</span>
+<span class="fc" id="L356">			buffer.append(i.next());</span>
+<span class="fc bfc" id="L357" title="All 2 branches covered.">			if (i.hasNext()) {</span>
+<span class="fc" id="L358">				buffer.append(',');</span>
+			}
+		}
+<span class="fc" id="L361">		buffer.append(&quot;.&quot;);</span>
+<span class="fc" id="L362">		return query(&quot;&quot; + buffer + &quot;&quot;);</span>
+	}
+
+	public final PrologQuery query(PrologTerm term, PrologTerm... terms) {
+<span class="nc" id="L366">		Iterator&lt;PrologTerm&gt; i = new ArrayIterator&lt;PrologTerm&gt;(terms);</span>
+<span class="nc" id="L367">		StringBuilder buffer = new StringBuilder();</span>
+<span class="nc" id="L368">		buffer.append(&quot;&quot; + term + &quot;&quot;);</span>
+<span class="nc bnc" id="L369" title="All 2 branches missed.">		while (i.hasNext()) {</span>
+<span class="nc" id="L370">			buffer.append(',');</span>
+<span class="nc" id="L371">			buffer.append(i.next());</span>
+		}
+<span class="nc" id="L373">		buffer.append(&quot;.&quot;);</span>
+<span class="nc" id="L374">		return query(&quot;&quot; + buffer + &quot;&quot;);</span>
+	}
+
+	@Override
+	public void operator(int priority, String specifier, String operator) {
+		AbstractTerm op;
+		try {
+<span class="fc" id="L381">			String definition = priority + &quot;,&quot; + specifier + &quot;,&quot; + operator;</span>
+<span class="fc" id="L382">			op = prolog.parseTerm(&quot;op(&quot; + definition + &quot;)&quot;, EMPTY);</span>
+<span class="fc" id="L383">			accessor = prolog.iterator(op).next();</span>
+<span class="nc" id="L384">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L385">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L386">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L387">			getLogger().error(getClass(), IO, e1);</span>
+<span class="pc" id="L388">		}</span>
+<span class="fc" id="L389">	}</span>
+
+	@Override
+	public boolean currentPredicate(String functor, int arity) {
+		AbstractTerm predicate;
+		try {
+<span class="nc" id="L395">			String key = functor + &quot;/&quot; + arity;</span>
+<span class="nc" id="L396">			predicate = prolog.parseTerm(&quot;current_predicate(&quot; + key + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L397">			prolog.iterator(predicate).next().close();</span>
+<span class="nc" id="L398">			CallIn callin = prolog.iterator(predicate);</span>
+<span class="nc bnc" id="L399" title="All 2 branches missed.">			if (callin.hasNext()) {</span>
+<span class="nc" id="L400">				return true;</span>
+			}
+<span class="nc" id="L402">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L403">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L404">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L405">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L406">		}</span>
+<span class="nc" id="L407">		return false;</span>
+	}
+
+	@Override
+	public boolean currentOperator(int priority, String specifier, String operator) {
+		AbstractTerm op;
+		try {
+<span class="nc" id="L414">			String definition = priority + &quot;,&quot; + specifier + &quot;,&quot; + operator;</span>
+<span class="nc" id="L415">			op = prolog.parseTerm(&quot;current_op(&quot; + definition + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L416">			prolog.iterator(op).next().close();</span>
+<span class="nc" id="L417">			CallIn callin = prolog.iterator(op);</span>
+<span class="nc bnc" id="L418" title="All 2 branches missed.">			if (callin.hasNext()) {</span>
+<span class="nc" id="L419">				return true;</span>
+			}
+<span class="nc" id="L421">		} catch (InterpreterMessage e1) {</span>
+<span class="nc" id="L422">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L423">		} catch (InterpreterException e1) {</span>
+<span class="nc" id="L424">			getLogger().error(getClass(), IO, e1);</span>
+<span class="nc" id="L425">		}</span>
+<span class="nc" id="L426">		return false;</span>
+	}
+
+	@Override
+	public Set&lt;PrologOperator&gt; currentOperators() {
+<span class="fc" id="L431">		Set&lt;PrologOperator&gt; operators = new HashSet&lt;PrologOperator&gt;();</span>
+<span class="fc" id="L432">		p store = (p) prolog.getKnowledgebase().getStore();</span>
+<span class="fc" id="L433">		MapEntry&lt;String, c&gt;[] source = store.aj();</span>
+<span class="fc bfc" id="L434" title="All 2 branches covered.">		for (MapEntry&lt;String, c&gt; mapEntry : source) {</span>
+<span class="fc" id="L435">			k[] opsinv = mapEntry.value.snapshotOpersInv();</span>
+<span class="fc bfc" id="L436" title="All 2 branches covered.">			for (k op : opsinv) {</span>
+<span class="fc" id="L437">				String x = null;</span>
+<span class="fc" id="L438">				int level = op.getLevel();</span>
+<span class="fc" id="L439">				String bits = &quot;&quot; + op.getBits() + &quot;&quot;;</span>
+<span class="fc" id="L440">				String key = op.getKey();</span>
+<span class="fc bfc" id="L441" title="All 4 branches covered.">				if (bits.equals(&quot;512&quot;) || bits.equals(&quot;514&quot;)) {</span>
+<span class="fc" id="L442">					x = &quot;fx&quot;;</span>
+<span class="fc bfc" id="L443" title="All 6 branches covered.">				} else if (bits.equals(&quot;513&quot;) || bits.equals(&quot;529&quot;) || bits.equals(&quot;561&quot;)) {</span>
+<span class="fc" id="L444">					x = &quot;xfy&quot;;</span>
+<span class="pc bpc" id="L445" title="1 of 2 branches missed.">				} else if (bits.equals(&quot;515&quot;)) {</span>
+<span class="fc" id="L446">					x = &quot;xfx&quot;;</span>
+				}
+<span class="fc" id="L448">				operators.add(new JekejekePrologOperator(level, x, key));</span>
+			}
+		}
+<span class="fc" id="L451">		return operators;</span>
+	}
+
+	@Override
+	public int getProgramSize() {
+<span class="nc" id="L456">		int size = 0;</span>
+<span class="nc" id="L457">		n engine = (n) accessor.getInter().getEngine();</span>
+<span class="nc" id="L458">		SkelCompound dx = (SkelCompound) engine.dx;</span>
+<span class="nc" id="L459">		SkelAtom vt = dx.vT;</span>
+<span class="nc" id="L460">		e e = (e) vt.ou;</span>
+<span class="nc" id="L461">		MapEntry&lt;r, Integer&gt;[] cachepreds = e.cachepredsinv;</span>
+<span class="nc bnc" id="L462" title="All 2 branches missed.">		for (MapEntry&lt;r, Integer&gt; mapEntry : cachepreds) {</span>
+<span class="nc" id="L463">			r r = mapEntry.key;</span>
+<span class="nc" id="L464">			b q = (b) r.eq;</span>
+<span class="nc" id="L465">			size += q.i(engine);</span>
+		}
+<span class="nc" id="L467">		return size;</span>
+	}
+
+	public PrologProgram getProgram() {
+<span class="nc" id="L471">		return new JekejekePrologProgram(this);</span>
+	}
+
+	@Override
+	public Set&lt;PrologIndicator&gt; getPredicates() {
+<span class="nc" id="L476">		List&lt;AbstractSkel&gt; l = listClauses();</span>
+<span class="nc" id="L477">		Set&lt;PrologIndicator&gt; s = new HashSet&lt;PrologIndicator&gt;(l.size());</span>
+<span class="nc bnc" id="L478" title="All 2 branches missed.">		for (AbstractSkel abstractSkel : l) {</span>
+<span class="nc bnc" id="L479" title="All 2 branches missed.">			if (abstractSkel instanceof SkelCompound) {</span>
+<span class="nc" id="L480">				SkelCompound cmp = (SkelCompound) abstractSkel;</span>
+<span class="nc" id="L481">				String functor = &quot;&quot; + cmp.vT + &quot;&quot;;</span>
+<span class="nc" id="L482">				int arity = cmp.args.length;</span>
+<span class="nc" id="L483">				s.add(new JekejekePrologIndicator(functor, arity));</span>
+			}
+<span class="nc" id="L485">		}</span>
+<span class="nc" id="L486">		return s;</span>
+	}
+
+	@Override
+	public Set&lt;PrologIndicator&gt; getBuiltIns() {
+<span class="fc" id="L491">		Set&lt;PrologIndicator&gt; builtins = new HashSet&lt;PrologIndicator&gt;();</span>
+<span class="fc" id="L492">		p store = (p) prolog.getKnowledgebase().getStore();</span>
+<span class="fc" id="L493">		MapEntry&lt;String, c&gt;[] source = store.aj();</span>
+<span class="fc bfc" id="L494" title="All 2 branches covered.">		for (MapEntry&lt;String, c&gt; mapEntry : source) {</span>
+<span class="fc" id="L495">			MapEntry&lt;r, Integer&gt;[] predsinv = mapEntry.value.snapshotPredsInv();</span>
+<span class="fc bfc" id="L496" title="All 2 branches covered.">			for (MapEntry&lt;r, Integer&gt; predicate : predsinv) {</span>
+<span class="fc" id="L497">				String functor = predicate.key.getFun();</span>
+<span class="fc" id="L498">				int arity = predicate.key.getArity();</span>
+<span class="fc" id="L499">				builtins.add(new JekejekePrologIndicator(functor, arity));</span>
+			}
+		}
+<span class="fc" id="L502">		return builtins;</span>
+	}
+
+	@Override
+	public String getLicense() {
+<span class="nc" id="L507">		return Licenses.NO_SPECIFIED;</span>
+	}
+
+	@Override
+	public String getVersion() {
+<span class="fc" id="L512">		StringBuilder buffer = new StringBuilder();</span>
+<span class="fc" id="L513">		String credits = ForeignEngine.sysPrologVersion(prolog);</span>
+<span class="fc" id="L514">		StringTokenizer tokenizer = new StringTokenizer(credits, &quot;, &quot;);</span>
+<span class="fc" id="L515">		/* String name = */tokenizer.nextToken();</span>
+<span class="fc" id="L516">		/* String pl = */tokenizer.nextToken();</span>
+<span class="fc" id="L517">		buffer.append(tokenizer.nextToken());</span>
+<span class="fc" id="L518">		buffer.append(' ');</span>
+<span class="fc" id="L519">		buffer.append('(');</span>
+<span class="fc" id="L520">		buffer.append(tokenizer.nextToken());</span>
+<span class="fc" id="L521">		buffer.append(' ');</span>
+<span class="fc" id="L522">		buffer.append(tokenizer.nextToken());</span>
+<span class="fc" id="L523">		buffer.append(' ');</span>
+<span class="fc" id="L524">		buffer.append(tokenizer.nextToken());</span>
+<span class="fc" id="L525">		buffer.append(')');</span>
+<span class="fc" id="L526">		return buffer.toString();</span>
+	}
+
+	public final String getVendor() {
+<span class="nc" id="L530">		return ForeignEngine.sysPrologVendor(prolog);</span>
+	}
+
+	@Override
+	public String getName() {
+<span class="fc" id="L535">		String credits = ForeignEngine.sysPrologVersion(prolog);</span>
+<span class="fc" id="L536">		StringTokenizer tokenizer = new StringTokenizer(credits, &quot;, &quot;);</span>
+<span class="fc" id="L537">		String name = tokenizer.nextToken();</span>
+<span class="fc" id="L538">		String pl = tokenizer.nextToken();</span>
+<span class="fc" id="L539">		return name + &quot; &quot; + pl;</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L544">		final int prime = 31;</span>
+<span class="nc" id="L545">		int result = super.hashCode();</span>
+<span class="nc bnc" id="L546" title="All 2 branches missed.">		result = prime * result + ((prolog == null) ? 0 : prolog.hashCode());</span>
+<span class="nc" id="L547">		return result;</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="pc bpc" id="L552" title="1 of 2 branches missed.">		if (this == obj)</span>
+<span class="fc" id="L553">			return true;</span>
+<span class="nc bnc" id="L554" title="All 2 branches missed.">		if (!super.equals(obj))</span>
+<span class="nc" id="L555">			return false;</span>
+<span class="nc bnc" id="L556" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L557">			return false;</span>
+<span class="nc" id="L558">		JekejekePrologEngine other = (JekejekePrologEngine) obj;</span>
+<span class="nc bnc" id="L559" title="All 2 branches missed.">		if (prolog == null) {</span>
+<span class="nc bnc" id="L560" title="All 2 branches missed.">			if (other.prolog != null)</span>
+<span class="nc" id="L561">				return false;</span>
+<span class="nc bnc" id="L562" title="All 2 branches missed.">		} else if (!prolog.equals(other.prolog)) {</span>
+<span class="nc" id="L563">			return false;</span>
+		}
+<span class="nc" id="L565">		return true;</span>
+	}
+
+	@Override
+	public Iterator&lt;PrologClause&gt; iterator() {
+<span class="nc" id="L570">		Collection&lt;PrologClause&gt; cls = new LinkedList&lt;PrologClause&gt;();</span>
+<span class="nc bnc" id="L571" title="All 2 branches missed.">		for (AbstractSkel clause : listClauses()) {</span>
+<span class="nc bnc" id="L572" title="All 2 branches missed.">			if (clause instanceof SkelCompound) {</span>
+<span class="nc" id="L573">				SkelCompound compound = (SkelCompound) clause;</span>
+<span class="nc bnc" id="L574" title="All 4 branches missed.">				if (compound.args.length == 2 &amp;&amp; compound.vT.toString().equals(&quot;:-&quot;)) {</span>
+<span class="nc" id="L575">					PrologTerm head = toTerm(compound.args[0], PrologTerm.class);</span>
+<span class="nc" id="L576">					PrologTerm body = toTerm(compound.args[1], PrologTerm.class);</span>
+<span class="nc bnc" id="L577" title="All 2 branches missed.">					if (body.getType() != PrologTermType.TRUE_TYPE) {</span>
+<span class="nc" id="L578">						cls.add(new JekejekePrologClause(provider, head, body, false, false, false));</span>
+					} else {
+<span class="nc" id="L580">						cls.add(new JekejekePrologClause(provider, head, false, false, false));</span>
+					}
+				}
+<span class="nc" id="L583">			} else {</span>
+<span class="nc" id="L584">				cls.add(new JekejekePrologClause(provider, toTerm(clause, PrologTerm.class), false, false, false));</span>
+			}
+<span class="nc" id="L586">		}</span>
+<span class="nc" id="L587">		return new PrologProgramIterator(cls);</span>
+	}
+
+	@Override
+	public void dispose() {
+		try {
+<span class="nc" id="L593">			accessor.close();</span>
+<span class="nc" id="L594">		} catch (InterpreterException e) {</span>
+<span class="nc" id="L595">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
+<span class="nc" id="L596">		}</span>
+<span class="nc" id="L597">	}</span>
+
+	@Override
+	public List&lt;String&gt; verify() {
+<span class="nc" id="L601">		return Arrays.asList(&quot;OK&quot;);</span>
+	}
+
+	private List&lt;AbstractSkel&gt; listClauses() {
+<span class="nc" id="L605">		ArrayList&lt;AbstractSkel&gt; l = new ArrayList&lt;AbstractSkel&gt;();</span>
+		try {
+<span class="nc" id="L607">			n engine = (n) accessor.getInter().getEngine();</span>
+<span class="nc" id="L608">			SkelCompound dx = (SkelCompound) engine.dx;</span>
+<span class="nc" id="L609">			SkelAtom vt = dx.vT;</span>
+<span class="nc" id="L610">			e e = (e) vt.ou;</span>
+<span class="nc" id="L611">			MapEntry&lt;r, Integer&gt;[] cachepreds = e.cachepredsinv;</span>
+<span class="nc bnc" id="L612" title="All 2 branches missed.">			for (MapEntry&lt;r, Integer&gt; mapEntry : cachepreds) {</span>
+<span class="nc" id="L613">				r r = mapEntry.key;</span>
+<span class="nc" id="L614">				b definition = (b) r.eq;</span>
+<span class="nc" id="L615">				jekpro.model.d.b[] list = definition.h(engine);</span>
+<span class="nc bnc" id="L616" title="All 2 branches missed.">				for (jekpro.model.d.b clause : list) {</span>
+<span class="nc" id="L617">					AbstractSkel predicate = (AbstractSkel) clause.nl;</span>
+<span class="nc" id="L618">					l.add(predicate);</span>
+				}
+			}
+<span class="nc" id="L621">		} catch (m e) {</span>
+<span class="nc" id="L622">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
+<span class="nc" id="L623">		}</span>
+<span class="nc" id="L624">		return l;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

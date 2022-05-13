@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JekejekePrologFloat.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-jekpro</a> &gt; <a href="index.source.html" class="el_package">io.github.prolobjectlink.prolog.jekpro</a> &gt; <span class="el_source">JekejekePrologFloat.java</span></div><h1>JekejekePrologFloat.java</h1><pre class="source lang-java linenums">/*
+ * #%L
+ * prolobjectlink-jpi-jekpro
+ * %%
+ * Copyright (C) 2019 Prolobjectlink Project
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+package io.github.prolobjectlink.prolog.jekpro;
+
+import static io.github.prolobjectlink.prolog.PrologTermType.FLOAT_TYPE;
+
+import io.github.prolobjectlink.prolog.ArityError;
+import io.github.prolobjectlink.prolog.FunctorError;
+import io.github.prolobjectlink.prolog.PrologDouble;
+import io.github.prolobjectlink.prolog.PrologFloat;
+import io.github.prolobjectlink.prolog.PrologInteger;
+import io.github.prolobjectlink.prolog.PrologLong;
+import io.github.prolobjectlink.prolog.PrologProvider;
+import io.github.prolobjectlink.prolog.PrologTerm;
+import jekpro.tools.term.TermAtomic;
+
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
+final class JekejekePrologFloat extends JekejekePrologTerm implements PrologFloat {
+
+	JekejekePrologFloat(PrologProvider provider, Number value) {
+<span class="fc" id="L42">		super(FLOAT_TYPE, provider, new TermAtomic(value.floatValue()));</span>
+<span class="fc" id="L43">	}</span>
+
+	public PrologInteger getPrologInteger() {
+<span class="fc" id="L46">		return new JekejekePrologInteger(provider, getIntegerValue());</span>
+	}
+
+	public PrologFloat getPrologFloat() {
+<span class="fc" id="L50">		return new JekejekePrologFloat(provider, getFloatValue());</span>
+	}
+
+	public PrologDouble getPrologDouble() {
+<span class="fc" id="L54">		return new JekejekePrologDouble(provider, getDoubleValue());</span>
+	}
+
+	public PrologLong getPrologLong() {
+<span class="fc" id="L58">		return new JekejekePrologLong(provider, getLongValue());</span>
+	}
+
+	public long getLongValue() {
+<span class="fc" id="L62">		return ((Number) ((TermAtomic) value).getValue()).longValue();</span>
+	}
+
+	public double getDoubleValue() {
+<span class="fc" id="L66">		return ((Number) ((TermAtomic) value).getValue()).doubleValue();</span>
+	}
+
+	public int getIntegerValue() {
+<span class="fc" id="L70">		return ((Number) ((TermAtomic) value).getValue()).intValue();</span>
+	}
+
+	public float getFloatValue() {
+<span class="fc" id="L74">		return ((Number) ((TermAtomic) value).getValue()).floatValue();</span>
+	}
+
+	public PrologTerm[] getArguments() {
+<span class="fc" id="L78">		return new JekejekePrologFloat[0];</span>
+	}
+
+	public int getArity() {
+<span class="fc" id="L82">		throw new ArityError(this);</span>
+	}
+
+	public String getFunctor() {
+<span class="fc" id="L86">		throw new FunctorError(this);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

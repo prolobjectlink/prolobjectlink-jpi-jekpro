@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JekejekePrologStructure.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-jekpro</a> &gt; <a href="index.source.html" class="el_package">io.github.prolobjectlink.prolog.jekpro</a> &gt; <span class="el_source">JekejekePrologStructure.java</span></div><h1>JekejekePrologStructure.java</h1><pre class="source lang-java linenums">/*
+ * #%L
+ * prolobjectlink-jpi-jekpro
+ * %%
+ * Copyright (C) 2019 Prolobjectlink Project
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+package io.github.prolobjectlink.prolog.jekpro;
+
+import static io.github.prolobjectlink.prolog.PrologTermType.STRUCTURE_TYPE;
+
+import io.github.prolobjectlink.prolog.PrologProvider;
+import io.github.prolobjectlink.prolog.PrologStructure;
+import io.github.prolobjectlink.prolog.PrologTerm;
+import jekpro.tools.term.TermCompound;
+
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
+final class JekejekePrologStructure extends JekejekePrologTerm implements PrologStructure {
+
+	JekejekePrologStructure(PrologProvider provider, String functor, PrologTerm... arguments) {
+<span class="fc" id="L37">		super(STRUCTURE_TYPE, provider);</span>
+<span class="fc" id="L38">		Object[] terms = new Object[arguments.length];</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">		for (int i = 0; i &lt; arguments.length; i++) {</span>
+<span class="fc" id="L40">			terms[i] = ((JekejekePrologTerm) arguments[i]).getObject();</span>
+		}
+<span class="fc" id="L42">		value = new TermCompound(removeQuoted(functor), terms);</span>
+<span class="fc" id="L43">	}</span>
+
+	JekejekePrologStructure(PrologProvider provider, String functor, Object... arguments) {
+<span class="fc" id="L46">		super(STRUCTURE_TYPE, provider);</span>
+<span class="fc" id="L47">		value = new TermCompound(removeQuoted(functor), arguments);</span>
+<span class="fc" id="L48">	}</span>
+
+	JekejekePrologStructure(PrologProvider provider, PrologTerm left, String operator, PrologTerm right) {
+<span class="fc" id="L51">		super(STRUCTURE_TYPE, provider);</span>
+<span class="fc" id="L52">		Object leftOperand = ((JekejekePrologTerm) left).getObject();</span>
+<span class="fc" id="L53">		Object rightOperand = ((JekejekePrologTerm) right).getObject();</span>
+<span class="fc" id="L54">		value = new TermCompound(operator, leftOperand, rightOperand);</span>
+<span class="fc" id="L55">	}</span>
+
+	JekejekePrologStructure(PrologProvider provider, Object left, String functor, Object right) {
+<span class="fc" id="L58">		super(STRUCTURE_TYPE, provider, new TermCompound(functor, left, right));</span>
+<span class="fc" id="L59">	}</span>
+
+	public PrologTerm getArgument(int index) {
+<span class="fc" id="L62">		checkIndex(index, getArity());</span>
+<span class="fc" id="L63">		return getArguments()[index];</span>
+	}
+
+	public PrologTerm[] getArguments() {
+<span class="fc" id="L67">		TermCompound structure = (TermCompound) value;</span>
+<span class="fc" id="L68">		int arity = structure.getArity();</span>
+<span class="fc" id="L69">		PrologTerm[] arguments = new PrologTerm[arity];</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">		for (int i = 0; i &lt; arity; i++) {</span>
+<span class="fc" id="L71">			arguments[i] = toTerm(structure.getArg(i), PrologTerm.class);</span>
+		}
+<span class="fc" id="L73">		return arguments;</span>
+	}
+
+	public int getArity() {
+<span class="fc" id="L77">		TermCompound structure = (TermCompound) value;</span>
+<span class="fc" id="L78">		return structure.getArity();</span>
+	}
+
+	public String getFunctor() {
+<span class="fc" id="L82">		TermCompound structure = (TermCompound) value;</span>
+<span class="fc" id="L83">		return structure.getFunctor();</span>
+	}
+
+	public final PrologTerm getRight() {
+<span class="nc" id="L87">		return getArgument(1);</span>
+	}
+
+	public final PrologTerm getLeft() {
+<span class="nc" id="L91">		return getArgument(0);</span>
+	}
+
+	public final String getOperator() {
+<span class="nc" id="L95">		return getFunctor();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

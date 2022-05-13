@@ -35,6 +35,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import io.github.prolobjectlink.prolog.AbstractEngine;
 import io.github.prolobjectlink.prolog.ArrayIterator;
@@ -508,7 +509,21 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 
 	@Override
 	public String getVersion() {
-		return ForeignEngine.sysPrologVersion(prolog);
+		StringBuilder buffer = new StringBuilder();
+		String credits = ForeignEngine.sysPrologVersion(prolog);
+		StringTokenizer tokenizer = new StringTokenizer(credits, ", ");
+		/* String name = */tokenizer.nextToken();
+		/* String pl = */tokenizer.nextToken();
+		buffer.append(tokenizer.nextToken());
+		buffer.append(' ');
+		buffer.append('(');
+		buffer.append(tokenizer.nextToken());
+		buffer.append(' ');
+		buffer.append(tokenizer.nextToken());
+		buffer.append(' ');
+		buffer.append(tokenizer.nextToken());
+		buffer.append(')');
+		return buffer.toString();
 	}
 
 	public final String getVendor() {
@@ -517,7 +532,11 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 
 	@Override
 	public String getName() {
-		return "Jekejeke Prolog";
+		String credits = ForeignEngine.sysPrologVersion(prolog);
+		StringTokenizer tokenizer = new StringTokenizer(credits, ", ");
+		String name = tokenizer.nextToken();
+		String pl = tokenizer.nextToken();
+		return name + " " + pl;
 	}
 
 	@Override

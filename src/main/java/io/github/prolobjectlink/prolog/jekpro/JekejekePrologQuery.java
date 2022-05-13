@@ -76,9 +76,10 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 		this.query = query;
 		try {
 
+			String delim = ",;() +-*/%=><";
 			List<String> names = new ArrayList<String>();
 			prolog = ((JekejekePrologEngine) engine).prolog;
-			StringTokenizer tokenizer = new StringTokenizer(query, ",() +-*/%");
+			StringTokenizer tokenizer = new StringTokenizer(query, delim);
 			while (tokenizer.hasMoreTokens()) {
 				String token = tokenizer.nextToken();
 				if (token.matches("[A-Z][A-Za-z0-9_]*") && !names.contains(token)) {
@@ -105,7 +106,10 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 		} catch (InterpreterMessage e) {
 			getLogger().error(getClass(), RUNTIME_ERROR, e);
 		} catch (InterpreterException e) {
-			getLogger().error(getClass(), RUNTIME_ERROR, e);
+			// getLogger().error(getClass(), RUNTIME_ERROR, e)
+			// Error: syntax_error(cannot_start_term)
+			// Error: syntax_error(end_of_clause_expected)
+			// Error: syntax_error(ref_unreadable)
 		}
 	}
 

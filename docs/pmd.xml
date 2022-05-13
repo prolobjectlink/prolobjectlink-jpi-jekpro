@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2022-05-15T12:25:57.729">
+<file name="C:\eclipse-jee-photon-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologConverter.java">
+<violation beginline="20" endline="289" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="io.github.prolobjectlink.prolog.jekpro" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
+Too many static imports may lead to messy code
+</violation>
+</file>
+<file name="C:\eclipse-jee-photon-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologQuery.java">
+<violation beginline="108" endline="113" begincolumn="19" endcolumn="17" rule="EmptyCatchBlock" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jekpro" class="JekejekePrologQuery" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="147" endline="149" begincolumn="19" endcolumn="17" rule="EmptyCatchBlock" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jekpro" class="JekejekePrologQuery" method="oneSolution" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="170" endline="172" begincolumn="19" endcolumn="17" rule="EmptyCatchBlock" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jekpro" class="JekejekePrologQuery" method="oneVariablesSolution" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="195" endline="197" begincolumn="19" endcolumn="17" rule="EmptyCatchBlock" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jekpro" class="JekejekePrologQuery" method="nextSolution" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="219" endline="221" begincolumn="19" endcolumn="17" rule="EmptyCatchBlock" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jekpro" class="JekejekePrologQuery" method="nextVariablesSolution" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="C:\eclipse-jee-photon-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologStructure.java">
+<violation beginline="86" endline="88" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jekpro" class="JekejekePrologStructure" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="90" endline="92" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jekpro" class="JekejekePrologStructure" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="94" endline="96" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jekpro" class="JekejekePrologStructure" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+</file>
+<file name="C:\eclipse-jee-photon-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologTerm.java">
+<violation beginline="20" endline="305" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="io.github.prolobjectlink.prolog.jekpro" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
+Too many static imports may lead to messy code
+</violation>
+</file>
+</pmd>

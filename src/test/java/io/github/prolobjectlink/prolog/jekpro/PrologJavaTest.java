@@ -33,6 +33,7 @@ import org.junit.Test;
 import io.github.prolobjectlink.prolog.PrologEngine;
 import io.github.prolobjectlink.prolog.PrologQuery;
 
+@Ignore
 public class PrologJavaTest extends PrologBaseTest {
 
 	@Before
@@ -44,7 +45,6 @@ public class PrologJavaTest extends PrologBaseTest {
 	}
 
 	@Test
-	@Ignore
 	public void test() {
 		PrologEngine engine = provider.newEngine();
 		PrologQuery query = engine.query("java_object( 'javax.swing.JFrame', ['frame with dialog'], F)");

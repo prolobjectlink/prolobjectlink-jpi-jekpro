@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JekejekePrologVariable.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-jekpro</a> &gt; <a href="index.source.html" class="el_package">io.github.prolobjectlink.prolog.jekpro</a> &gt; <span class="el_source">JekejekePrologVariable.java</span></div><h1>JekejekePrologVariable.java</h1><pre class="source lang-java linenums">/*
+ * #%L
+ * prolobjectlink-jpi-jekpro
+ * %%
+ * Copyright (C) 2019 Prolobjectlink Project
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+package io.github.prolobjectlink.prolog.jekpro;
+
+import static io.github.prolobjectlink.prolog.PrologTermType.VARIABLE_TYPE;
+
+import io.github.prolobjectlink.prolog.ArityError;
+import io.github.prolobjectlink.prolog.FunctorError;
+import io.github.prolobjectlink.prolog.PrologProvider;
+import io.github.prolobjectlink.prolog.PrologTerm;
+import io.github.prolobjectlink.prolog.PrologVariable;
+import jekpro.tools.term.AbstractTerm;
+
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
+class JekejekePrologVariable extends JekejekePrologTerm implements PrologVariable {
+
+	JekejekePrologVariable(PrologProvider provider) {
+<span class="fc" id="L39">		super(VARIABLE_TYPE, provider, new TermVariable());</span>
+<span class="fc" id="L40">	}</span>
+
+	JekejekePrologVariable(PrologProvider provider, String name) {
+<span class="fc" id="L43">		super(VARIABLE_TYPE, provider, new TermVariable(name));</span>
+<span class="fc" id="L44">	}</span>
+
+	JekejekePrologVariable(int type, PrologProvider provider) {
+<span class="nc" id="L47">		super(type, provider);</span>
+<span class="nc" id="L48">	}</span>
+
+	JekejekePrologVariable(int type, PrologProvider provider, String name) {
+<span class="nc" id="L51">		super(type, provider, new TermVariable(name));</span>
+<span class="nc" id="L52">	}</span>
+
+	JekejekePrologVariable(int type, PrologProvider provider, AbstractTerm var) {
+<span class="nc" id="L55">		super(type, provider, var);</span>
+<span class="nc" id="L56">	}</span>
+
+	public boolean isAnonymous() {
+<span class="fc" id="L59">		return getName().equals(&quot;_&quot;);</span>
+	}
+
+	public final String getName() {
+<span class="fc" id="L63">		return ((TermVariable) value).getName();</span>
+	}
+
+	public final void setName(String name) {
+<span class="fc" id="L67">		TermVariable old = (TermVariable) value;</span>
+<span class="fc" id="L68">		value = new TermVariable(name, old.getVar());</span>
+<span class="fc" id="L69">	}</span>
+
+	public PrologTerm[] getArguments() {
+<span class="fc" id="L72">		return new JekejekePrologVariable[0];</span>
+	}
+
+	public int getArity() {
+<span class="nc" id="L76">		throw new ArityError(this);</span>
+	}
+
+	public String getFunctor() {
+<span class="fc" id="L80">		throw new FunctorError(this);</span>
+	}
+
+	public int getPosition() {
+<span class="nc" id="L84">		throw new UnsupportedOperationException(&quot;getPosition()&quot;);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

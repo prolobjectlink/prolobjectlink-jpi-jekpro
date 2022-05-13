@@ -24,7 +24,6 @@ import static io.github.prolobjectlink.prolog.PrologTermType.STRUCTURE_TYPE;
 import io.github.prolobjectlink.prolog.PrologProvider;
 import io.github.prolobjectlink.prolog.PrologStructure;
 import io.github.prolobjectlink.prolog.PrologTerm;
-import jekpro.tools.term.AbstractTerm;
 import jekpro.tools.term.TermCompound;
 
 /**
@@ -38,8 +37,7 @@ final class JekejekePrologStructure extends JekejekePrologTerm implements Prolog
 		super(STRUCTURE_TYPE, provider);
 		Object[] terms = new Object[arguments.length];
 		for (int i = 0; i < arguments.length; i++) {
-//			terms[i] = ((JekejekePrologTerm) arguments[i]).value.getDisplay();
-			terms[i] = ((JekejekePrologTerm) arguments[i]).value;
+			terms[i] = ((JekejekePrologTerm) arguments[i]).getObject();
 		}
 		value = new TermCompound(removeQuoted(functor), terms);
 	}
@@ -51,9 +49,9 @@ final class JekejekePrologStructure extends JekejekePrologTerm implements Prolog
 
 	JekejekePrologStructure(PrologProvider provider, PrologTerm left, String operator, PrologTerm right) {
 		super(STRUCTURE_TYPE, provider);
-		AbstractTerm leftOperand = ((JekejekePrologTerm) left).value;
-		AbstractTerm rightOperand = ((JekejekePrologTerm) right).value;
-		value = new TermCompound(operator, leftOperand.getDisplay(), rightOperand.getDisplay());
+		Object leftOperand = ((JekejekePrologTerm) left).getObject();
+		Object rightOperand = ((JekejekePrologTerm) right).getObject();
+		value = new TermCompound(operator, leftOperand, rightOperand);
 	}
 
 	JekejekePrologStructure(PrologProvider provider, Object left, String functor, Object right) {

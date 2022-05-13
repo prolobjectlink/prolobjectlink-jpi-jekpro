@@ -59,7 +59,7 @@ class JekejekePrologList extends JekejekePrologTerm implements PrologList {
 		super(LIST_TYPE, provider);
 		value = EMPTY;
 		for (int i = arguments.length - 1; i >= 0; --i) {
-			value = new TermCompound(".", ((JekejekePrologTerm) arguments[i]).value, value);
+			value = new TermCompound(".", arguments[i].getObject(), value);
 		}
 	}
 
