@@ -350,16 +350,16 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 	}
 
 	public final PrologQuery query(PrologTerm[] terms) {
-<span class="fc" id="L353">		Iterator&lt;PrologTerm&gt; i = new ArrayIterator&lt;PrologTerm&gt;(terms);</span>
-<span class="fc" id="L354">		StringBuilder buffer = new StringBuilder();</span>
-<span class="fc bfc" id="L355" title="All 2 branches covered.">		while (i.hasNext()) {</span>
-<span class="fc" id="L356">			buffer.append(i.next());</span>
-<span class="fc bfc" id="L357" title="All 2 branches covered.">			if (i.hasNext()) {</span>
-<span class="fc" id="L358">				buffer.append(',');</span>
+<span class="nc" id="L353">		Iterator&lt;PrologTerm&gt; i = new ArrayIterator&lt;PrologTerm&gt;(terms);</span>
+<span class="nc" id="L354">		StringBuilder buffer = new StringBuilder();</span>
+<span class="nc bnc" id="L355" title="All 2 branches missed.">		while (i.hasNext()) {</span>
+<span class="nc" id="L356">			buffer.append(i.next());</span>
+<span class="nc bnc" id="L357" title="All 2 branches missed.">			if (i.hasNext()) {</span>
+<span class="nc" id="L358">				buffer.append(',');</span>
 			}
 		}
-<span class="fc" id="L361">		buffer.append(&quot;.&quot;);</span>
-<span class="fc" id="L362">		return query(&quot;&quot; + buffer + &quot;&quot;);</span>
+<span class="nc" id="L361">		buffer.append(&quot;.&quot;);</span>
+<span class="nc" id="L362">		return query(&quot;&quot; + buffer + &quot;&quot;);</span>
 	}
 
 	public final PrologQuery query(PrologTerm term, PrologTerm... terms) {

@@ -105,7 +105,7 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 <span class="fc" id="L105">			callIn = prolog.iterator(goal);</span>
 <span class="nc" id="L106">		} catch (InterpreterMessage e) {</span>
 <span class="nc" id="L107">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
-<span class="fc" id="L108">		} catch (InterpreterException e) {</span>
+<span class="nc" id="L108">		} catch (InterpreterException e) {</span>
 			// getLogger().error(getClass(), RUNTIME_ERROR, e)
 			// Error: syntax_error(cannot_start_term)
 			// Error: syntax_error(end_of_clause_expected)
@@ -270,9 +270,9 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 	@Override
 	public PrologTerm[][] allSolutions() {
 		// n:solutionCount, m:solutionSize
-<span class="fc" id="L273">		int n = 0;</span>
-<span class="fc" id="L274">		int m = 0;</span>
-<span class="fc" id="L275">		ArrayList&lt;PrologTerm[]&gt; all = new ArrayList&lt;PrologTerm[]&gt;();</span>
+<span class="nc" id="L273">		int n = 0;</span>
+<span class="nc" id="L274">		int m = 0;</span>
+<span class="nc" id="L275">		ArrayList&lt;PrologTerm[]&gt; all = new ArrayList&lt;PrologTerm[]&gt;();</span>
 <span class="nc bnc" id="L276" title="All 2 branches missed.">		while (hasMoreSolutions()) {</span>
 <span class="nc" id="L277">			PrologTerm[] solution = nextSolution();</span>
 <span class="nc bnc" id="L278" title="All 2 branches missed.">			m = solution.length &gt; m ? solution.length : m;</span>

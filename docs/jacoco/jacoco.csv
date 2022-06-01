@@ -5,14 +5,14 @@ prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologF
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologFail,0,26,0,0,0,5,0,4,0,4
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologReference,6,31,0,0,1,6,1,5,1,5
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologAtom,0,36,0,0,0,8,0,6,0,6
-prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologEngine,1408,396,54,24,275,71,59,21,31,10
+prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologEngine,1450,354,58,20,283,63,62,18,32,9
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologTerm,114,423,31,79,30,90,22,63,0,30
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologMap.PrologMapIterator,0,58,0,2,0,11,0,4,0,3
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologOperator,0,6,0,0,0,2,0,1,0,1
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologCut,0,26,0,0,0,5,0,4,0,4
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologConverter,121,650,19,86,20,125,19,48,0,8
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologProgram,10,0,0,0,3,0,2,0,2,0
-prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologQuery,299,477,37,45,70,115,29,29,5,12
+prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologQuery,308,468,37,45,74,111,30,28,6,11
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologList,51,255,4,14,8,50,4,21,1,15
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologScriptFactory,0,68,0,6,0,13,0,5,0,2
 prolobjectlink-jpi-jekpro,io.github.prolobjectlink.prolog.jekpro,JekejekePrologFalse,0,26,0,0,0,5,0,4,0,4
