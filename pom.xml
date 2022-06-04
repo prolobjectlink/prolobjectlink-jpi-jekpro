@@ -108,6 +108,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<sonar.organization>prolobjectlink</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
@@ -563,37 +565,37 @@
 					<remoteTagging>false</remoteTagging>
 				</configuration>
 			</plugin>
-<!-- 			<plugin> -->
-<!-- 				<groupId>com.github.siom79.japicmp</groupId> -->
-<!-- 				<artifactId>japicmp-maven-plugin</artifactId> -->
-<!-- 				<version>0.15.3</version> -->
-<!-- 				<configuration> -->
-<!-- 					<oldVersion> -->
-<!-- 						<dependency> -->
-<!-- 							<groupId>${project.groupId}</groupId> -->
-<!-- 							<artifactId>${project.artifactId}</artifactId> -->
-<!-- 							<version>1.0</version> -->
-<!-- 							<type>jar</type> -->
-<!-- 						</dependency> -->
-<!-- 					</oldVersion> -->
-<!-- 					<newVersion> -->
-<!-- 						<file> -->
-<!-- 							<path>${project.build.directory}/${project.artifactId}-${project.version}.jar</path> -->
-<!-- 						</file> -->
-<!-- 					</newVersion> -->
-<!-- 					<parameter> -->
-<!-- 						<htmlTitle>Changelog API</htmlTitle> -->
-<!-- 					</parameter> -->
-<!-- 				</configuration> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<phase>verify</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>cmp</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
+			<!-- <plugin> -->
+			<!-- <groupId>com.github.siom79.japicmp</groupId> -->
+			<!-- <artifactId>japicmp-maven-plugin</artifactId> -->
+			<!-- <version>0.15.3</version> -->
+			<!-- <configuration> -->
+			<!-- <oldVersion> -->
+			<!-- <dependency> -->
+			<!-- <groupId>${project.groupId}</groupId> -->
+			<!-- <artifactId>${project.artifactId}</artifactId> -->
+			<!-- <version>1.0</version> -->
+			<!-- <type>jar</type> -->
+			<!-- </dependency> -->
+			<!-- </oldVersion> -->
+			<!-- <newVersion> -->
+			<!-- <file> -->
+			<!-- <path>${project.build.directory}/${project.artifactId}-${project.version}.jar</path> -->
+			<!-- </file> -->
+			<!-- </newVersion> -->
+			<!-- <parameter> -->
+			<!-- <htmlTitle>Changelog API</htmlTitle> -->
+			<!-- </parameter> -->
+			<!-- </configuration> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <phase>verify</phase> -->
+			<!-- <goals> -->
+			<!-- <goal>cmp</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
 		</plugins>
 	</build>
 
@@ -735,36 +737,36 @@
 					</reportSet>
 				</reportSets>
 			</plugin>
-<!-- 			<plugin> -->
-<!-- 				<groupId>com.github.siom79.japicmp</groupId> -->
-<!-- 				<artifactId>japicmp-maven-plugin</artifactId> -->
-<!-- 				<version>0.15.3</version> -->
-<!-- 				<reportSets> -->
-<!-- 					<reportSet> -->
-<!-- 						<reports> -->
-<!-- 							<report>cmp-report</report> -->
-<!-- 						</reports> -->
-<!-- 					</reportSet> -->
-<!-- 				</reportSets> -->
-<!-- 				<configuration> -->
-<!-- 					<oldVersion> -->
-<!-- 						<dependency> -->
-<!-- 							<groupId>${project.groupId}</groupId> -->
-<!-- 							<artifactId>${project.artifactId}</artifactId> -->
-<!-- 							<version>1.0</version> -->
-<!-- 							<type>jar</type> -->
-<!-- 						</dependency> -->
-<!-- 					</oldVersion> -->
-<!-- 					<newVersion> -->
-<!-- 						<file> -->
-<!-- 							<path>${project.build.directory}/${project.artifactId}-${project.version}.jar</path> -->
-<!-- 						</file> -->
-<!-- 					</newVersion> -->
-<!-- 					<parameter> -->
-<!-- 						<htmlTitle>Changelog API</htmlTitle> -->
-<!-- 					</parameter> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
+			<!-- <plugin> -->
+			<!-- <groupId>com.github.siom79.japicmp</groupId> -->
+			<!-- <artifactId>japicmp-maven-plugin</artifactId> -->
+			<!-- <version>0.15.3</version> -->
+			<!-- <reportSets> -->
+			<!-- <reportSet> -->
+			<!-- <reports> -->
+			<!-- <report>cmp-report</report> -->
+			<!-- </reports> -->
+			<!-- </reportSet> -->
+			<!-- </reportSets> -->
+			<!-- <configuration> -->
+			<!-- <oldVersion> -->
+			<!-- <dependency> -->
+			<!-- <groupId>${project.groupId}</groupId> -->
+			<!-- <artifactId>${project.artifactId}</artifactId> -->
+			<!-- <version>1.0</version> -->
+			<!-- <type>jar</type> -->
+			<!-- </dependency> -->
+			<!-- </oldVersion> -->
+			<!-- <newVersion> -->
+			<!-- <file> -->
+			<!-- <path>${project.build.directory}/${project.artifactId}-${project.version}.jar</path> -->
+			<!-- </file> -->
+			<!-- </newVersion> -->
+			<!-- <parameter> -->
+			<!-- <htmlTitle>Changelog API</htmlTitle> -->
+			<!-- </parameter> -->
+			<!-- </configuration> -->
+			<!-- </plugin> -->
 		</plugins>
 	</reporting>
 
