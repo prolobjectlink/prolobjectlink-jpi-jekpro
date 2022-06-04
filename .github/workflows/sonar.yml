@@ -10,6 +10,10 @@ jobs:
     name: Java CI for SonarCloud
     runs-on: ubuntu-latest
     steps:
+    
+      - run: wget https://public.sn.files.1drv.com/y4mcPmm99RtWBUv8uhTfKhiYWWLz1JPwkqsTExJNOb2OELyKcLPmGUenougTDukBotkcd6Sp0Uo_3_xASYuw6MYKmEcCP0a3uiRt_ONeavV9cf3xqHuizXcdtra3jvxrub8jtwaPSVslns0S1Wkej8nscslNGNpP9MCmgf8cvT4Kg8KysQP5LlUy77o_kiZ0pc6eGAaoOVT7EUYQijgcNqE3YWeGArWfWsZKJHux-MIHDw -O interpreter.jar
+      - run: mvn install:install-file -Dfile=interpreter.jar -DgroupId=com.xlog -DartifactId=interpreter -Dversion=1.3.6 -Dpackaging=jar
+    
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
