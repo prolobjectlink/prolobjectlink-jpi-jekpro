@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pmd-cpd>
 <duplication lines="37" tokens="191">
-<file line="42" path="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologDouble.java"/>
-<file line="42" path="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologFloat.java"/>
-<file line="42" path="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologInteger.java"/>
-<file line="42" path="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologLong.java"/>
+<file line="42" path="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologDouble.java"/>
+<file line="42" path="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologFloat.java"/>
+<file line="42" path="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologInteger.java"/>
+<file line="42" path="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologLong.java"/>
 <codefragment>
 <![CDATA[
 		super(LONG_TYPE, provider, new TermAtomic(value.longValue()));
@@ -48,8 +48,8 @@
 </codefragment>
 </duplication>
 <duplication lines="18" tokens="105">
-<file line="269" path="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologEngine.java"/>
-<file line="287" path="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologEngine.java"/>
+<file line="269" path="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologEngine.java"/>
+<file line="287" path="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologEngine.java"/>
 <codefragment>
 <![CDATA[
 		AbstractTerm clause = fromTerm(head, body, AbstractTerm.class);
@@ -74,8 +74,8 @@
 </codefragment>
 </duplication>
 <duplication lines="11" tokens="102">
-<file line="158" path="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologQuery.java"/>
-<file line="206" path="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologQuery.java"/>
+<file line="158" path="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologQuery.java"/>
+<file line="206" path="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologQuery.java"/>
 <codefragment>
 <![CDATA[
 	public Map<String, PrologTerm> nextVariablesSolution() {

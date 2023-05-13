@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2023-01-07T11:37:49.687">
-<file name="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologConverter.java">
+<pmd version="4.2.5" timestamp="2023-05-13T12:58:34.344">
+<file name="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologConverter.java">
 <violation beginline="20" endline="289" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="io.github.prolobjectlink.prolog.jekpro" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
 Too many static imports may lead to messy code
 </violation>
 </file>
-<file name="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologQuery.java">
+<file name="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologQuery.java">
 <violation beginline="108" endline="113" begincolumn="19" endcolumn="17" rule="EmptyCatchBlock" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jekpro" class="JekejekePrologQuery" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
 Avoid empty catch blocks
 </violation>
@@ -22,7 +22,7 @@ Avoid empty catch blocks
 Avoid empty catch blocks
 </violation>
 </file>
-<file name="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologStructure.java">
+<file name="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologStructure.java">
 <violation beginline="86" endline="88" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jekpro" class="JekejekePrologStructure" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
@@ -33,7 +33,7 @@ Unnecessary final modifier in final class
 Unnecessary final modifier in final class
 </violation>
 </file>
-<file name="C:\eclipse-jee-2022-03-R-workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologTerm.java">
+<file name="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jekpro\src\main\java\io\github\prolobjectlink\prolog\jekpro\JekejekePrologTerm.java">
 <violation beginline="20" endline="305" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="io.github.prolobjectlink.prolog.jekpro" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
 Too many static imports may lead to messy code
 </violation>
