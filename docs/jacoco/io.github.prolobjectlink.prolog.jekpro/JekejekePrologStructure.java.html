@@ -34,53 +34,53 @@ import jekpro.tools.term.TermCompound;
 final class JekejekePrologStructure extends JekejekePrologTerm implements PrologStructure {
 
 	JekejekePrologStructure(PrologProvider provider, String functor, PrologTerm... arguments) {
-<span class="fc" id="L37">		super(STRUCTURE_TYPE, provider);</span>
-<span class="fc" id="L38">		Object[] terms = new Object[arguments.length];</span>
-<span class="fc bfc" id="L39" title="All 2 branches covered.">		for (int i = 0; i &lt; arguments.length; i++) {</span>
-<span class="fc" id="L40">			terms[i] = ((JekejekePrologTerm) arguments[i]).getObject();</span>
+<span class="nc" id="L37">		super(STRUCTURE_TYPE, provider);</span>
+<span class="nc" id="L38">		Object[] terms = new Object[arguments.length];</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">		for (int i = 0; i &lt; arguments.length; i++) {</span>
+<span class="nc" id="L40">			terms[i] = ((JekejekePrologTerm) arguments[i]).getObject();</span>
 		}
-<span class="fc" id="L42">		value = new TermCompound(removeQuoted(functor), terms);</span>
-<span class="fc" id="L43">	}</span>
+<span class="nc" id="L42">		value = new TermCompound(removeQuoted(functor), terms);</span>
+<span class="nc" id="L43">	}</span>
 
 	JekejekePrologStructure(PrologProvider provider, String functor, Object... arguments) {
-<span class="fc" id="L46">		super(STRUCTURE_TYPE, provider);</span>
-<span class="fc" id="L47">		value = new TermCompound(removeQuoted(functor), arguments);</span>
-<span class="fc" id="L48">	}</span>
+<span class="nc" id="L46">		super(STRUCTURE_TYPE, provider);</span>
+<span class="nc" id="L47">		value = new TermCompound(removeQuoted(functor), arguments);</span>
+<span class="nc" id="L48">	}</span>
 
 	JekejekePrologStructure(PrologProvider provider, PrologTerm left, String operator, PrologTerm right) {
-<span class="fc" id="L51">		super(STRUCTURE_TYPE, provider);</span>
-<span class="fc" id="L52">		Object leftOperand = ((JekejekePrologTerm) left).getObject();</span>
-<span class="fc" id="L53">		Object rightOperand = ((JekejekePrologTerm) right).getObject();</span>
-<span class="fc" id="L54">		value = new TermCompound(operator, leftOperand, rightOperand);</span>
-<span class="fc" id="L55">	}</span>
+<span class="nc" id="L51">		super(STRUCTURE_TYPE, provider);</span>
+<span class="nc" id="L52">		Object leftOperand = ((JekejekePrologTerm) left).getObject();</span>
+<span class="nc" id="L53">		Object rightOperand = ((JekejekePrologTerm) right).getObject();</span>
+<span class="nc" id="L54">		value = new TermCompound(operator, leftOperand, rightOperand);</span>
+<span class="nc" id="L55">	}</span>
 
 	JekejekePrologStructure(PrologProvider provider, Object left, String functor, Object right) {
-<span class="fc" id="L58">		super(STRUCTURE_TYPE, provider, new TermCompound(functor, left, right));</span>
-<span class="fc" id="L59">	}</span>
+<span class="nc" id="L58">		super(STRUCTURE_TYPE, provider, new TermCompound(functor, left, right));</span>
+<span class="nc" id="L59">	}</span>
 
 	public PrologTerm getArgument(int index) {
-<span class="fc" id="L62">		checkIndex(index, getArity());</span>
-<span class="fc" id="L63">		return getArguments()[index];</span>
+<span class="nc" id="L62">		checkIndex(index, getArity());</span>
+<span class="nc" id="L63">		return getArguments()[index];</span>
 	}
 
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L67">		TermCompound structure = (TermCompound) value;</span>
-<span class="fc" id="L68">		int arity = structure.getArity();</span>
-<span class="fc" id="L69">		PrologTerm[] arguments = new PrologTerm[arity];</span>
-<span class="fc bfc" id="L70" title="All 2 branches covered.">		for (int i = 0; i &lt; arity; i++) {</span>
-<span class="fc" id="L71">			arguments[i] = toTerm(structure.getArg(i), PrologTerm.class);</span>
+<span class="nc" id="L67">		TermCompound structure = (TermCompound) value;</span>
+<span class="nc" id="L68">		int arity = structure.getArity();</span>
+<span class="nc" id="L69">		PrologTerm[] arguments = new PrologTerm[arity];</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">		for (int i = 0; i &lt; arity; i++) {</span>
+<span class="nc" id="L71">			arguments[i] = toTerm(structure.getArg(i), PrologTerm.class);</span>
 		}
-<span class="fc" id="L73">		return arguments;</span>
+<span class="nc" id="L73">		return arguments;</span>
 	}
 
 	public int getArity() {
-<span class="fc" id="L77">		TermCompound structure = (TermCompound) value;</span>
-<span class="fc" id="L78">		return structure.getArity();</span>
+<span class="nc" id="L77">		TermCompound structure = (TermCompound) value;</span>
+<span class="nc" id="L78">		return structure.getArity();</span>
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L82">		TermCompound structure = (TermCompound) value;</span>
-<span class="fc" id="L83">		return structure.getFunctor();</span>
+<span class="nc" id="L82">		TermCompound structure = (TermCompound) value;</span>
+<span class="nc" id="L83">		return structure.getFunctor();</span>
 	}
 
 	public final PrologTerm getRight() {

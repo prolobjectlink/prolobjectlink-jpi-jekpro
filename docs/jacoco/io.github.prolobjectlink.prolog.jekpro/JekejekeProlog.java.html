@@ -60,42 +60,42 @@ import matula.util.data.ListArray;
  */
 public class JekejekeProlog extends AbstractProvider implements PrologProvider {
 
-<span class="fc" id="L63">	protected static final Map&lt;String, String&gt; varCache = new HashMap&lt;String, String&gt;();</span>
-<span class="fc" id="L64">	static final PrologLogger logger = new JekejekePrologLogger();</span>
-<span class="fc" id="L65">	private static final ListArray&lt;String&gt; listArray = new ListArray&lt;String&gt;();</span>
-<span class="fc" id="L66">	private static final Knowledgebase know = new Knowledgebase(ToolkitLibrary.DEFAULT);</span>
-<span class="fc" id="L67">	private static final Interpreter prolog = know.iterable();</span>
+<span class="nc" id="L63">	protected static final Map&lt;String, String&gt; varCache = new HashMap&lt;String, String&gt;();</span>
+<span class="nc" id="L64">	static final PrologLogger logger = new JekejekePrologLogger();</span>
+<span class="nc" id="L65">	private static final ListArray&lt;String&gt; listArray = new ListArray&lt;String&gt;();</span>
+<span class="nc" id="L66">	private static final Knowledgebase know = new Knowledgebase(ToolkitLibrary.DEFAULT);</span>
+<span class="nc" id="L67">	private static final Interpreter prolog = know.iterable();</span>
 
 	public JekejekeProlog() {
-<span class="fc" id="L70">		super(new JekejekePrologConverter());</span>
-<span class="fc" id="L71">	}</span>
+<span class="nc" id="L70">		super(new JekejekePrologConverter());</span>
+<span class="nc" id="L71">	}</span>
 
 	public JekejekeProlog(PrologConverter&lt;Object&gt; converter) {
-<span class="fc" id="L74">		super(converter);</span>
-<span class="fc" id="L75">	}</span>
+<span class="nc" id="L74">		super(converter);</span>
+<span class="nc" id="L75">	}</span>
 
 	public PrologTerm prologNil() {
-<span class="fc" id="L78">		return new JekejekePrologNil(this);</span>
+<span class="nc" id="L78">		return new JekejekePrologNil(this);</span>
 	}
 
 	public PrologTerm prologCut() {
-<span class="fc" id="L82">		return new JekejekePrologCut(this);</span>
+<span class="nc" id="L82">		return new JekejekePrologCut(this);</span>
 	}
 
 	public PrologTerm prologFail() {
-<span class="fc" id="L86">		return new JekejekePrologFail(this);</span>
+<span class="nc" id="L86">		return new JekejekePrologFail(this);</span>
 	}
 
 	public PrologTerm prologTrue() {
-<span class="fc" id="L90">		return new JekejekePrologTrue(this);</span>
+<span class="nc" id="L90">		return new JekejekePrologTrue(this);</span>
 	}
 
 	public PrologTerm prologFalse() {
-<span class="fc" id="L94">		return new JekejekePrologFalse(this);</span>
+<span class="nc" id="L94">		return new JekejekePrologFalse(this);</span>
 	}
 
 	public PrologTerm prologEmpty() {
-<span class="fc" id="L98">		return new JekejekePrologEmpty(this);</span>
+<span class="nc" id="L98">		return new JekejekePrologEmpty(this);</span>
 	}
 
 	public PrologTerm prologInclude(String file) {
@@ -105,17 +105,17 @@ public class JekejekeProlog extends AbstractProvider implements PrologProvider {
 	// engine
 
 	public PrologEngine newEngine() {
-<span class="fc" id="L108">		Interpreter jekpro = new Knowledgebase(ToolkitLibrary.DEFAULT).iterable();</span>
+<span class="nc" id="L108">		Interpreter jekpro = new Knowledgebase(ToolkitLibrary.DEFAULT).iterable();</span>
 		try {
-<span class="fc" id="L110">			Knowledgebase.initKnowledgebase(jekpro, true);</span>
-<span class="fc" id="L111">			ToolkitLibrary.initPaths(jekpro, listArray);</span>
-<span class="fc" id="L112">			ToolkitLibrary.initCapas(jekpro, listArray);</span>
+<span class="nc" id="L110">			Knowledgebase.initKnowledgebase(jekpro, true);</span>
+<span class="nc" id="L111">			ToolkitLibrary.initPaths(jekpro, listArray);</span>
+<span class="nc" id="L112">			ToolkitLibrary.initCapas(jekpro, listArray);</span>
 <span class="nc" id="L113">		} catch (InterpreterMessage e) {</span>
 <span class="nc" id="L114">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
 <span class="nc" id="L115">		} catch (InterpreterException e) {</span>
 <span class="nc" id="L116">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
-<span class="pc" id="L117">		}</span>
-<span class="fc" id="L118">		return new JekejekePrologEngine(this, jekpro);</span>
+		}
+<span class="nc" id="L118">		return new JekejekePrologEngine(this, jekpro);</span>
 	}
 
 	public PrologEngine newEngine(String path) {
@@ -127,156 +127,156 @@ public class JekejekeProlog extends AbstractProvider implements PrologProvider {
 	// parser helpers
 
 	public PrologTerm parseTerm(String term) {
-<span class="fc" id="L130">		AbstractTerm e = new TermAtomic(&quot;[]&quot;);</span>
+<span class="nc" id="L130">		AbstractTerm e = new TermAtomic(&quot;[]&quot;);</span>
 		try {
-<span class="fc" id="L132">			Knowledgebase.initKnowledgebase(prolog, true);</span>
-<span class="fc" id="L133">			ToolkitLibrary.initPaths(prolog, listArray);</span>
-<span class="fc" id="L134">			ToolkitLibrary.initCapas(prolog, listArray);</span>
-<span class="fc" id="L135">			AbstractTerm t = prolog.parseTerm(term, e);</span>
-<span class="fc" id="L136">			return toTerm(t, PrologTerm.class);</span>
+<span class="nc" id="L132">			Knowledgebase.initKnowledgebase(prolog, true);</span>
+<span class="nc" id="L133">			ToolkitLibrary.initPaths(prolog, listArray);</span>
+<span class="nc" id="L134">			ToolkitLibrary.initCapas(prolog, listArray);</span>
+<span class="nc" id="L135">			AbstractTerm t = prolog.parseTerm(term, e);</span>
+<span class="nc" id="L136">			return toTerm(t, PrologTerm.class);</span>
 <span class="nc" id="L137">		} catch (InterpreterMessage e1) {</span>
 <span class="nc" id="L138">			getLogger().error(getClass(), SYNTAX_ERROR, e1);</span>
 <span class="nc" id="L139">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L140">			getLogger().error(getClass(), SYNTAX_ERROR, e1);</span>
-<span class="nc" id="L141">		}</span>
+		}
 <span class="nc" id="L142">		throw new SyntaxError(term);</span>
 		// return toTerm(JekejekePrologUtil.parseTerm(term), PrologTerm.class)
 	}
 
 	public PrologTerm[] parseTerms(String stringTerms) {
-<span class="fc" id="L147">		List&lt;PrologTerm&gt; list = new ArrayList&lt;PrologTerm&gt;();</span>
-<span class="fc" id="L148">		AbstractTerm e = new TermAtomic(&quot;[]&quot;);</span>
+<span class="nc" id="L147">		List&lt;PrologTerm&gt; list = new ArrayList&lt;PrologTerm&gt;();</span>
+<span class="nc" id="L148">		AbstractTerm e = new TermAtomic(&quot;[]&quot;);</span>
 		try {
-<span class="fc" id="L150">			Knowledgebase.initKnowledgebase(prolog, true);</span>
-<span class="fc" id="L151">			ToolkitLibrary.initPaths(prolog, listArray);</span>
-<span class="fc" id="L152">			ToolkitLibrary.initCapas(prolog, listArray);</span>
-<span class="fc" id="L153">			AbstractTerm ptr = prolog.parseTerm(stringTerms, e);</span>
-<span class="fc bfc" id="L154" title="All 4 branches covered.">			while (ptr instanceof TermCompound &amp;&amp; ((TermCompound) ptr).getFunctor().equals(&quot;,&quot;)</span>
-<span class="fc bfc" id="L155" title="All 2 branches covered.">					&amp;&amp; ((TermCompound) ptr).getArity() == 2) {</span>
-<span class="fc" id="L156">				TermCompound struct = (TermCompound) ptr;</span>
-<span class="fc" id="L157">				list.add(toTerm(struct.getArg(0), PrologTerm.class));</span>
-<span class="fc" id="L158">				ptr = (AbstractTerm) struct.getArg(1);</span>
-<span class="fc" id="L159">			}</span>
-<span class="fc" id="L160">			list.add(toTerm(ptr, PrologTerm.class));</span>
+<span class="nc" id="L150">			Knowledgebase.initKnowledgebase(prolog, true);</span>
+<span class="nc" id="L151">			ToolkitLibrary.initPaths(prolog, listArray);</span>
+<span class="nc" id="L152">			ToolkitLibrary.initCapas(prolog, listArray);</span>
+<span class="nc" id="L153">			AbstractTerm ptr = prolog.parseTerm(stringTerms, e);</span>
+<span class="nc bnc" id="L154" title="All 4 branches missed.">			while (ptr instanceof TermCompound &amp;&amp; ((TermCompound) ptr).getFunctor().equals(&quot;,&quot;)</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">					&amp;&amp; ((TermCompound) ptr).getArity() == 2) {</span>
+<span class="nc" id="L156">				TermCompound struct = (TermCompound) ptr;</span>
+<span class="nc" id="L157">				list.add(toTerm(struct.getArg(0), PrologTerm.class));</span>
+<span class="nc" id="L158">				ptr = (AbstractTerm) struct.getArg(1);</span>
+			}
+<span class="nc" id="L160">			list.add(toTerm(ptr, PrologTerm.class));</span>
 <span class="nc" id="L161">		} catch (InterpreterMessage e1) {</span>
 <span class="nc" id="L162">			getLogger().error(getClass(), SYNTAX_ERROR, e1);</span>
 <span class="nc" id="L163">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L164">			getLogger().error(getClass(), SYNTAX_ERROR, e1);</span>
-<span class="pc" id="L165">		}</span>
-<span class="fc" id="L166">		return list.toArray(new PrologTerm[0]);</span>
+		}
+<span class="nc" id="L166">		return list.toArray(new PrologTerm[0]);</span>
 	}
 
 	// terms
 
 	public PrologAtom newAtom(String functor) {
-<span class="fc" id="L172">		return new JekejekePrologAtom(this, functor);</span>
+<span class="nc" id="L172">		return new JekejekePrologAtom(this, functor);</span>
 	}
 
 	public PrologFloat newFloat(Number value) {
-<span class="fc" id="L176">		return new JekejekePrologFloat(this, value);</span>
+<span class="nc" id="L176">		return new JekejekePrologFloat(this, value);</span>
 	}
 
 	public PrologDouble newDouble(Number value) {
-<span class="fc" id="L180">		return new JekejekePrologDouble(this, value);</span>
+<span class="nc" id="L180">		return new JekejekePrologDouble(this, value);</span>
 	}
 
 	public PrologInteger newInteger(Number value) {
-<span class="fc" id="L184">		return new JekejekePrologInteger(this, value);</span>
+<span class="nc" id="L184">		return new JekejekePrologInteger(this, value);</span>
 	}
 
 	public PrologLong newLong(Number value) {
-<span class="fc" id="L188">		return new JekejekePrologLong(this, value);</span>
+<span class="nc" id="L188">		return new JekejekePrologLong(this, value);</span>
 	}
 
 	public PrologVariable newVariable(int position) {
-<span class="fc" id="L192">		return new JekejekePrologVariable(this);</span>
+<span class="nc" id="L192">		return new JekejekePrologVariable(this);</span>
 	}
 
 	public PrologVariable newVariable(String name, int position) {
-<span class="fc" id="L196">		return new JekejekePrologVariable(this, name);</span>
+<span class="nc" id="L196">		return new JekejekePrologVariable(this, name);</span>
 	}
 
 	public PrologList newList() {
-<span class="fc" id="L200">		return new JekejekePrologEmpty(this);</span>
+<span class="nc" id="L200">		return new JekejekePrologEmpty(this);</span>
 	}
 
 	public PrologList newList(PrologTerm[] arguments) {
-<span class="fc bfc" id="L204" title="All 4 branches covered.">		if (arguments != null &amp;&amp; arguments.length &gt; 0) {</span>
-<span class="fc" id="L205">			return new JekejekePrologList(this, arguments);</span>
+<span class="nc bnc" id="L204" title="All 4 branches missed.">		if (arguments != null &amp;&amp; arguments.length &gt; 0) {</span>
+<span class="nc" id="L205">			return new JekejekePrologList(this, arguments);</span>
 		}
-<span class="fc" id="L207">		return new JekejekePrologEmpty(this);</span>
+<span class="nc" id="L207">		return new JekejekePrologEmpty(this);</span>
 	}
 
 	public PrologList newList(PrologTerm head, PrologTerm tail) {
-<span class="fc" id="L211">		return new JekejekePrologList(this, head, tail);</span>
+<span class="nc" id="L211">		return new JekejekePrologList(this, head, tail);</span>
 	}
 
 	public PrologList newList(PrologTerm[] arguments, PrologTerm tail) {
-<span class="fc" id="L215">		return new JekejekePrologList(this, arguments, tail);</span>
+<span class="nc" id="L215">		return new JekejekePrologList(this, arguments, tail);</span>
 	}
 
 	public PrologStructure newStructure(String functor, PrologTerm... arguments) {
-<span class="fc" id="L219">		return new JekejekePrologStructure(this, functor, arguments);</span>
+<span class="nc" id="L219">		return new JekejekePrologStructure(this, functor, arguments);</span>
 	}
 
 	public PrologTerm newStructure(PrologTerm left, String operator, PrologTerm right) {
-<span class="fc" id="L223">		return new JekejekePrologStructure(this, left, operator, right);</span>
+<span class="nc" id="L223">		return new JekejekePrologStructure(this, left, operator, right);</span>
 	}
 
 	public final PrologTerm newEntry(PrologTerm key, PrologTerm value) {
-<span class="fc" id="L227">		return new JekejekePrologEntry(this, key, value);</span>
+<span class="nc" id="L227">		return new JekejekePrologEntry(this, key, value);</span>
 	}
 
 	public final PrologTerm newEntry(Object key, Object value) {
-<span class="fc" id="L231">		PrologJavaConverter transformer = getJavaConverter();</span>
-<span class="fc" id="L232">		PrologTerm keyTerm = transformer.toTerm(key);</span>
-<span class="fc" id="L233">		PrologTerm valueTerm = transformer.toTerm(value);</span>
-<span class="fc" id="L234">		return new JekejekePrologEntry(this, keyTerm, valueTerm);</span>
+<span class="nc" id="L231">		PrologJavaConverter transformer = getJavaConverter();</span>
+<span class="nc" id="L232">		PrologTerm keyTerm = transformer.toTerm(key);</span>
+<span class="nc" id="L233">		PrologTerm valueTerm = transformer.toTerm(value);</span>
+<span class="nc" id="L234">		return new JekejekePrologEntry(this, keyTerm, valueTerm);</span>
 	}
 
 	public final PrologTerm newMap(Map&lt;PrologTerm, PrologTerm&gt; map) {
-<span class="fc" id="L238">		return new JekejekePrologMap(this, map);</span>
+<span class="nc" id="L238">		return new JekejekePrologMap(this, map);</span>
 	}
 
 	public final PrologTerm newMap(int initialCapacity) {
-<span class="fc" id="L242">		return new JekejekePrologMap(this, initialCapacity);</span>
+<span class="nc" id="L242">		return new JekejekePrologMap(this, initialCapacity);</span>
 	}
 
 	public final PrologTerm newMap() {
-<span class="fc" id="L246">		return new JekejekePrologMap(this);</span>
+<span class="nc" id="L246">		return new JekejekePrologMap(this);</span>
 	}
 
 	public PrologTerm newReference(Object reference) {
-<span class="fc" id="L250">		return new JekejekePrologReference(this, reference);</span>
+<span class="nc" id="L250">		return new JekejekePrologReference(this, reference);</span>
 	}
 
 	public PrologTerm falseReference() {
-<span class="fc" id="L254">		return newReference(false);</span>
+<span class="nc" id="L254">		return newReference(false);</span>
 	}
 
 	public PrologTerm trueReference() {
-<span class="fc" id="L258">		return newReference(true);</span>
+<span class="nc" id="L258">		return newReference(true);</span>
 	}
 
 	public PrologTerm nullReference() {
-<span class="fc" id="L262">		return newReference(null);</span>
+<span class="nc" id="L262">		return newReference(null);</span>
 	}
 
 	public PrologTerm voidReference() {
-<span class="fc" id="L266">		return newReference(void.class);</span>
+<span class="nc" id="L266">		return newReference(void.class);</span>
 	}
 
 	public PrologJavaConverter getJavaConverter() {
-<span class="fc" id="L270">		return new JekejekePrologJavaConverter(this);</span>
+<span class="nc" id="L270">		return new JekejekePrologJavaConverter(this);</span>
 	}
 
 	public PrologLogger getLogger() {
-<span class="fc" id="L274">		return logger;</span>
+<span class="nc" id="L274">		return logger;</span>
 	}
 
 	@Override
 	public String toString() {
-<span class="fc" id="L279">		return &quot;JekejekeProlog [converter=&quot; + converter + &quot;]&quot;;</span>
+<span class="nc" id="L279">		return &quot;JekejekeProlog [converter=&quot; + converter + &quot;]&quot;;</span>
 	}
 
 }

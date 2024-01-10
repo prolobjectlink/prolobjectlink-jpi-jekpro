@@ -33,19 +33,19 @@ import jekpro.tools.term.TermAtomic;
 final class JekejekePrologFail extends JekejekePrologTerm implements PrologTerm {
 
 	JekejekePrologFail(PrologProvider provider) {
-<span class="fc" id="L36">		super(FAIL_TYPE, provider, new TermAtomic(&quot;fail&quot;));</span>
-<span class="fc" id="L37">	}</span>
+<span class="nc" id="L36">		super(FAIL_TYPE, provider, new TermAtomic(&quot;fail&quot;));</span>
+<span class="nc" id="L37">	}</span>
 
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L40">		return new PrologTerm[0];</span>
+<span class="nc" id="L40">		return new PrologTerm[0];</span>
 	}
 
 	public int getArity() {
-<span class="fc" id="L44">		return 0;</span>
+<span class="nc" id="L44">		return 0;</span>
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L48">		return &quot;&quot; + value + &quot;&quot;;</span>
+<span class="nc" id="L48">		return &quot;&quot; + value + &quot;&quot;;</span>
 	}
 
 }

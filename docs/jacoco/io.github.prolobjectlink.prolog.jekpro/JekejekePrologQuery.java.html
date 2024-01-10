@@ -55,54 +55,54 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 	private CallIn callIn;
 	private String query;
 
-<span class="fc" id="L58">	private final List&lt;Object&gt; variables = new ArrayList&lt;Object&gt;();</span>
-<span class="fc" id="L59">	private final Map&lt;String, String&gt; directNames = new LinkedHashMap&lt;String, String&gt;();</span>
-<span class="fc" id="L60">	private final Map&lt;String, String&gt; inverseNames = new LinkedHashMap&lt;String, String&gt;();</span>
+<span class="nc" id="L58">	private final List&lt;Object&gt; variables = new ArrayList&lt;Object&gt;();</span>
+<span class="nc" id="L59">	private final Map&lt;String, String&gt; directNames = new LinkedHashMap&lt;String, String&gt;();</span>
+<span class="nc" id="L60">	private final Map&lt;String, String&gt; inverseNames = new LinkedHashMap&lt;String, String&gt;();</span>
 
 	private void enumerateVariables(List&lt;Object&gt; vector, Object term) {
-<span class="pc bpc" id="L63" title="1 of 4 branches missed.">		if (!(term instanceof TermVar) &amp;&amp; (term instanceof TermCompound)) {</span>
-<span class="fc" id="L64">			TermCompound compound = (TermCompound) term;</span>
-<span class="fc bfc" id="L65" title="All 2 branches covered.">			for (int i = 0; i &lt; compound.getArity(); i++) {</span>
-<span class="fc" id="L66">				Object t = compound.getArg(i);</span>
-<span class="fc" id="L67">				enumerateVariables(vector, t);</span>
+<span class="nc bnc" id="L63" title="All 4 branches missed.">		if (!(term instanceof TermVar) &amp;&amp; (term instanceof TermCompound)) {</span>
+<span class="nc" id="L64">			TermCompound compound = (TermCompound) term;</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">			for (int i = 0; i &lt; compound.getArity(); i++) {</span>
+<span class="nc" id="L66">				Object t = compound.getArg(i);</span>
+<span class="nc" id="L67">				enumerateVariables(vector, t);</span>
 			}
-<span class="fc bfc" id="L69" title="All 2 branches covered.">		} else if (!vector.contains(term)) {</span>
-<span class="fc" id="L70">			vector.add(term);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">		} else if (!vector.contains(term)) {</span>
+<span class="nc" id="L70">			vector.add(term);</span>
 		}
-<span class="fc" id="L72">	}</span>
+<span class="nc" id="L72">	}</span>
 
 	public JekejekePrologQuery(AbstractEngine engine, String query) {
-<span class="fc" id="L75">		super(engine);</span>
-<span class="fc" id="L76">		this.query = query;</span>
+<span class="nc" id="L75">		super(engine);</span>
+<span class="nc" id="L76">		this.query = query;</span>
 		try {
 
-<span class="fc" id="L79">			String delim = &quot;,;() +-*/%=&gt;&lt;&quot;;</span>
-<span class="fc" id="L80">			List&lt;String&gt; names = new ArrayList&lt;String&gt;();</span>
-<span class="fc" id="L81">			prolog = ((JekejekePrologEngine) engine).prolog;</span>
-<span class="fc" id="L82">			StringTokenizer tokenizer = new StringTokenizer(query, delim);</span>
-<span class="fc bfc" id="L83" title="All 2 branches covered.">			while (tokenizer.hasMoreTokens()) {</span>
-<span class="fc" id="L84">				String token = tokenizer.nextToken();</span>
-<span class="fc bfc" id="L85" title="All 4 branches covered.">				if (token.matches(&quot;[A-Z][A-Za-z0-9_]*&quot;) &amp;&amp; !names.contains(token)) {</span>
-<span class="fc" id="L86">					names.add(token);</span>
+<span class="nc" id="L79">			String delim = &quot;,;() +-*/%=&gt;&lt;&quot;;</span>
+<span class="nc" id="L80">			List&lt;String&gt; names = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L81">			prolog = ((JekejekePrologEngine) engine).prolog;</span>
+<span class="nc" id="L82">			StringTokenizer tokenizer = new StringTokenizer(query, delim);</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">			while (tokenizer.hasMoreTokens()) {</span>
+<span class="nc" id="L84">				String token = tokenizer.nextToken();</span>
+<span class="nc bnc" id="L85" title="All 4 branches missed.">				if (token.matches(&quot;[A-Z][A-Za-z0-9_]*&quot;) &amp;&amp; !names.contains(token)) {</span>
+<span class="nc" id="L86">					names.add(token);</span>
 				}
-<span class="fc" id="L88">			}</span>
+			}
 
-<span class="fc" id="L90">			AbstractTerm goal = prolog.parseTerm(query, EMPTY);</span>
-<span class="fc" id="L91">			SkelCompound compound = (SkelCompound) goal.getSkel();</span>
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">			if (compound.vU instanceof SkelVar[]) {</span>
-<span class="fc" id="L93">				SkelVar[] vars = (SkelVar[]) compound.vU;</span>
-<span class="fc bfc" id="L94" title="All 2 branches covered.">				for (int i = 0; i &lt; vars.length; i++) {</span>
-<span class="fc" id="L95">					directNames.put(names.get(i), vars[i].toString());</span>
-<span class="fc" id="L96">					inverseNames.put(vars[i].toString(), names.get(i));</span>
+<span class="nc" id="L90">			AbstractTerm goal = prolog.parseTerm(query, EMPTY);</span>
+<span class="nc" id="L91">			SkelCompound compound = (SkelCompound) goal.getSkel();</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">			if (compound.vU instanceof SkelVar[]) {</span>
+<span class="nc" id="L93">				SkelVar[] vars = (SkelVar[]) compound.vU;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">				for (int i = 0; i &lt; vars.length; i++) {</span>
+<span class="nc" id="L95">					directNames.put(names.get(i), vars[i].toString());</span>
+<span class="nc" id="L96">					inverseNames.put(vars[i].toString(), names.get(i));</span>
 				}
-<span class="pc bnc" id="L98" title="All 2 branches missed.">			} else if (compound.vU instanceof SkelVar) {</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">			} else if (compound.vU instanceof SkelVar) {</span>
 <span class="nc" id="L99">				SkelVar var = (SkelVar) compound.vU;</span>
 <span class="nc" id="L100">				directNames.put(names.get(0), var.toString());</span>
 <span class="nc" id="L101">				inverseNames.put(var.toString(), names.get(0));</span>
 			}
 
-<span class="fc" id="L104">			enumerateVariables(variables, goal);</span>
-<span class="fc" id="L105">			callIn = prolog.iterator(goal);</span>
+<span class="nc" id="L104">			enumerateVariables(variables, goal);</span>
+<span class="nc" id="L105">			callIn = prolog.iterator(goal);</span>
 <span class="nc" id="L106">		} catch (InterpreterMessage e) {</span>
 <span class="nc" id="L107">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
 <span class="nc" id="L108">		} catch (InterpreterException e) {</span>
@@ -110,39 +110,39 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 			// Error: syntax_error(cannot_start_term)
 			// Error: syntax_error(end_of_clause_expected)
 			// Error: syntax_error(ref_unreadable)
-<span class="pc" id="L113">		}</span>
-<span class="fc" id="L114">	}</span>
+		}
+<span class="nc" id="L114">	}</span>
 
 	@Override
 	public boolean hasSolution() {
 		try {
-<span class="pc bpc" id="L119" title="1 of 2 branches missed.">			if (callIn.hasNext()) {</span>
-<span class="fc" id="L120">				return true;</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">			if (callIn.hasNext()) {</span>
+<span class="nc" id="L120">				return true;</span>
 			}
 <span class="nc" id="L122">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L123">			getLogger().error(getClass(), RUNTIME_ERROR, e1);</span>
-<span class="nc" id="L124">		}</span>
+		}
 <span class="nc" id="L125">		return false;</span>
 	}
 
 	@Override
 	public boolean hasMoreSolutions() {
-<span class="fc" id="L130">		return hasSolution();</span>
+<span class="nc" id="L130">		return hasSolution();</span>
 	}
 
 	@Override
 	public PrologTerm[] oneSolution() {
 		try {
-<span class="pc bpc" id="L136" title="1 of 2 branches missed.">			if (hasSolution()) {</span>
-<span class="fc" id="L137">				int l = variables.size();</span>
-<span class="fc" id="L138">				PrologTerm[] one = new PrologTerm[l];</span>
-<span class="fc bfc" id="L139" title="All 2 branches covered.">				for (int i = 0; i &lt; variables.size(); i++) {</span>
-<span class="fc" id="L140">					Object object = variables.get(i);</span>
-<span class="fc" id="L141">					AbstractTerm variable = (AbstractTerm) object;</span>
-<span class="fc" id="L142">					String term = prolog.unparseTerm(variable, EMPTY);</span>
-<span class="fc" id="L143">					one[i] = getProvider().parseTerm(term);</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">			if (hasSolution()) {</span>
+<span class="nc" id="L137">				int l = variables.size();</span>
+<span class="nc" id="L138">				PrologTerm[] one = new PrologTerm[l];</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">				for (int i = 0; i &lt; variables.size(); i++) {</span>
+<span class="nc" id="L140">					Object object = variables.get(i);</span>
+<span class="nc" id="L141">					AbstractTerm variable = (AbstractTerm) object;</span>
+<span class="nc" id="L142">					String term = prolog.unparseTerm(variable, EMPTY);</span>
+<span class="nc" id="L143">					one[i] = getProvider().parseTerm(term);</span>
 				}
-<span class="fc" id="L145">				return one;</span>
+<span class="nc" id="L145">				return one;</span>
 			}
 <span class="nc" id="L147">		} catch (NullPointerException e) {</span>
 			// do nothing
@@ -150,21 +150,21 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 <span class="nc" id="L150">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
 <span class="nc" id="L151">		} catch (InterpreterException e) {</span>
 <span class="nc" id="L152">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
-<span class="nc" id="L153">		}</span>
+		}
 <span class="nc" id="L154">		return new PrologTerm[0];</span>
 	}
 
 	@Override
 	public Map&lt;String, PrologTerm&gt; oneVariablesSolution() {
-<span class="fc" id="L159">		Map&lt;String, PrologTerm&gt; map = new HashMap&lt;String, PrologTerm&gt;();</span>
+<span class="nc" id="L159">		Map&lt;String, PrologTerm&gt; map = new HashMap&lt;String, PrologTerm&gt;();</span>
 		try {
-<span class="pc bpc" id="L161" title="1 of 2 branches missed.">			if (hasSolution()) {</span>
-<span class="fc bfc" id="L162" title="All 2 branches covered.">				for (int i = 0; i &lt; variables.size(); i++) {</span>
-<span class="fc" id="L163">					Object object = variables.get(i);</span>
-<span class="fc" id="L164">					AbstractTerm variable = (AbstractTerm) object;</span>
-<span class="fc" id="L165">					String term = prolog.unparseTerm(variable, EMPTY);</span>
-<span class="fc" id="L166">					String name = inverseNames.get(variable.toString());</span>
-<span class="fc" id="L167">					map.put(name, getProvider().parseTerm(term));</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">			if (hasSolution()) {</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">				for (int i = 0; i &lt; variables.size(); i++) {</span>
+<span class="nc" id="L163">					Object object = variables.get(i);</span>
+<span class="nc" id="L164">					AbstractTerm variable = (AbstractTerm) object;</span>
+<span class="nc" id="L165">					String term = prolog.unparseTerm(variable, EMPTY);</span>
+<span class="nc" id="L166">					String name = inverseNames.get(variable.toString());</span>
+<span class="nc" id="L167">					map.put(name, getProvider().parseTerm(term));</span>
 				}
 			}
 <span class="nc" id="L170">		} catch (NullPointerException e) {</span>
@@ -173,96 +173,96 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 <span class="nc" id="L173">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
 <span class="nc" id="L174">		} catch (InterpreterException e) {</span>
 <span class="nc" id="L175">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
-<span class="pc" id="L176">		}</span>
-<span class="fc" id="L177">		return map;</span>
+		}
+<span class="nc" id="L177">		return map;</span>
 	}
 
 	@Override
 	public PrologTerm[] nextSolution() {
 		try {
-<span class="pc bpc" id="L183" title="1 of 2 branches missed.">			if (hasSolution()) {</span>
-<span class="fc" id="L184">				int l = variables.size();</span>
-<span class="fc" id="L185">				PrologTerm[] one = new PrologTerm[l];</span>
-<span class="fc bfc" id="L186" title="All 2 branches covered.">				for (int i = 0; i &lt; variables.size(); i++) {</span>
-<span class="fc" id="L187">					Object object = variables.get(i);</span>
-<span class="fc" id="L188">					AbstractTerm variable = (AbstractTerm) object;</span>
-<span class="fc" id="L189">					String term = prolog.unparseTerm(variable, EMPTY);</span>
-<span class="fc" id="L190">					one[i] = getProvider().parseTerm(term);</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">			if (hasSolution()) {</span>
+<span class="nc" id="L184">				int l = variables.size();</span>
+<span class="nc" id="L185">				PrologTerm[] one = new PrologTerm[l];</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">				for (int i = 0; i &lt; variables.size(); i++) {</span>
+<span class="nc" id="L187">					Object object = variables.get(i);</span>
+<span class="nc" id="L188">					AbstractTerm variable = (AbstractTerm) object;</span>
+<span class="nc" id="L189">					String term = prolog.unparseTerm(variable, EMPTY);</span>
+<span class="nc" id="L190">					one[i] = getProvider().parseTerm(term);</span>
 				}
-<span class="fc" id="L192">				callIn.next();</span>
-<span class="fc" id="L193">				return one;</span>
+<span class="nc" id="L192">				callIn.next();</span>
+<span class="nc" id="L193">				return one;</span>
 			}
-<span class="fc" id="L195">		} catch (NullPointerException e) {</span>
+<span class="nc" id="L195">		} catch (NullPointerException e) {</span>
 			// do nothing
 <span class="nc" id="L197">		} catch (InterpreterMessage e) {</span>
 <span class="nc" id="L198">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
 <span class="nc" id="L199">		} catch (InterpreterException e) {</span>
 <span class="nc" id="L200">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
-<span class="pc" id="L201">		}</span>
-<span class="fc" id="L202">		return new PrologTerm[0];</span>
+		}
+<span class="nc" id="L202">		return new PrologTerm[0];</span>
 	}
 
 	@Override
 	public Map&lt;String, PrologTerm&gt; nextVariablesSolution() {
-<span class="fc" id="L207">		Map&lt;String, PrologTerm&gt; map = new HashMap&lt;String, PrologTerm&gt;();</span>
+<span class="nc" id="L207">		Map&lt;String, PrologTerm&gt; map = new HashMap&lt;String, PrologTerm&gt;();</span>
 		try {
-<span class="pc bpc" id="L209" title="1 of 2 branches missed.">			if (hasSolution()) {</span>
-<span class="fc bfc" id="L210" title="All 2 branches covered.">				for (int i = 0; i &lt; variables.size(); i++) {</span>
-<span class="fc" id="L211">					Object object = variables.get(i);</span>
-<span class="fc" id="L212">					AbstractTerm variable = (AbstractTerm) object;</span>
-<span class="fc" id="L213">					String term = prolog.unparseTerm(variable, EMPTY);</span>
-<span class="fc" id="L214">					String name = inverseNames.get(variable.toString());</span>
-<span class="fc" id="L215">					map.put(name, getProvider().parseTerm(term));</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">			if (hasSolution()) {</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">				for (int i = 0; i &lt; variables.size(); i++) {</span>
+<span class="nc" id="L211">					Object object = variables.get(i);</span>
+<span class="nc" id="L212">					AbstractTerm variable = (AbstractTerm) object;</span>
+<span class="nc" id="L213">					String term = prolog.unparseTerm(variable, EMPTY);</span>
+<span class="nc" id="L214">					String name = inverseNames.get(variable.toString());</span>
+<span class="nc" id="L215">					map.put(name, getProvider().parseTerm(term));</span>
 				}
-<span class="fc" id="L217">				callIn.next();</span>
+<span class="nc" id="L217">				callIn.next();</span>
 			}
-<span class="fc" id="L219">		} catch (NullPointerException e) {</span>
+<span class="nc" id="L219">		} catch (NullPointerException e) {</span>
 			// do nothing
 <span class="nc" id="L221">		} catch (InterpreterMessage e) {</span>
 <span class="nc" id="L222">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
 <span class="nc" id="L223">		} catch (InterpreterException e) {</span>
 <span class="nc" id="L224">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
-<span class="pc" id="L225">		}</span>
-<span class="fc" id="L226">		return map;</span>
+		}
+<span class="nc" id="L226">		return map;</span>
 	}
 
 	@Override
 	public PrologTerm[][] nSolutions(int n) {
-<span class="pc bpc" id="L231" title="1 of 2 branches missed.">		if (n &gt; 0) {</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">		if (n &gt; 0) {</span>
 			// m:solutionSize
-<span class="fc" id="L233">			int m = 0;</span>
-<span class="fc" id="L234">			int index = 0;</span>
-<span class="fc" id="L235">			ArrayList&lt;PrologTerm[]&gt; all = new ArrayList&lt;PrologTerm[]&gt;();</span>
-<span class="pc bpc" id="L236" title="1 of 4 branches missed.">			while (hasNext() &amp;&amp; index &lt; n) {</span>
-<span class="fc" id="L237">				PrologTerm[] solution = nextSolution();</span>
-<span class="fc bfc" id="L238" title="All 2 branches covered.">				m = solution.length &gt; m ? solution.length : m;</span>
-<span class="fc" id="L239">				index++;</span>
-<span class="fc" id="L240">				all.add(solution);</span>
-<span class="fc" id="L241">			}</span>
+<span class="nc" id="L233">			int m = 0;</span>
+<span class="nc" id="L234">			int index = 0;</span>
+<span class="nc" id="L235">			ArrayList&lt;PrologTerm[]&gt; all = new ArrayList&lt;PrologTerm[]&gt;();</span>
+<span class="nc bnc" id="L236" title="All 4 branches missed.">			while (hasNext() &amp;&amp; index &lt; n) {</span>
+<span class="nc" id="L237">				PrologTerm[] solution = nextSolution();</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">				m = solution.length &gt; m ? solution.length : m;</span>
+<span class="nc" id="L239">				index++;</span>
+<span class="nc" id="L240">				all.add(solution);</span>
+			}
 
-<span class="fc" id="L243">			PrologTerm[][] allSolutions = new PrologTerm[n][m];</span>
-<span class="fc bfc" id="L244" title="All 2 branches covered.">			for (int i = 0; i &lt; n; i++) {</span>
-<span class="fc" id="L245">				PrologTerm[] solution = all.get(i);</span>
-<span class="fc bfc" id="L246" title="All 4 branches covered.">				for (int j = 0; j &lt; m &amp;&amp; j &lt; solution.length; j++) {</span>
-<span class="fc" id="L247">					allSolutions[i][j] = solution[j];</span>
+<span class="nc" id="L243">			PrologTerm[][] allSolutions = new PrologTerm[n][m];</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">			for (int i = 0; i &lt; n; i++) {</span>
+<span class="nc" id="L245">				PrologTerm[] solution = all.get(i);</span>
+<span class="nc bnc" id="L246" title="All 4 branches missed.">				for (int j = 0; j &lt; m &amp;&amp; j &lt; solution.length; j++) {</span>
+<span class="nc" id="L247">					allSolutions[i][j] = solution[j];</span>
 				}
 			}
-<span class="fc" id="L250">			return allSolutions;</span>
+<span class="nc" id="L250">			return allSolutions;</span>
 		}
 <span class="nc" id="L252">		throw new PrologError(&quot;Impossible find &quot; + n + &quot; solutions&quot;);</span>
 	}
 
 	@Override
 	public Map&lt;String, PrologTerm&gt;[] nVariablesSolutions(int n) {
-<span class="pc bpc" id="L257" title="1 of 2 branches missed.">		if (n &gt; 0) {</span>
-<span class="fc" id="L258">			int index = 0;</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">		if (n &gt; 0) {</span>
+<span class="nc" id="L258">			int index = 0;</span>
 			@SuppressWarnings(&quot;unchecked&quot;)
-<span class="fc" id="L260">			Map&lt;String, PrologTerm&gt;[] solutionMaps = new Map[n];</span>
-<span class="pc bpc" id="L261" title="1 of 4 branches missed.">			while (hasMoreSolutions() &amp;&amp; index &lt; n) {</span>
-<span class="fc" id="L262">				Map&lt;String, PrologTerm&gt; solutionMap = nextVariablesSolution();</span>
-<span class="fc" id="L263">				solutionMaps[index++] = solutionMap;</span>
-<span class="fc" id="L264">			}</span>
-<span class="fc" id="L265">			return solutionMaps;</span>
+<span class="nc" id="L260">			Map&lt;String, PrologTerm&gt;[] solutionMaps = new Map[n];</span>
+<span class="nc bnc" id="L261" title="All 4 branches missed.">			while (hasMoreSolutions() &amp;&amp; index &lt; n) {</span>
+<span class="nc" id="L262">				Map&lt;String, PrologTerm&gt; solutionMap = nextVariablesSolution();</span>
+<span class="nc" id="L263">				solutionMaps[index++] = solutionMap;</span>
+			}
+<span class="nc" id="L265">			return solutionMaps;</span>
 		}
 <span class="nc" id="L267">		throw new PrologError(&quot;Impossible find &quot; + n + &quot; solutions&quot;);</span>
 	}
@@ -278,7 +278,7 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 <span class="nc bnc" id="L278" title="All 2 branches missed.">			m = solution.length &gt; m ? solution.length : m;</span>
 <span class="nc" id="L279">			n++;</span>
 <span class="nc" id="L280">			all.add(solution);</span>
-<span class="nc" id="L281">		}</span>
+		}
 
 <span class="nc" id="L283">		PrologTerm[][] allSolutions = new PrologTerm[n][m];</span>
 <span class="nc bnc" id="L284" title="All 2 branches missed.">		for (int i = 0; i &lt; n; i++) {</span>
@@ -301,7 +301,7 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 <span class="nc bnc" id="L301" title="All 2 branches missed.">		while (hasMoreSolutions()) {</span>
 <span class="nc" id="L302">			Map&lt;String, PrologTerm&gt; solution = nextVariablesSolution();</span>
 <span class="nc" id="L303">			all.add(solution);</span>
-<span class="nc" id="L304">		}</span>
+		}
 <span class="nc" id="L305">		return all;</span>
 	}
 
@@ -338,15 +338,15 @@ final class JekejekePrologQuery extends AbstractQuery implements PrologQuery {
 
 	@Override
 	public void dispose() {
-<span class="fc" id="L341">		variables.clear();</span>
-<span class="fc" id="L342">		directNames.clear();</span>
-<span class="fc" id="L343">		inverseNames.clear();</span>
+<span class="nc" id="L341">		variables.clear();</span>
+<span class="nc" id="L342">		directNames.clear();</span>
+<span class="nc" id="L343">		inverseNames.clear();</span>
 		try {
-<span class="fc" id="L345">			callIn.close();</span>
+<span class="nc" id="L345">			callIn.close();</span>
 <span class="nc" id="L346">		} catch (InterpreterException e) {</span>
 <span class="nc" id="L347">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
-<span class="fc" id="L348">		}</span>
-<span class="fc" id="L349">	}</span>
+		}
+<span class="nc" id="L349">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

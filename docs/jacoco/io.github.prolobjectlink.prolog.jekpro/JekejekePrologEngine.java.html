@@ -79,9 +79,9 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 	private CallIn accessor;
 
 	public JekejekePrologEngine(PrologProvider provider, Interpreter prolog) {
-<span class="fc" id="L82">		super(provider);</span>
-<span class="fc" id="L83">		this.prolog = prolog;</span>
-<span class="fc" id="L84">	}</span>
+<span class="nc" id="L82">		super(provider);</span>
+<span class="nc" id="L83">		this.prolog = prolog;</span>
+<span class="nc" id="L84">	}</span>
 
 	@Override
 	public void consult(String path) {
@@ -93,7 +93,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L93">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L94">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L95">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L96">		}</span>
+		}
 <span class="nc" id="L97">	}</span>
 
 	@Override
@@ -106,7 +106,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L106">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L107">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L108">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L109">		}</span>
+		}
 <span class="nc" id="L110">	}</span>
 
 	@Override
@@ -119,7 +119,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L119">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L120">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L121">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L122">		}</span>
+		}
 <span class="nc" id="L123">	}</span>
 
 	@Override
@@ -132,7 +132,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L132">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L133">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L134">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L135">		}</span>
+		}
 <span class="nc" id="L136">	}</span>
 
 	@Override
@@ -143,7 +143,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L143">			writer = new PrintWriter(path);</span>
 <span class="nc bnc" id="L144" title="All 2 branches missed.">			for (AbstractSkel abstractSkel : l) {</span>
 <span class="nc" id="L145">				writer.println(abstractSkel);</span>
-<span class="nc" id="L146">			}</span>
+			}
 <span class="nc" id="L147">		} catch (IOException e) {</span>
 <span class="nc" id="L148">			getLogger().warn(getClass(), IO + path, e);</span>
 <span class="nc" id="L149">			getLogger().info(getClass(), DONT_WORRY + path);</span>
@@ -165,7 +165,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L165">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L166">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L167">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L168">		}</span>
+		}
 <span class="nc" id="L169">	}</span>
 
 	@Override
@@ -178,7 +178,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L178">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L179">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L180">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L181">		}</span>
+		}
 <span class="nc" id="L182">	}</span>
 
 	@Override
@@ -191,7 +191,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L191">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L192">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L193">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L194">		}</span>
+		}
 <span class="nc" id="L195">	}</span>
 
 	@Override
@@ -204,21 +204,21 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L204">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L205">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L206">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L207">		}</span>
+		}
 <span class="nc" id="L208">	}</span>
 
 	@Override
 	public void assertz(String stringClause) {
 		AbstractTerm assertz;
 		try {
-<span class="fc" id="L214">			assertz = prolog.parseTerm(&quot;assertz(&quot; + stringClause + &quot;)&quot;, EMPTY);</span>
-<span class="fc" id="L215">			accessor = prolog.iterator(assertz).next();</span>
+<span class="nc" id="L214">			assertz = prolog.parseTerm(&quot;assertz(&quot; + stringClause + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L215">			accessor = prolog.iterator(assertz).next();</span>
 <span class="nc" id="L216">		} catch (InterpreterMessage e1) {</span>
 <span class="nc" id="L217">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L218">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L219">			getLogger().error(getClass(), IO, e1);</span>
-<span class="pc" id="L220">		}</span>
-<span class="fc" id="L221">	}</span>
+		}
+<span class="nc" id="L221">	}</span>
 
 	@Override
 	public void assertz(PrologTerm term) {
@@ -230,7 +230,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L230">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L231">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L232">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L233">		}</span>
+		}
 <span class="nc" id="L234">	}</span>
 
 	@Override
@@ -243,7 +243,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L243">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L244">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L245">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L246">		}</span>
+		}
 <span class="nc" id="L247">	}</span>
 
 	@Override
@@ -260,7 +260,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L260">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L261">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L262">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L263">		}</span>
+		}
 <span class="nc" id="L264">		return false;</span>
 	}
 
@@ -278,7 +278,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L278">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L279">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L280">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L281">		}</span>
+		}
 <span class="nc" id="L282">		return false;</span>
 	}
 
@@ -296,7 +296,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L296">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L297">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L298">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L299">		}</span>
+		}
 <span class="nc" id="L300">		return false;</span>
 	}
 
@@ -310,7 +310,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L310">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L311">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L312">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L313">		}</span>
+		}
 <span class="nc" id="L314">	}</span>
 
 	@Override
@@ -323,7 +323,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L323">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L324">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L325">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L326">		}</span>
+		}
 <span class="nc" id="L327">	}</span>
 
 	@Override
@@ -336,12 +336,12 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L336">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L337">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L338">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L339">		}</span>
+		}
 <span class="nc" id="L340">	}</span>
 
 	@Override
 	public PrologQuery query(String query) {
-<span class="fc" id="L344">		return new JekejekePrologQuery(this, query);</span>
+<span class="nc" id="L344">		return new JekejekePrologQuery(this, query);</span>
 	}
 
 	@Override
@@ -378,15 +378,15 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 	public void operator(int priority, String specifier, String operator) {
 		AbstractTerm op;
 		try {
-<span class="fc" id="L381">			String definition = priority + &quot;,&quot; + specifier + &quot;,&quot; + operator;</span>
-<span class="fc" id="L382">			op = prolog.parseTerm(&quot;op(&quot; + definition + &quot;)&quot;, EMPTY);</span>
-<span class="fc" id="L383">			accessor = prolog.iterator(op).next();</span>
+<span class="nc" id="L381">			String definition = priority + &quot;,&quot; + specifier + &quot;,&quot; + operator;</span>
+<span class="nc" id="L382">			op = prolog.parseTerm(&quot;op(&quot; + definition + &quot;)&quot;, EMPTY);</span>
+<span class="nc" id="L383">			accessor = prolog.iterator(op).next();</span>
 <span class="nc" id="L384">		} catch (InterpreterMessage e1) {</span>
 <span class="nc" id="L385">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L386">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L387">			getLogger().error(getClass(), IO, e1);</span>
-<span class="pc" id="L388">		}</span>
-<span class="fc" id="L389">	}</span>
+		}
+<span class="nc" id="L389">	}</span>
 
 	@Override
 	public boolean currentPredicate(String functor, int arity) {
@@ -403,7 +403,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L403">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L404">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L405">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L406">		}</span>
+		}
 <span class="nc" id="L407">		return false;</span>
 	}
 
@@ -422,33 +422,33 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L422">			getLogger().error(getClass(), IO, e1);</span>
 <span class="nc" id="L423">		} catch (InterpreterException e1) {</span>
 <span class="nc" id="L424">			getLogger().error(getClass(), IO, e1);</span>
-<span class="nc" id="L425">		}</span>
+		}
 <span class="nc" id="L426">		return false;</span>
 	}
 
 	@Override
 	public Set&lt;PrologOperator&gt; currentOperators() {
-<span class="fc" id="L431">		Set&lt;PrologOperator&gt; operators = new HashSet&lt;PrologOperator&gt;();</span>
-<span class="fc" id="L432">		p store = (p) prolog.getKnowledgebase().getStore();</span>
-<span class="fc" id="L433">		MapEntry&lt;String, c&gt;[] source = store.aj();</span>
-<span class="fc bfc" id="L434" title="All 2 branches covered.">		for (MapEntry&lt;String, c&gt; mapEntry : source) {</span>
-<span class="fc" id="L435">			k[] opsinv = mapEntry.value.snapshotOpersInv();</span>
-<span class="fc bfc" id="L436" title="All 2 branches covered.">			for (k op : opsinv) {</span>
-<span class="fc" id="L437">				String x = null;</span>
-<span class="fc" id="L438">				int level = op.getLevel();</span>
-<span class="fc" id="L439">				String bits = &quot;&quot; + op.getBits() + &quot;&quot;;</span>
-<span class="fc" id="L440">				String key = op.getKey();</span>
-<span class="fc bfc" id="L441" title="All 4 branches covered.">				if (bits.equals(&quot;512&quot;) || bits.equals(&quot;514&quot;)) {</span>
-<span class="fc" id="L442">					x = &quot;fx&quot;;</span>
-<span class="fc bfc" id="L443" title="All 6 branches covered.">				} else if (bits.equals(&quot;513&quot;) || bits.equals(&quot;529&quot;) || bits.equals(&quot;561&quot;)) {</span>
-<span class="fc" id="L444">					x = &quot;xfy&quot;;</span>
-<span class="pc bpc" id="L445" title="1 of 2 branches missed.">				} else if (bits.equals(&quot;515&quot;)) {</span>
-<span class="fc" id="L446">					x = &quot;xfx&quot;;</span>
+<span class="nc" id="L431">		Set&lt;PrologOperator&gt; operators = new HashSet&lt;PrologOperator&gt;();</span>
+<span class="nc" id="L432">		p store = (p) prolog.getKnowledgebase().getStore();</span>
+<span class="nc" id="L433">		MapEntry&lt;String, c&gt;[] source = store.aj();</span>
+<span class="nc bnc" id="L434" title="All 2 branches missed.">		for (MapEntry&lt;String, c&gt; mapEntry : source) {</span>
+<span class="nc" id="L435">			k[] opsinv = mapEntry.value.snapshotOpersInv();</span>
+<span class="nc bnc" id="L436" title="All 2 branches missed.">			for (k op : opsinv) {</span>
+<span class="nc" id="L437">				String x = null;</span>
+<span class="nc" id="L438">				int level = op.getLevel();</span>
+<span class="nc" id="L439">				String bits = &quot;&quot; + op.getBits() + &quot;&quot;;</span>
+<span class="nc" id="L440">				String key = op.getKey();</span>
+<span class="nc bnc" id="L441" title="All 4 branches missed.">				if (bits.equals(&quot;512&quot;) || bits.equals(&quot;514&quot;)) {</span>
+<span class="nc" id="L442">					x = &quot;fx&quot;;</span>
+<span class="nc bnc" id="L443" title="All 6 branches missed.">				} else if (bits.equals(&quot;513&quot;) || bits.equals(&quot;529&quot;) || bits.equals(&quot;561&quot;)) {</span>
+<span class="nc" id="L444">					x = &quot;xfy&quot;;</span>
+<span class="nc bnc" id="L445" title="All 2 branches missed.">				} else if (bits.equals(&quot;515&quot;)) {</span>
+<span class="nc" id="L446">					x = &quot;xfx&quot;;</span>
 				}
-<span class="fc" id="L448">				operators.add(new JekejekePrologOperator(level, x, key));</span>
+<span class="nc" id="L448">				operators.add(new JekejekePrologOperator(level, x, key));</span>
 			}
 		}
-<span class="fc" id="L451">		return operators;</span>
+<span class="nc" id="L451">		return operators;</span>
 	}
 
 	@Override
@@ -482,24 +482,24 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L482">				int arity = cmp.args.length;</span>
 <span class="nc" id="L483">				s.add(new JekejekePrologIndicator(functor, arity));</span>
 			}
-<span class="nc" id="L485">		}</span>
+		}
 <span class="nc" id="L486">		return s;</span>
 	}
 
 	@Override
 	public Set&lt;PrologIndicator&gt; getBuiltIns() {
-<span class="fc" id="L491">		Set&lt;PrologIndicator&gt; builtins = new HashSet&lt;PrologIndicator&gt;();</span>
-<span class="fc" id="L492">		p store = (p) prolog.getKnowledgebase().getStore();</span>
-<span class="fc" id="L493">		MapEntry&lt;String, c&gt;[] source = store.aj();</span>
-<span class="fc bfc" id="L494" title="All 2 branches covered.">		for (MapEntry&lt;String, c&gt; mapEntry : source) {</span>
-<span class="fc" id="L495">			MapEntry&lt;r, Integer&gt;[] predsinv = mapEntry.value.snapshotPredsInv();</span>
-<span class="fc bfc" id="L496" title="All 2 branches covered.">			for (MapEntry&lt;r, Integer&gt; predicate : predsinv) {</span>
-<span class="fc" id="L497">				String functor = predicate.key.getFun();</span>
-<span class="fc" id="L498">				int arity = predicate.key.getArity();</span>
-<span class="fc" id="L499">				builtins.add(new JekejekePrologIndicator(functor, arity));</span>
+<span class="nc" id="L491">		Set&lt;PrologIndicator&gt; builtins = new HashSet&lt;PrologIndicator&gt;();</span>
+<span class="nc" id="L492">		p store = (p) prolog.getKnowledgebase().getStore();</span>
+<span class="nc" id="L493">		MapEntry&lt;String, c&gt;[] source = store.aj();</span>
+<span class="nc bnc" id="L494" title="All 2 branches missed.">		for (MapEntry&lt;String, c&gt; mapEntry : source) {</span>
+<span class="nc" id="L495">			MapEntry&lt;r, Integer&gt;[] predsinv = mapEntry.value.snapshotPredsInv();</span>
+<span class="nc bnc" id="L496" title="All 2 branches missed.">			for (MapEntry&lt;r, Integer&gt; predicate : predsinv) {</span>
+<span class="nc" id="L497">				String functor = predicate.key.getFun();</span>
+<span class="nc" id="L498">				int arity = predicate.key.getArity();</span>
+<span class="nc" id="L499">				builtins.add(new JekejekePrologIndicator(functor, arity));</span>
 			}
 		}
-<span class="fc" id="L502">		return builtins;</span>
+<span class="nc" id="L502">		return builtins;</span>
 	}
 
 	@Override
@@ -509,21 +509,21 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 
 	@Override
 	public String getVersion() {
-<span class="fc" id="L512">		StringBuilder buffer = new StringBuilder();</span>
-<span class="fc" id="L513">		String credits = ForeignEngine.sysPrologVersion(prolog);</span>
-<span class="fc" id="L514">		StringTokenizer tokenizer = new StringTokenizer(credits, &quot;, &quot;);</span>
-<span class="fc" id="L515">		/* String name = */tokenizer.nextToken();</span>
-<span class="fc" id="L516">		/* String pl = */tokenizer.nextToken();</span>
-<span class="fc" id="L517">		buffer.append(tokenizer.nextToken());</span>
-<span class="fc" id="L518">		buffer.append(' ');</span>
-<span class="fc" id="L519">		buffer.append('(');</span>
-<span class="fc" id="L520">		buffer.append(tokenizer.nextToken());</span>
-<span class="fc" id="L521">		buffer.append(' ');</span>
-<span class="fc" id="L522">		buffer.append(tokenizer.nextToken());</span>
-<span class="fc" id="L523">		buffer.append(' ');</span>
-<span class="fc" id="L524">		buffer.append(tokenizer.nextToken());</span>
-<span class="fc" id="L525">		buffer.append(')');</span>
-<span class="fc" id="L526">		return buffer.toString();</span>
+<span class="nc" id="L512">		StringBuilder buffer = new StringBuilder();</span>
+<span class="nc" id="L513">		String credits = ForeignEngine.sysPrologVersion(prolog);</span>
+<span class="nc" id="L514">		StringTokenizer tokenizer = new StringTokenizer(credits, &quot;, &quot;);</span>
+<span class="nc" id="L515">		/* String name = */tokenizer.nextToken();</span>
+<span class="nc" id="L516">		/* String pl = */tokenizer.nextToken();</span>
+<span class="nc" id="L517">		buffer.append(tokenizer.nextToken());</span>
+<span class="nc" id="L518">		buffer.append(' ');</span>
+<span class="nc" id="L519">		buffer.append('(');</span>
+<span class="nc" id="L520">		buffer.append(tokenizer.nextToken());</span>
+<span class="nc" id="L521">		buffer.append(' ');</span>
+<span class="nc" id="L522">		buffer.append(tokenizer.nextToken());</span>
+<span class="nc" id="L523">		buffer.append(' ');</span>
+<span class="nc" id="L524">		buffer.append(tokenizer.nextToken());</span>
+<span class="nc" id="L525">		buffer.append(')');</span>
+<span class="nc" id="L526">		return buffer.toString();</span>
 	}
 
 	public final String getVendor() {
@@ -532,11 +532,11 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 
 	@Override
 	public String getName() {
-<span class="fc" id="L535">		String credits = ForeignEngine.sysPrologVersion(prolog);</span>
-<span class="fc" id="L536">		StringTokenizer tokenizer = new StringTokenizer(credits, &quot;, &quot;);</span>
-<span class="fc" id="L537">		String name = tokenizer.nextToken();</span>
-<span class="fc" id="L538">		String pl = tokenizer.nextToken();</span>
-<span class="fc" id="L539">		return name + &quot; &quot; + pl;</span>
+<span class="nc" id="L535">		String credits = ForeignEngine.sysPrologVersion(prolog);</span>
+<span class="nc" id="L536">		StringTokenizer tokenizer = new StringTokenizer(credits, &quot;, &quot;);</span>
+<span class="nc" id="L537">		String name = tokenizer.nextToken();</span>
+<span class="nc" id="L538">		String pl = tokenizer.nextToken();</span>
+<span class="nc" id="L539">		return name + &quot; &quot; + pl;</span>
 	}
 
 	@Override
@@ -549,8 +549,8 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 
 	@Override
 	public boolean equals(Object obj) {
-<span class="pc bpc" id="L552" title="1 of 2 branches missed.">		if (this == obj)</span>
-<span class="fc" id="L553">			return true;</span>
+<span class="nc bnc" id="L552" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L553">			return true;</span>
 <span class="nc bnc" id="L554" title="All 2 branches missed.">		if (!super.equals(obj))</span>
 <span class="nc" id="L555">			return false;</span>
 <span class="nc bnc" id="L556" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
@@ -576,14 +576,14 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L576">					PrologTerm body = toTerm(compound.args[1], PrologTerm.class);</span>
 <span class="nc bnc" id="L577" title="All 2 branches missed.">					if (body.getType() != PrologTermType.TRUE_TYPE) {</span>
 <span class="nc" id="L578">						cls.add(new JekejekePrologClause(provider, head, body, false, false, false));</span>
-					} else {
+<span class="nc" id="L579">					} else {</span>
 <span class="nc" id="L580">						cls.add(new JekejekePrologClause(provider, head, false, false, false));</span>
 					}
 				}
 <span class="nc" id="L583">			} else {</span>
 <span class="nc" id="L584">				cls.add(new JekejekePrologClause(provider, toTerm(clause, PrologTerm.class), false, false, false));</span>
 			}
-<span class="nc" id="L586">		}</span>
+		}
 <span class="nc" id="L587">		return new PrologProgramIterator(cls);</span>
 	}
 
@@ -593,7 +593,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 <span class="nc" id="L593">			accessor.close();</span>
 <span class="nc" id="L594">		} catch (InterpreterException e) {</span>
 <span class="nc" id="L595">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
-<span class="nc" id="L596">		}</span>
+		}
 <span class="nc" id="L597">	}</span>
 
 	@Override
@@ -620,7 +620,7 @@ public class JekejekePrologEngine extends AbstractEngine implements PrologEngine
 			}
 <span class="nc" id="L621">		} catch (m e) {</span>
 <span class="nc" id="L622">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
-<span class="nc" id="L623">		}</span>
+		}
 <span class="nc" id="L624">		return l;</span>
 	}
 

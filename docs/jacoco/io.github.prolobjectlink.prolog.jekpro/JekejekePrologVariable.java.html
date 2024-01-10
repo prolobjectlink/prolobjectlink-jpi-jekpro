@@ -36,12 +36,12 @@ import jekpro.tools.term.AbstractTerm;
 class JekejekePrologVariable extends JekejekePrologTerm implements PrologVariable {
 
 	JekejekePrologVariable(PrologProvider provider) {
-<span class="fc" id="L39">		super(VARIABLE_TYPE, provider, new TermVariable());</span>
-<span class="fc" id="L40">	}</span>
+<span class="nc" id="L39">		super(VARIABLE_TYPE, provider, new TermVariable());</span>
+<span class="nc" id="L40">	}</span>
 
 	JekejekePrologVariable(PrologProvider provider, String name) {
-<span class="fc" id="L43">		super(VARIABLE_TYPE, provider, new TermVariable(name));</span>
-<span class="fc" id="L44">	}</span>
+<span class="nc" id="L43">		super(VARIABLE_TYPE, provider, new TermVariable(name));</span>
+<span class="nc" id="L44">	}</span>
 
 	JekejekePrologVariable(int type, PrologProvider provider) {
 <span class="nc" id="L47">		super(type, provider);</span>
@@ -56,20 +56,20 @@ class JekejekePrologVariable extends JekejekePrologTerm implements PrologVariabl
 <span class="nc" id="L56">	}</span>
 
 	public boolean isAnonymous() {
-<span class="fc" id="L59">		return getName().equals(&quot;_&quot;);</span>
+<span class="nc" id="L59">		return getName().equals(&quot;_&quot;);</span>
 	}
 
 	public final String getName() {
-<span class="fc" id="L63">		return ((TermVariable) value).getName();</span>
+<span class="nc" id="L63">		return ((TermVariable) value).getName();</span>
 	}
 
 	public final void setName(String name) {
-<span class="fc" id="L67">		TermVariable old = (TermVariable) value;</span>
-<span class="fc" id="L68">		value = new TermVariable(name, old.getVar());</span>
-<span class="fc" id="L69">	}</span>
+<span class="nc" id="L67">		TermVariable old = (TermVariable) value;</span>
+<span class="nc" id="L68">		value = new TermVariable(name, old.getVar());</span>
+<span class="nc" id="L69">	}</span>
 
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L72">		return new JekejekePrologVariable[0];</span>
+<span class="nc" id="L72">		return new JekejekePrologVariable[0];</span>
 	}
 
 	public int getArity() {
@@ -77,7 +77,7 @@ class JekejekePrologVariable extends JekejekePrologTerm implements PrologVariabl
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L80">		throw new FunctorError(this);</span>
+<span class="nc" id="L80">		throw new FunctorError(this);</span>
 	}
 
 	public int getPosition() {

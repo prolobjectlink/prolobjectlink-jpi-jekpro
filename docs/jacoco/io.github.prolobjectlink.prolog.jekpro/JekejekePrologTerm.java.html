@@ -58,133 +58,133 @@ import matula.util.data.MapEntry;
 abstract class JekejekePrologTerm extends AbstractTerm implements PrologTerm {
 
 	protected jekpro.tools.term.AbstractTerm value;
-<span class="fc" id="L61">	private static Knowledgebase know = new Knowledgebase(ToolkitLibrary.DEFAULT);</span>
-<span class="fc" id="L62">	private static Interpreter prolog = know.iterable();</span>
+<span class="nc" id="L61">	private static Knowledgebase know = new Knowledgebase(ToolkitLibrary.DEFAULT);</span>
+<span class="nc" id="L62">	private static Interpreter prolog = know.iterable();</span>
 
 	public JekejekePrologTerm(int type, PrologProvider provider) {
-<span class="fc" id="L65">		super(type, provider);</span>
-<span class="fc" id="L66">	}</span>
+<span class="nc" id="L65">		super(type, provider);</span>
+<span class="nc" id="L66">	}</span>
 
 	public JekejekePrologTerm(int type, PrologProvider provider, jekpro.tools.term.AbstractTerm value) {
-<span class="fc" id="L69">		super(type, provider);</span>
-<span class="fc" id="L70">		this.value = value;</span>
-<span class="fc" id="L71">	}</span>
+<span class="nc" id="L69">		super(type, provider);</span>
+<span class="nc" id="L70">		this.value = value;</span>
+<span class="nc" id="L71">	}</span>
 
 	public final boolean isAtom() {
-<span class="fc bfc" id="L74" title="All 14 branches covered.">		return type == ATOM_TYPE || type == FAIL_TYPE || type == FALSE_TYPE || type == TRUE_TYPE || isEmptyList()</span>
-				|| type == CUT_TYPE || type == NIL_TYPE;
+<span class="nc bnc" id="L74" title="All 10 branches missed.">		return type == ATOM_TYPE || type == FAIL_TYPE || type == FALSE_TYPE || type == TRUE_TYPE || isEmptyList()</span>
+<span class="nc bnc" id="L75" title="All 4 branches missed.">				|| type == CUT_TYPE || type == NIL_TYPE;</span>
 	}
 
 	public final boolean isNumber() {
-<span class="fc bfc" id="L79" title="All 8 branches covered.">		return isDouble() || isFloat() || isInteger() || isLong();</span>
+<span class="nc bnc" id="L79" title="All 8 branches missed.">		return isDouble() || isFloat() || isInteger() || isLong();</span>
 	}
 
 	public final boolean isFloat() {
-<span class="fc bfc" id="L83" title="All 2 branches covered.">		return type == FLOAT_TYPE;</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">		return type == FLOAT_TYPE;</span>
 	}
 
 	public final boolean isDouble() {
-<span class="fc bfc" id="L87" title="All 2 branches covered.">		return type == DOUBLE_TYPE;</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">		return type == DOUBLE_TYPE;</span>
 	}
 
 	public final boolean isInteger() {
-<span class="fc bfc" id="L91" title="All 2 branches covered.">		return type == INTEGER_TYPE;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">		return type == INTEGER_TYPE;</span>
 	}
 
 	public final boolean isLong() {
-<span class="fc bfc" id="L95" title="All 2 branches covered.">		return type == LONG_TYPE;</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">		return type == LONG_TYPE;</span>
 	}
 
 	public final boolean isVariable() {
-<span class="fc bfc" id="L99" title="All 2 branches covered.">		return type == VARIABLE_TYPE;</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">		return type == VARIABLE_TYPE;</span>
 	}
 
 	public final boolean isList() {
-<span class="pc bpc" id="L103" title="1 of 4 branches missed.">		return (this instanceof JekejekePrologList)</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">		return (this instanceof JekejekePrologList)</span>
 
 				||
 
-				(this instanceof JekejekePrologEmpty);
+<span class="nc bnc" id="L107" title="All 2 branches missed.">				(this instanceof JekejekePrologEmpty);</span>
 	}
 
 	public final boolean isStructure() {
-<span class="fc" id="L111">		return this instanceof JekejekePrologStructure;</span>
+<span class="nc" id="L111">		return this instanceof JekejekePrologStructure;</span>
 	}
 
 	public final boolean isNil() {
-<span class="fc" id="L115">		return this instanceof JekejekePrologNil;</span>
+<span class="nc" id="L115">		return this instanceof JekejekePrologNil;</span>
 	}
 
 	public final boolean isEmptyList() {
-<span class="fc" id="L119">		return this instanceof JekejekePrologEmpty;</span>
+<span class="nc" id="L119">		return this instanceof JekejekePrologEmpty;</span>
 	}
 
 	public final boolean isEvaluable() {
-<span class="fc bfc" id="L123" title="All 2 branches covered.">		if (value instanceof TermCompound) {</span>
-<span class="fc" id="L124">			p store = (p) prolog.getKnowledgebase().getStore();</span>
-<span class="fc" id="L125">			MapEntry&lt;String, c&gt;[] source = store.aj();</span>
-<span class="fc bfc" id="L126" title="All 2 branches covered.">			for (MapEntry&lt;String, c&gt; mapEntry : source) {</span>
-<span class="fc" id="L127">				k[] opsinv = mapEntry.value.snapshotOpersInv();</span>
-<span class="pc bpc" id="L128" title="1 of 2 branches missed.">				for (k op : opsinv) {</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">		if (value instanceof TermCompound) {</span>
+<span class="nc" id="L124">			p store = (p) prolog.getKnowledgebase().getStore();</span>
+<span class="nc" id="L125">			MapEntry&lt;String, c&gt;[] source = store.aj();</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">			for (MapEntry&lt;String, c&gt; mapEntry : source) {</span>
+<span class="nc" id="L127">				k[] opsinv = mapEntry.value.snapshotOpersInv();</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">				for (k op : opsinv) {</span>
 <span class="nc bnc" id="L129" title="All 4 branches missed.">					if (!getFunctor().equals(&quot;.&quot;) &amp;&amp; op.getKey().equals(getFunctor())) {</span>
 <span class="nc" id="L130">						return true;</span>
 					}
 				}
 			}
 		}
-<span class="fc" id="L135">		return false;</span>
+<span class="nc" id="L135">		return false;</span>
 	}
 
 	public final boolean isAtomic() {
-<span class="fc" id="L139">		return value instanceof TermAtomic;</span>
+<span class="nc" id="L139">		return value instanceof TermAtomic;</span>
 	}
 
 	public final boolean isCompound() {
-<span class="fc" id="L143">		return value instanceof TermCompound;</span>
+<span class="nc" id="L143">		return value instanceof TermCompound;</span>
 	}
 
 	public final boolean isTrueType() {
-<span class="fc" id="L147">		return getObject().equals(true);</span>
+<span class="nc" id="L147">		return getObject().equals(true);</span>
 	}
 
 	public final boolean isFalseType() {
-<span class="fc" id="L151">		return getObject().equals(false);</span>
+<span class="nc" id="L151">		return getObject().equals(false);</span>
 	}
 
 	public final boolean isNullType() {
-<span class="pc bpc" id="L155" title="1 of 4 branches missed.">		return isObjectType() &amp;&amp; getObject() == null;</span>
+<span class="nc bnc" id="L155" title="All 4 branches missed.">		return isObjectType() &amp;&amp; getObject() == null;</span>
 	}
 
 	public final boolean isVoidType() {
-<span class="fc bfc" id="L159" title="All 2 branches covered.">		return getObject() == void.class;</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">		return getObject() == void.class;</span>
 	}
 
 	public final boolean isObjectType() {
-<span class="pc bpc" id="L163" title="1 of 2 branches missed.">		return getType() == OBJECT_TYPE;</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">		return getType() == OBJECT_TYPE;</span>
 	}
 
 	public final boolean isReference() {
-<span class="fc" id="L167">		return isObjectType();</span>
+<span class="nc" id="L167">		return isObjectType();</span>
 	}
 
 	public PrologTerm getTerm() {
-<span class="pc bpc" id="L171" title="1 of 2 branches missed.">		if (value instanceof TermVar) {</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">		if (value instanceof TermVar) {</span>
 <span class="nc" id="L172">			TermVar var = (TermVar) value;</span>
 <span class="nc" id="L173">			AbstractTerm i = (AbstractTerm) var.deref();</span>
 <span class="nc" id="L174">			return toTerm(i, PrologTerm.class);</span>
 		}
-<span class="fc" id="L176">		return this;</span>
+<span class="nc" id="L176">		return this;</span>
 	}
 
 	public final boolean unify(PrologTerm term) {
-<span class="fc" id="L180">		return unify(fromTerm(term, jekpro.tools.term.AbstractTerm.class));</span>
+<span class="nc" id="L180">		return unify(fromTerm(term, jekpro.tools.term.AbstractTerm.class));</span>
 	}
 
 	private boolean unify(jekpro.tools.term.AbstractTerm t2) {
 		try {
 
 			//
-<span class="pc bpc" id="L187" title="1 of 2 branches missed.">			if (value instanceof TermVar) {</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">			if (value instanceof TermVar) {</span>
 <span class="nc" id="L188">				TermVar var = (TermVar) value;</span>
 <span class="nc" id="L189">				jekpro.tools.term.AbstractTerm instanc = var.derefWrapped();</span>
 <span class="nc bnc" id="L190" title="All 2 branches missed.">				if (instanc == var) {</span>
@@ -193,20 +193,20 @@ abstract class JekejekePrologTerm extends AbstractTerm implements PrologTerm {
 <span class="nc bnc" id="L193" title="All 2 branches missed.">				} else if (unifyTerm(prolog, instanc, t2)) {</span>
 <span class="nc" id="L194">					return true;</span>
 				}
-<span class="pc bfc" id="L196" title="All 2 branches covered.">			} else if (value instanceof TermVariable) {</span>
-<span class="fc" id="L197">				TermVariable x = (TermVariable) value;</span>
-<span class="fc" id="L198">				TermVar var = x.getVar();</span>
-<span class="fc" id="L199">				jekpro.tools.term.AbstractTerm instanc = var.derefWrapped();</span>
-<span class="pc bpc" id="L200" title="1 of 2 branches missed.">				if (instanc == var) {</span>
-<span class="fc" id="L201">					/* b b= */TermVar.markBind(prolog);</span>
-<span class="fc" id="L202">					return true;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">			} else if (value instanceof TermVariable) {</span>
+<span class="nc" id="L197">				TermVariable x = (TermVariable) value;</span>
+<span class="nc" id="L198">				TermVar var = x.getVar();</span>
+<span class="nc" id="L199">				jekpro.tools.term.AbstractTerm instanc = var.derefWrapped();</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">				if (instanc == var) {</span>
+<span class="nc" id="L201">					/* b b= */TermVar.markBind(prolog);</span>
+<span class="nc" id="L202">					return true;</span>
 <span class="nc bnc" id="L203" title="All 2 branches missed.">				} else if (unifyTerm(prolog, instanc, t2)) {</span>
 <span class="nc" id="L204">					return true;</span>
 				}
 			}
 
 			//
-<span class="pc bpc" id="L209" title="1 of 2 branches missed.">			if (t2 instanceof TermVar) {</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">			if (t2 instanceof TermVar) {</span>
 <span class="nc" id="L210">				TermVar var = (TermVar) t2;</span>
 <span class="nc" id="L211">				jekpro.tools.term.AbstractTerm instanc = var.derefWrapped();</span>
 <span class="nc bnc" id="L212" title="All 2 branches missed.">				if (instanc == var) {</span>
@@ -215,91 +215,91 @@ abstract class JekejekePrologTerm extends AbstractTerm implements PrologTerm {
 <span class="nc bnc" id="L215" title="All 2 branches missed.">				} else if (unifyTerm(prolog, instanc, value)) {</span>
 <span class="nc" id="L216">					return true;</span>
 				}
-<span class="pc bfc" id="L218" title="All 2 branches covered.">			} else if (t2 instanceof TermVariable) {</span>
-<span class="fc" id="L219">				TermVariable x = (TermVariable) t2;</span>
-<span class="fc" id="L220">				TermVar var = x.getVar();</span>
-<span class="fc" id="L221">				jekpro.tools.term.AbstractTerm instanc = var.derefWrapped();</span>
-<span class="pc bpc" id="L222" title="1 of 2 branches missed.">				if (instanc == var) {</span>
-<span class="fc" id="L223">					/* b b= */TermVar.markBind(prolog);</span>
-<span class="fc" id="L224">					return true;</span>
+<span class="nc bnc" id="L218" title="All 2 branches missed.">			} else if (t2 instanceof TermVariable) {</span>
+<span class="nc" id="L219">				TermVariable x = (TermVariable) t2;</span>
+<span class="nc" id="L220">				TermVar var = x.getVar();</span>
+<span class="nc" id="L221">				jekpro.tools.term.AbstractTerm instanc = var.derefWrapped();</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">				if (instanc == var) {</span>
+<span class="nc" id="L223">					/* b b= */TermVar.markBind(prolog);</span>
+<span class="nc" id="L224">					return true;</span>
 <span class="nc bnc" id="L225" title="All 2 branches missed.">				} else if (unifyTerm(prolog, instanc, value)) {</span>
 <span class="nc" id="L226">					return true;</span>
 				}
-<span class="nc" id="L228">			}</span>
+			}
 
 			// FIXME occurss check
 
 			//
-<span class="fc bfc" id="L233" title="All 2 branches covered.">			else if (unifyTerm(prolog, value, t2)) {</span>
-<span class="fc" id="L234">				return true;</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">			else if (unifyTerm(prolog, value, t2)) {</span>
+<span class="nc" id="L234">				return true;</span>
 			}
 <span class="nc" id="L236">		} catch (InterpreterException e) {</span>
 <span class="nc" id="L237">			getLogger().error(getClass(), RUNTIME_ERROR, e);</span>
-<span class="fc" id="L238">		}</span>
-<span class="fc" id="L239">		return false;</span>
+		}
+<span class="nc" id="L239">		return false;</span>
 	}
 
 	public final int compareTo(PrologTerm o) {
-<span class="fc" id="L243">		JekejekePrologTerm ot = (JekejekePrologTerm) o;</span>
-<span class="fc" id="L244">		Object alpha = value.getSkel();</span>
-<span class="fc" id="L245">		Object beta = ot.value.getSkel();</span>
+<span class="nc" id="L243">		JekejekePrologTerm ot = (JekejekePrologTerm) o;</span>
+<span class="nc" id="L244">		Object alpha = value.getSkel();</span>
+<span class="nc" id="L245">		Object beta = ot.value.getSkel();</span>
 
-<span class="fc bfc" id="L247" title="All 4 branches covered.">		if (alpha instanceof Number &amp;&amp; beta instanceof Number) {</span>
+<span class="nc bnc" id="L247" title="All 4 branches missed.">		if (alpha instanceof Number &amp;&amp; beta instanceof Number) {</span>
 
-<span class="fc" id="L249">			Number n1 = (Number) alpha;</span>
-<span class="fc" id="L250">			Number n2 = (Number) beta;</span>
+<span class="nc" id="L249">			Number n1 = (Number) alpha;</span>
+<span class="nc" id="L250">			Number n2 = (Number) beta;</span>
 
-<span class="fc bfc" id="L252" title="All 2 branches covered.">			if (n1.doubleValue() &lt; n2.doubleValue()) {</span>
-<span class="fc" id="L253">				return -1;</span>
-<span class="fc bfc" id="L254" title="All 2 branches covered.">			} else if (n1.doubleValue() &gt; n2.doubleValue()) {</span>
-<span class="fc" id="L255">				return 1;</span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">			if (n1.doubleValue() &lt; n2.doubleValue()) {</span>
+<span class="nc" id="L253">				return -1;</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">			} else if (n1.doubleValue() &gt; n2.doubleValue()) {</span>
+<span class="nc" id="L255">				return 1;</span>
 			}
-<span class="fc" id="L257">			return 0;</span>
+<span class="nc" id="L257">			return 0;</span>
 
 		}
 
-<span class="fc" id="L261">		int result = AbstractSkel.f(alpha, beta);</span>
-<span class="fc bfc" id="L262" title="All 2 branches covered.">		if (result &lt; 0) {</span>
-<span class="fc" id="L263">			return -1;</span>
-<span class="fc bfc" id="L264" title="All 2 branches covered.">		} else if (result &gt; 1) {</span>
-<span class="fc" id="L265">			return 1;</span>
+<span class="nc" id="L261">		int result = AbstractSkel.f(alpha, beta);</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">		if (result &lt; 0) {</span>
+<span class="nc" id="L263">			return -1;</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">		} else if (result &gt; 1) {</span>
+<span class="nc" id="L265">			return 1;</span>
 		}
-<span class="fc" id="L267">		return 0;</span>
+<span class="nc" id="L267">		return 0;</span>
 	}
 
 	@Override
 	public int hashCode() {
-<span class="fc" id="L272">		final int prime = 31;</span>
-<span class="fc" id="L273">		int result = 1;</span>
-<span class="fc" id="L274">		result = prime * result + type;</span>
+<span class="nc" id="L272">		final int prime = 31;</span>
+<span class="nc" id="L273">		int result = 1;</span>
+<span class="nc" id="L274">		result = prime * result + type;</span>
 		// Term not implement hashCode()
-<span class="pc bpc" id="L276" title="1 of 2 branches missed.">		result = prime * result + ((value == null) ? 0 : value.toString().hashCode());</span>
-<span class="fc" id="L277">		return result;</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">		result = prime * result + ((value == null) ? 0 : value.toString().hashCode());</span>
+<span class="nc" id="L277">		return result;</span>
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-<span class="fc bfc" id="L282" title="All 2 branches covered.">		if (this == obj)</span>
-<span class="fc" id="L283">			return true;</span>
-<span class="pc bpc" id="L284" title="1 of 2 branches missed.">		if (obj == null)</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L283">			return true;</span>
+<span class="nc bnc" id="L284" title="All 2 branches missed.">		if (obj == null)</span>
 <span class="nc" id="L285">			return false;</span>
-<span class="pc bpc" id="L286" title="1 of 2 branches missed.">		if (!(obj instanceof JekejekePrologTerm))</span>
+<span class="nc bnc" id="L286" title="All 2 branches missed.">		if (!(obj instanceof JekejekePrologTerm))</span>
 <span class="nc" id="L287">			return false;</span>
-<span class="fc" id="L288">		JekejekePrologTerm other = (JekejekePrologTerm) obj;</span>
-<span class="pc bpc" id="L289" title="1 of 2 branches missed.">		if (value == null) {</span>
+<span class="nc" id="L288">		JekejekePrologTerm other = (JekejekePrologTerm) obj;</span>
+<span class="nc bnc" id="L289" title="All 2 branches missed.">		if (value == null) {</span>
 <span class="nc bnc" id="L290" title="All 2 branches missed.">			if (other.value != null)</span>
 <span class="nc" id="L291">				return false;</span>
-<span class="fc bfc" id="L292" title="All 2 branches covered.">		} else if (value.toString().equals(other.value.toString())) {</span>
-<span class="fc" id="L293">			return true;</span>
-<span class="fc bfc" id="L294" title="All 2 branches covered.">		} else if (!unify(other.value)) {</span>
-<span class="fc" id="L295">			return false;</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">		} else if (value.toString().equals(other.value.toString())) {</span>
+<span class="nc" id="L293">			return true;</span>
+<span class="nc bnc" id="L294" title="All 2 branches missed.">		} else if (!unify(other.value)) {</span>
+<span class="nc" id="L295">			return false;</span>
 		}
-<span class="fc" id="L297">		return true;</span>
+<span class="nc" id="L297">		return true;</span>
 	}
 
 	@Override
 	public String toString() {
-<span class="fc" id="L302">		return &quot;&quot; + value + &quot;&quot;;</span>
+<span class="nc" id="L302">		return &quot;&quot; + value + &quot;&quot;;</span>
 	}
 
 }

@@ -29,20 +29,20 @@ import jekpro.tools.term.TermAtomic;
 public class JekejekePrologReference extends JekejekePrologTerm implements PrologReference {
 
 	protected JekejekePrologReference(PrologProvider provider, Object reference) {
-<span class="fc" id="L32">		super(OBJECT_TYPE, provider, new TermAtomic(reference));</span>
-<span class="fc" id="L33">	}</span>
+<span class="nc" id="L32">		super(OBJECT_TYPE, provider, new TermAtomic(reference));</span>
+<span class="nc" id="L33">	}</span>
 
 	public int getArity() {
-<span class="fc" id="L36">		return 0;</span>
+<span class="nc" id="L36">		return 0;</span>
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L40">		return &quot;&quot; + value + &quot;&quot;;</span>
+<span class="nc" id="L40">		return &quot;&quot; + value + &quot;&quot;;</span>
 	}
 
 	@Override
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L45">		return new PrologTerm[0];</span>
+<span class="nc" id="L45">		return new PrologTerm[0];</span>
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class JekejekePrologReference extends JekejekePrologTerm implements Prolo
 
 	@Override
 	public Object getObject() {
-<span class="fc" id="L55">		return ((TermAtomic) value).getValue();</span>
+<span class="nc" id="L55">		return ((TermAtomic) value).getValue();</span>
 	}
 
 }

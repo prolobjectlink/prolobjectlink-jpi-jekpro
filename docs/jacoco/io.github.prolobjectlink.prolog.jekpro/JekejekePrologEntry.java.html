@@ -40,84 +40,84 @@ public final class JekejekePrologEntry extends AbstractCompounds implements Prol
 	private PrologTerm value;
 
 	JekejekePrologEntry(PrologProvider provider, PrologTerm key, PrologTerm value) {
-<span class="fc" id="L43">		super(PrologTermType.MAP_ENTRY_TYPE, provider);</span>
-<span class="fc" id="L44">		this.value = value;</span>
-<span class="fc" id="L45">		this.key = key;</span>
-<span class="fc" id="L46">	}</span>
+<span class="nc" id="L43">		super(PrologTermType.MAP_ENTRY_TYPE, provider);</span>
+<span class="nc" id="L44">		this.value = value;</span>
+<span class="nc" id="L45">		this.key = key;</span>
+<span class="nc" id="L46">	}</span>
 
 	public PrologTerm getKey() {
-<span class="fc" id="L49">		return key;</span>
+<span class="nc" id="L49">		return key;</span>
 	}
 
 	public PrologTerm getValue() {
-<span class="fc" id="L53">		return value;</span>
+<span class="nc" id="L53">		return value;</span>
 	}
 
 	public PrologTerm setValue(PrologTerm value) {
-<span class="fc" id="L57">		this.value = value;</span>
-<span class="fc" id="L58">		return value;</span>
+<span class="nc" id="L57">		this.value = value;</span>
+<span class="nc" id="L58">		return value;</span>
 	}
 
 	public boolean isList() {
-<span class="fc" id="L62">		return false;</span>
+<span class="nc" id="L62">		return false;</span>
 	}
 
 	public boolean isStructure() {
-<span class="fc" id="L66">		return true;</span>
+<span class="nc" id="L66">		return true;</span>
 	}
 
 	public boolean isEmptyList() {
-<span class="fc" id="L70">		return false;</span>
+<span class="nc" id="L70">		return false;</span>
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L74">		return &quot;-&quot;;</span>
+<span class="nc" id="L74">		return &quot;-&quot;;</span>
 	}
 
 	public int getArity() {
-<span class="fc" id="L78">		return 2;</span>
+<span class="nc" id="L78">		return 2;</span>
 	}
 
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L82">		return new PrologTerm[] { key, value };</span>
+<span class="nc" id="L82">		return new PrologTerm[] { key, value };</span>
 	}
 
 	@Override
 	public int hashCode() {
-<span class="fc" id="L87">		int result = 0;</span>
-<span class="fc" id="L88">		final int prime = 31;</span>
-<span class="pc bpc" id="L89" title="1 of 2 branches missed.">		result = prime * result + ((key == null) ? 0 : key.hashCode());</span>
-<span class="pc bpc" id="L90" title="1 of 2 branches missed.">		result = prime * result + ((value == null) ? 0 : value.hashCode());</span>
-<span class="fc" id="L91">		return result;</span>
+<span class="nc" id="L87">		int result = 0;</span>
+<span class="nc" id="L88">		final int prime = 31;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">		result = prime * result + ((key == null) ? 0 : key.hashCode());</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">		result = prime * result + ((value == null) ? 0 : value.hashCode());</span>
+<span class="nc" id="L91">		return result;</span>
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-<span class="fc bfc" id="L96" title="All 2 branches covered.">		if (this == obj)</span>
-<span class="fc" id="L97">			return true;</span>
-<span class="pc bpc" id="L98" title="1 of 2 branches missed.">		if (obj == null)</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L97">			return true;</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">		if (obj == null)</span>
 <span class="nc" id="L99">			return false;</span>
-<span class="pc bpc" id="L100" title="1 of 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
 <span class="nc" id="L101">			return false;</span>
-<span class="fc" id="L102">		JekejekePrologEntry other = (JekejekePrologEntry) obj;</span>
-<span class="pc bpc" id="L103" title="1 of 2 branches missed.">		if (key == null) {</span>
+<span class="nc" id="L102">		JekejekePrologEntry other = (JekejekePrologEntry) obj;</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">		if (key == null) {</span>
 <span class="nc bnc" id="L104" title="All 2 branches missed.">			if (other.key != null)</span>
 <span class="nc" id="L105">				return false;</span>
-<span class="pc bpc" id="L106" title="1 of 2 branches missed.">		} else if (!key.equals(other.key)) {</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">		} else if (!key.equals(other.key)) {</span>
 <span class="nc" id="L107">			return false;</span>
 		}
-<span class="pc bpc" id="L109" title="1 of 2 branches missed.">		if (value == null) {</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">		if (value == null) {</span>
 <span class="nc bnc" id="L110" title="All 2 branches missed.">			if (other.value != null)</span>
 <span class="nc" id="L111">				return false;</span>
-<span class="pc bpc" id="L112" title="1 of 2 branches missed.">		} else if (!value.equals(other.value)) {</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">		} else if (!value.equals(other.value)) {</span>
 <span class="nc" id="L113">			return false;</span>
 		}
-<span class="fc" id="L115">		return true;</span>
+<span class="nc" id="L115">		return true;</span>
 	}
 
 	@Override
 	public String toString() {
-<span class="fc" id="L120">		return &quot;&quot; + key + &quot;-&quot; + value + &quot;&quot;;</span>
+<span class="nc" id="L120">		return &quot;&quot; + key + &quot;-&quot; + value + &quot;&quot;;</span>
 	}
 
 }

@@ -71,130 +71,130 @@ import matula.util.data.MapEntry;
  */
 final class JekejekePrologConverter extends AbstractConverter&lt;Object&gt; implements PrologConverter&lt;Object&gt; {
 
-<span class="fc" id="L74">	private static ListArray&lt;String&gt; listArray = new ListArray&lt;String&gt;();</span>
-<span class="fc" id="L75">	private static Knowledgebase know = new Knowledgebase(ToolkitLibrary.DEFAULT);</span>
-<span class="fc" id="L76">	private static Interpreter prolog = know.iterable();</span>
+<span class="nc" id="L74">	private static ListArray&lt;String&gt; listArray = new ListArray&lt;String&gt;();</span>
+<span class="nc" id="L75">	private static Knowledgebase know = new Knowledgebase(ToolkitLibrary.DEFAULT);</span>
+<span class="nc" id="L76">	private static Interpreter prolog = know.iterable();</span>
 
-<span class="fc" id="L78">	public JekejekePrologConverter() {</span>
+<span class="nc" id="L78">	public JekejekePrologConverter() {</span>
 		try {
-<span class="fc" id="L80">			Knowledgebase.initKnowledgebase(prolog, true);</span>
-<span class="fc" id="L81">			ToolkitLibrary.initPaths(prolog, listArray);</span>
-<span class="fc" id="L82">			ToolkitLibrary.initCapas(prolog, listArray);</span>
+<span class="nc" id="L80">			Knowledgebase.initKnowledgebase(prolog, true);</span>
+<span class="nc" id="L81">			ToolkitLibrary.initPaths(prolog, listArray);</span>
+<span class="nc" id="L82">			ToolkitLibrary.initCapas(prolog, listArray);</span>
 <span class="nc" id="L83">		} catch (InterpreterMessage e) {</span>
 <span class="nc" id="L84">			getLogger().error(getClass(), PrologLogger.RUNTIME_ERROR, e);</span>
 <span class="nc" id="L85">		} catch (InterpreterException e) {</span>
 <span class="nc" id="L86">			getLogger().error(getClass(), PrologLogger.RUNTIME_ERROR, e);</span>
-<span class="pc" id="L87">		}</span>
-<span class="fc" id="L88">	}</span>
+		}
+<span class="nc" id="L88">	}</span>
 
 	@Override
 	public PrologTerm toTerm(Object prologTerm) {
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">		if (prologTerm.equals(&quot;nil&quot;)) {</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">		if (prologTerm.equals(&quot;nil&quot;)) {</span>
 <span class="nc" id="L93">			return new JekejekePrologNil(provider);</span>
-<span class="pc bpc" id="L94" title="1 of 2 branches missed.">		} else if (prologTerm.equals(&quot;!&quot;)) {</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		} else if (prologTerm.equals(&quot;!&quot;)) {</span>
 <span class="nc" id="L95">			return new JekejekePrologCut(createProvider());</span>
-<span class="pc bpc" id="L96" title="1 of 2 branches missed.">		} else if (prologTerm.equals(&quot;fail&quot;)) {</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">		} else if (prologTerm.equals(&quot;fail&quot;)) {</span>
 <span class="nc" id="L97">			return new JekejekePrologFail(provider);</span>
-<span class="pc bpc" id="L98" title="1 of 2 branches missed.">		} else if (prologTerm.equals(&quot;true&quot;)) {</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">		} else if (prologTerm.equals(&quot;true&quot;)) {</span>
 <span class="nc" id="L99">			return new JekejekePrologTrue(provider);</span>
-<span class="pc bpc" id="L100" title="1 of 2 branches missed.">		} else if (prologTerm.equals(&quot;false&quot;)) {</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">		} else if (prologTerm.equals(&quot;false&quot;)) {</span>
 <span class="nc" id="L101">			return new JekejekePrologFalse(provider);</span>
-<span class="pc bpc" id="L102" title="1 of 2 branches missed.">		} else if (prologTerm.equals(&quot;[]&quot;)) {</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">		} else if (prologTerm.equals(&quot;[]&quot;)) {</span>
 <span class="nc" id="L103">			return new JekejekePrologEmpty(provider);</span>
-<span class="fc bfc" id="L104" title="All 2 branches covered.">		} else if (prologTerm.equals(JekejekePrologList.EMPTY)) {</span>
-<span class="fc" id="L105">			return new JekejekePrologEmpty(provider);</span>
-<span class="pc bpc" id="L106" title="1 of 2 branches missed.">		} else if (prologTerm instanceof Double) {</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">		} else if (prologTerm.equals(JekejekePrologList.EMPTY)) {</span>
+<span class="nc" id="L105">			return new JekejekePrologEmpty(provider);</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">		} else if (prologTerm instanceof Double) {</span>
 <span class="nc" id="L107">			return new JekejekePrologDouble(provider, (Number) prologTerm);</span>
-<span class="pc bpc" id="L108" title="1 of 2 branches missed.">		} else if (prologTerm instanceof Float) {</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">		} else if (prologTerm instanceof Float) {</span>
 <span class="nc" id="L109">			return new JekejekePrologFloat(provider, (Number) prologTerm);</span>
-<span class="fc bfc" id="L110" title="All 2 branches covered.">		} else if (prologTerm instanceof Integer) {</span>
-<span class="fc" id="L111">			return new JekejekePrologInteger(provider, (Number) prologTerm);</span>
-<span class="fc bfc" id="L112" title="All 2 branches covered.">		} else if (prologTerm instanceof Long) {</span>
-<span class="fc" id="L113">			return new JekejekePrologLong(provider, (Number) prologTerm);</span>
-<span class="fc bfc" id="L114" title="All 2 branches covered.">		} else if (prologTerm instanceof String) {</span>
-<span class="fc" id="L115">			return new JekejekePrologAtom(provider, (String) prologTerm);</span>
-<span class="fc bfc" id="L116" title="All 2 branches covered.">		} else if (prologTerm instanceof TermAtomic) {</span>
-<span class="fc" id="L117">			TermAtomic t = (TermAtomic) prologTerm;</span>
-<span class="fc" id="L118">			Object value = t.getValue();</span>
-<span class="fc bfc" id="L119" title="All 2 branches covered.">			if (value.equals(&quot;nil&quot;)) {</span>
-<span class="fc" id="L120">				return new JekejekePrologNil(provider);</span>
-<span class="fc bfc" id="L121" title="All 2 branches covered.">			} else if (value.equals(&quot;!&quot;)) {</span>
-<span class="fc" id="L122">				return new JekejekePrologCut(createProvider());</span>
-<span class="fc bfc" id="L123" title="All 2 branches covered.">			} else if (value.equals(&quot;fail&quot;)) {</span>
-<span class="fc" id="L124">				return new JekejekePrologFail(provider);</span>
-<span class="fc bfc" id="L125" title="All 2 branches covered.">			} else if (value.equals(&quot;true&quot;)) {</span>
-<span class="fc" id="L126">				return new JekejekePrologTrue(provider);</span>
-<span class="fc bfc" id="L127" title="All 2 branches covered.">			} else if (value.equals(&quot;false&quot;)) {</span>
-<span class="fc" id="L128">				return new JekejekePrologFalse(provider);</span>
-<span class="pc bpc" id="L129" title="1 of 2 branches missed.">			} else if (value.equals(&quot;[]&quot;)) {</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">		} else if (prologTerm instanceof Integer) {</span>
+<span class="nc" id="L111">			return new JekejekePrologInteger(provider, (Number) prologTerm);</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">		} else if (prologTerm instanceof Long) {</span>
+<span class="nc" id="L113">			return new JekejekePrologLong(provider, (Number) prologTerm);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">		} else if (prologTerm instanceof String) {</span>
+<span class="nc" id="L115">			return new JekejekePrologAtom(provider, (String) prologTerm);</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">		} else if (prologTerm instanceof TermAtomic) {</span>
+<span class="nc" id="L117">			TermAtomic t = (TermAtomic) prologTerm;</span>
+<span class="nc" id="L118">			Object value = t.getValue();</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">			if (value.equals(&quot;nil&quot;)) {</span>
+<span class="nc" id="L120">				return new JekejekePrologNil(provider);</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">			} else if (value.equals(&quot;!&quot;)) {</span>
+<span class="nc" id="L122">				return new JekejekePrologCut(createProvider());</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">			} else if (value.equals(&quot;fail&quot;)) {</span>
+<span class="nc" id="L124">				return new JekejekePrologFail(provider);</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">			} else if (value.equals(&quot;true&quot;)) {</span>
+<span class="nc" id="L126">				return new JekejekePrologTrue(provider);</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">			} else if (value.equals(&quot;false&quot;)) {</span>
+<span class="nc" id="L128">				return new JekejekePrologFalse(provider);</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">			} else if (value.equals(&quot;[]&quot;)) {</span>
 <span class="nc" id="L130">				return new JekejekePrologEmpty(provider);</span>
-<span class="pc bpc" id="L131" title="1 of 2 branches missed.">			} else if (prologTerm.equals(JekejekePrologList.EMPTY)) {</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">			} else if (prologTerm.equals(JekejekePrologList.EMPTY)) {</span>
 <span class="nc" id="L132">				return new JekejekePrologEmpty(provider);</span>
-<span class="fc bfc" id="L133" title="All 2 branches covered.">			} else if (value instanceof Double) {</span>
-<span class="fc" id="L134">				return new JekejekePrologDouble(provider, (Number) value);</span>
-<span class="pc bpc" id="L135" title="1 of 2 branches missed.">			} else if (value instanceof Float) {</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">			} else if (value instanceof Double) {</span>
+<span class="nc" id="L134">				return new JekejekePrologDouble(provider, (Number) value);</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">			} else if (value instanceof Float) {</span>
 <span class="nc" id="L136">				return new JekejekePrologFloat(provider, (Number) value);</span>
-<span class="fc bfc" id="L137" title="All 2 branches covered.">			} else if (value instanceof Integer) {</span>
-<span class="fc" id="L138">				return new JekejekePrologInteger(provider, (Number) value);</span>
-<span class="pc bpc" id="L139" title="1 of 2 branches missed.">			} else if (value instanceof Long) {</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">			} else if (value instanceof Integer) {</span>
+<span class="nc" id="L138">				return new JekejekePrologInteger(provider, (Number) value);</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">			} else if (value instanceof Long) {</span>
 <span class="nc" id="L140">				return new JekejekePrologLong(provider, (Number) value);</span>
-<span class="pc bpc" id="L141" title="1 of 2 branches missed.">			} else if (value instanceof String) {</span>
-<span class="fc" id="L142">				return new JekejekePrologAtom(provider, (String) value);</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">			} else if (value instanceof String) {</span>
+<span class="nc" id="L142">				return new JekejekePrologAtom(provider, (String) value);</span>
 			}
-<span class="pc bfc" id="L144" title="All 2 branches covered.">		} else if (prologTerm instanceof TermVar) {</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">		} else if (prologTerm instanceof TermVar) {</span>
 			// String name = ((TermVar) prologTerm).name()
 			// String name = ((TermVariable) prologTerm).getName()
-<span class="fc" id="L147">			String name = ((TermVar) prologTerm).toString();</span>
-<span class="fc" id="L148">			PrologVariable variable = sharedVariables.get(name);</span>
-<span class="fc bfc" id="L149" title="All 2 branches covered.">			if (variable == null) {</span>
-<span class="fc" id="L150">				variable = new JekejekePrologVariable(provider, name);</span>
-<span class="fc" id="L151">				sharedVariables.put(variable.getName(), variable);</span>
+<span class="nc" id="L147">			String name = ((TermVar) prologTerm).toString();</span>
+<span class="nc" id="L148">			PrologVariable variable = sharedVariables.get(name);</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">			if (variable == null) {</span>
+<span class="nc" id="L150">				variable = new JekejekePrologVariable(provider, name);</span>
+<span class="nc" id="L151">				sharedVariables.put(variable.getName(), variable);</span>
 			}
-<span class="fc" id="L153">			return variable;</span>
-<span class="pc bpc" id="L154" title="1 of 2 branches missed.">		} else if (prologTerm instanceof TermCompound) {</span>
-<span class="fc" id="L155">			TermCompound compound = (TermCompound) prologTerm;</span>
-<span class="fc" id="L156">			String functor = compound.getFunctor();</span>
-<span class="fc" id="L157">			int arity = compound.getArity();</span>
-<span class="fc bfc" id="L158" title="All 2 branches covered.">			if (arity == 2) {</span>
+<span class="nc" id="L153">			return variable;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">		} else if (prologTerm instanceof TermCompound) {</span>
+<span class="nc" id="L155">			TermCompound compound = (TermCompound) prologTerm;</span>
+<span class="nc" id="L156">			String functor = compound.getFunctor();</span>
+<span class="nc" id="L157">			int arity = compound.getArity();</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">			if (arity == 2) {</span>
 
 				// list
-<span class="fc bfc" id="L161" title="All 2 branches covered.">				if (functor.equals(&quot;.&quot;)) {</span>
-<span class="fc" id="L162">					Object term = compound;</span>
-<span class="fc" id="L163">					List&lt;PrologTerm&gt; list = new ArrayList&lt;PrologTerm&gt;();</span>
-<span class="fc bfc" id="L164" title="All 2 branches covered.">					while (term instanceof TermCompound) {</span>
-<span class="fc" id="L165">						TermCompound struct = (TermCompound) term;</span>
-<span class="pc bpc" id="L166" title="2 of 4 branches missed.">						if (struct.getFunctor().equals(&quot;.&quot;) &amp;&amp; struct.getArity() == 2) {</span>
-<span class="fc" id="L167">							list.add(toTerm(struct.getArg(0), PrologTerm.class));</span>
-<span class="fc" id="L168">							term = struct.getArg(1);</span>
-						} else {
+<span class="nc bnc" id="L161" title="All 2 branches missed.">				if (functor.equals(&quot;.&quot;)) {</span>
+<span class="nc" id="L162">					Object term = compound;</span>
+<span class="nc" id="L163">					List&lt;PrologTerm&gt; list = new ArrayList&lt;PrologTerm&gt;();</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">					while (term instanceof TermCompound) {</span>
+<span class="nc" id="L165">						TermCompound struct = (TermCompound) term;</span>
+<span class="nc bnc" id="L166" title="All 4 branches missed.">						if (struct.getFunctor().equals(&quot;.&quot;) &amp;&amp; struct.getArity() == 2) {</span>
+<span class="nc" id="L167">							list.add(toTerm(struct.getArg(0), PrologTerm.class));</span>
+<span class="nc" id="L168">							term = struct.getArg(1);</span>
+<span class="nc" id="L169">						} else {</span>
 <span class="nc" id="L170">							list.add(toTerm(term, PrologTerm.class));</span>
 						}
-<span class="fc" id="L172">					}</span>
-<span class="fc" id="L173">					PrologTerm[] arguments = list.toArray(new PrologTerm[0]);</span>
-<span class="fc" id="L174">					return new JekejekePrologList(provider, arguments);</span>
+					}
+<span class="nc" id="L173">					PrologTerm[] arguments = list.toArray(new PrologTerm[0]);</span>
+<span class="nc" id="L174">					return new JekejekePrologList(provider, arguments);</span>
 				}
 
 				// expressions
-<span class="fc" id="L178">				p store = (p) prolog.getKnowledgebase().getStore();</span>
-<span class="fc" id="L179">				MapEntry&lt;String, c&gt;[] source = store.aj();</span>
-<span class="fc bfc" id="L180" title="All 2 branches covered.">				for (MapEntry&lt;String, c&gt; mapEntry : source) {</span>
-<span class="fc" id="L181">					k[] opsinv = mapEntry.value.snapshotOpersInv();</span>
-<span class="fc bfc" id="L182" title="All 2 branches covered.">					for (k op : opsinv) {</span>
-<span class="pc bpc" id="L183" title="1 of 4 branches missed.">						if (!functor.equals(&quot;.&quot;) &amp;&amp; op.getKey().equals(functor)) {</span>
-<span class="fc" id="L184">							Object left = compound.getArg(0);</span>
-<span class="fc" id="L185">							Object right = compound.getArg(1);</span>
-<span class="fc" id="L186">							return new JekejekePrologStructure(provider, left, functor, right);</span>
+<span class="nc" id="L178">				p store = (p) prolog.getKnowledgebase().getStore();</span>
+<span class="nc" id="L179">				MapEntry&lt;String, c&gt;[] source = store.aj();</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">				for (MapEntry&lt;String, c&gt; mapEntry : source) {</span>
+<span class="nc" id="L181">					k[] opsinv = mapEntry.value.snapshotOpersInv();</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">					for (k op : opsinv) {</span>
+<span class="nc bnc" id="L183" title="All 4 branches missed.">						if (!functor.equals(&quot;.&quot;) &amp;&amp; op.getKey().equals(functor)) {</span>
+<span class="nc" id="L184">							Object left = compound.getArg(0);</span>
+<span class="nc" id="L185">							Object right = compound.getArg(1);</span>
+<span class="nc" id="L186">							return new JekejekePrologStructure(provider, left, functor, right);</span>
 						}
 					}
 				}
 			}
 
 			// structure
-<span class="fc" id="L193">			Object[] arguments = new Object[arity];</span>
-<span class="fc bfc" id="L194" title="All 2 branches covered.">			for (int i = 0; i &lt; arity; i++) {</span>
-<span class="fc" id="L195">				arguments[i] = compound.getArg(i);</span>
+<span class="nc" id="L193">			Object[] arguments = new Object[arity];</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">			for (int i = 0; i &lt; arity; i++) {</span>
+<span class="nc" id="L195">				arguments[i] = compound.getArg(i);</span>
 			}
-<span class="fc" id="L197">			return new JekejekePrologStructure(provider, functor, arguments);</span>
+<span class="nc" id="L197">			return new JekejekePrologStructure(provider, functor, arguments);</span>
 
 		}
 
@@ -203,53 +203,53 @@ final class JekejekePrologConverter extends AbstractConverter&lt;Object&gt; impl
 
 	@Override
 	public AbstractTerm fromTerm(PrologTerm term) {
-<span class="pc bpc" id="L206" title="2 of 15 branches missed.">		switch (term.getType()) {</span>
+<span class="nc bnc" id="L206" title="All 15 branches missed.">		switch (term.getType()) {</span>
 		case NIL_TYPE:
-<span class="fc" id="L208">			return new TermAtomic(&quot;nil&quot;);</span>
+<span class="nc" id="L208">			return new TermAtomic(&quot;nil&quot;);</span>
 		case CUT_TYPE:
-<span class="fc" id="L210">			return new TermAtomic(&quot;!&quot;);</span>
+<span class="nc" id="L210">			return new TermAtomic(&quot;!&quot;);</span>
 		case FAIL_TYPE:
-<span class="fc" id="L212">			return new TermAtomic(&quot;fail&quot;);</span>
+<span class="nc" id="L212">			return new TermAtomic(&quot;fail&quot;);</span>
 		case TRUE_TYPE:
-<span class="fc" id="L214">			return new TermAtomic(&quot;true&quot;);</span>
+<span class="nc" id="L214">			return new TermAtomic(&quot;true&quot;);</span>
 		case FALSE_TYPE:
-<span class="fc" id="L216">			return new TermAtomic(&quot;false&quot;);</span>
+<span class="nc" id="L216">			return new TermAtomic(&quot;false&quot;);</span>
 		case ATOM_TYPE:
-<span class="fc" id="L218">			return new TermAtomic(removeQuoted(((PrologAtom) term).getStringValue()));</span>
+<span class="nc" id="L218">			return new TermAtomic(removeQuoted(((PrologAtom) term).getStringValue()));</span>
 		case FLOAT_TYPE:
-<span class="fc" id="L220">			return new TermAtomic(((PrologFloat) term).getFloatValue());</span>
+<span class="nc" id="L220">			return new TermAtomic(((PrologFloat) term).getFloatValue());</span>
 		case INTEGER_TYPE:
-<span class="fc" id="L222">			return new TermAtomic(((PrologInteger) term).getIntegerValue());</span>
+<span class="nc" id="L222">			return new TermAtomic(((PrologInteger) term).getIntegerValue());</span>
 		case DOUBLE_TYPE:
-<span class="fc" id="L224">			return new TermAtomic(((PrologDouble) term).getDoubleValue());</span>
+<span class="nc" id="L224">			return new TermAtomic(((PrologDouble) term).getDoubleValue());</span>
 		case LONG_TYPE:
-<span class="fc" id="L226">			return new TermAtomic(((PrologLong) term).getLongValue());</span>
+<span class="nc" id="L226">			return new TermAtomic(((PrologLong) term).getLongValue());</span>
 		case VARIABLE_TYPE:
-<span class="fc" id="L228">			String name = ((PrologVariable) term).getName();</span>
+<span class="nc" id="L228">			String name = ((PrologVariable) term).getName();</span>
 			// int position = ((PrologVariable) term).getPosition()
-<span class="fc" id="L230">			Object variable = sharedPrologVariables.get(name);</span>
-<span class="fc bfc" id="L231" title="All 2 branches covered.">			if (variable == null) {</span>
+<span class="nc" id="L230">			Object variable = sharedPrologVariables.get(name);</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">			if (variable == null) {</span>
 				// variable = new TermVariable(name, position)
-<span class="fc" id="L233">				variable = new TermVariable(name);</span>
+<span class="nc" id="L233">				variable = new TermVariable(name);</span>
 				// variable = new TermVar()
-<span class="fc" id="L235">				sharedPrologVariables.put(name, variable);</span>
+<span class="nc" id="L235">				sharedPrologVariables.put(name, variable);</span>
 			}
-<span class="fc" id="L237">			return (AbstractTerm) variable;</span>
+<span class="nc" id="L237">			return (AbstractTerm) variable;</span>
 		case LIST_TYPE:
-<span class="fc" id="L239">			PrologTerm[] array = term.getArguments();</span>
-<span class="fc" id="L240">			AbstractTerm list = JekejekePrologList.EMPTY;</span>
-<span class="fc bfc" id="L241" title="All 2 branches covered.">			for (int i = array.length - 1; i &gt;= 0; --i) {</span>
-<span class="fc" id="L242">				list = new TermCompound(&quot;.&quot;, array[i].getObject(), list);</span>
+<span class="nc" id="L239">			PrologTerm[] array = term.getArguments();</span>
+<span class="nc" id="L240">			AbstractTerm list = JekejekePrologList.EMPTY;</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">			for (int i = array.length - 1; i &gt;= 0; --i) {</span>
+<span class="nc" id="L242">				list = new TermCompound(&quot;.&quot;, array[i].getObject(), list);</span>
 			}
-<span class="fc" id="L244">			return list;</span>
+<span class="nc" id="L244">			return list;</span>
 		case STRUCTURE_TYPE:
-<span class="fc" id="L246">			String functor = term.getFunctor();</span>
-<span class="fc" id="L247">			PrologTerm[] terms = term.getArguments();</span>
-<span class="fc" id="L248">			Object[] arguments = new Object[terms.length];</span>
-<span class="fc bfc" id="L249" title="All 2 branches covered.">			for (int i = 0; i &lt; terms.length; i++) {</span>
-<span class="fc" id="L250">				arguments[i] = terms[i].getObject();</span>
+<span class="nc" id="L246">			String functor = term.getFunctor();</span>
+<span class="nc" id="L247">			PrologTerm[] terms = term.getArguments();</span>
+<span class="nc" id="L248">			Object[] arguments = new Object[terms.length];</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">			for (int i = 0; i &lt; terms.length; i++) {</span>
+<span class="nc" id="L250">				arguments[i] = terms[i].getObject();</span>
 			}
-<span class="fc" id="L252">			return new TermCompound(functor, arguments);</span>
+<span class="nc" id="L252">			return new TermCompound(functor, arguments);</span>
 		case OBJECT_TYPE:
 <span class="nc" id="L254">			return new TermAtomic(term.getObject());</span>
 		default:
@@ -258,32 +258,32 @@ final class JekejekePrologConverter extends AbstractConverter&lt;Object&gt; impl
 	}
 
 	public AbstractTerm[] fromTermArray(PrologTerm[] terms) {
-<span class="fc" id="L261">		AbstractTerm[] prologTerms = new AbstractTerm[terms.length];</span>
-<span class="fc bfc" id="L262" title="All 2 branches covered.">		for (int i = 0; i &lt; terms.length; i++) {</span>
-<span class="fc" id="L263">			prologTerms[i] = fromTerm(terms[i]);</span>
+<span class="nc" id="L261">		AbstractTerm[] prologTerms = new AbstractTerm[terms.length];</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">		for (int i = 0; i &lt; terms.length; i++) {</span>
+<span class="nc" id="L263">			prologTerms[i] = fromTerm(terms[i]);</span>
 		}
-<span class="fc" id="L265">		return prologTerms;</span>
+<span class="nc" id="L265">		return prologTerms;</span>
 	}
 
 	public AbstractTerm fromTerm(PrologTerm head, PrologTerm[] body) {
-<span class="fc" id="L269">		AbstractTerm clauseHead = fromTerm(head);</span>
-<span class="fc bfc" id="L270" title="All 4 branches covered.">		if (body != null &amp;&amp; body.length &gt; 0) {</span>
-<span class="fc" id="L271">			AbstractTerm clauseBody = fromTerm(body[body.length - 1]);</span>
-<span class="fc bfc" id="L272" title="All 2 branches covered.">			for (int i = body.length - 2; i &gt;= 0; --i) {</span>
-<span class="fc" id="L273">				clauseBody = new TermCompound(&quot;,&quot;, fromTerm(body[i]), clauseBody);</span>
+<span class="nc" id="L269">		AbstractTerm clauseHead = fromTerm(head);</span>
+<span class="nc bnc" id="L270" title="All 4 branches missed.">		if (body != null &amp;&amp; body.length &gt; 0) {</span>
+<span class="nc" id="L271">			AbstractTerm clauseBody = fromTerm(body[body.length - 1]);</span>
+<span class="nc bnc" id="L272" title="All 2 branches missed.">			for (int i = body.length - 2; i &gt;= 0; --i) {</span>
+<span class="nc" id="L273">				clauseBody = new TermCompound(&quot;,&quot;, fromTerm(body[i]), clauseBody);</span>
 			}
-<span class="fc" id="L275">			return new TermCompound(&quot;:-&quot;, clauseHead, clauseBody);</span>
+<span class="nc" id="L275">			return new TermCompound(&quot;:-&quot;, clauseHead, clauseBody);</span>
 		}
-<span class="fc" id="L277">		return clauseHead;</span>
+<span class="nc" id="L277">		return clauseHead;</span>
 	}
 
 	public PrologProvider createProvider() {
-<span class="fc" id="L281">		return new JekejekeProlog(this);</span>
+<span class="nc" id="L281">		return new JekejekeProlog(this);</span>
 	}
 
 	@Override
 	public String toString() {
-<span class="fc" id="L286">		return &quot;JekejekePrologConverter&quot;;</span>
+<span class="nc" id="L286">		return &quot;JekejekePrologConverter&quot;;</span>
 	}
 
 }

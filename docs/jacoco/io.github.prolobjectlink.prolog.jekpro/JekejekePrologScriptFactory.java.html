@@ -29,24 +29,24 @@ import io.github.prolobjectlink.prolog.PrologScriptEngineFactory;
 public final class JekejekePrologScriptFactory extends PrologScriptEngineFactory implements ScriptEngineFactory {
 
 	public JekejekePrologScriptFactory() {
-<span class="fc" id="L32">		super(new JekejekeProlog().newEngine());</span>
-<span class="fc" id="L33">	}</span>
+<span class="nc" id="L32">		super(new JekejekeProlog().newEngine());</span>
+<span class="nc" id="L33">	}</span>
 
 	public String getMethodCallSyntax(String obj, String m, String... args) {
-<span class="fc" id="L36">		StringBuilder result = new StringBuilder();</span>
-<span class="fc" id="L37">		result.append(obj + &quot; &lt;- &quot; + m);</span>
-<span class="fc" id="L38">		result.append('(');</span>
-<span class="fc" id="L39">		Iterator&lt;String&gt; i = new ArrayIterator&lt;String&gt;(args);</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">		if (i.hasNext()) {</span>
-<span class="fc bfc" id="L41" title="All 2 branches covered.">			while (i.hasNext()) {</span>
-<span class="fc" id="L42">				result.append(i.next());</span>
-<span class="fc bfc" id="L43" title="All 2 branches covered.">				if (i.hasNext()) {</span>
-<span class="fc" id="L44">					result.append(',');</span>
+<span class="nc" id="L36">		StringBuilder result = new StringBuilder();</span>
+<span class="nc" id="L37">		result.append(obj + &quot; &lt;- &quot; + m);</span>
+<span class="nc" id="L38">		result.append('(');</span>
+<span class="nc" id="L39">		Iterator&lt;String&gt; i = new ArrayIterator&lt;String&gt;(args);</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">		if (i.hasNext()) {</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">			while (i.hasNext()) {</span>
+<span class="nc" id="L42">				result.append(i.next());</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">				if (i.hasNext()) {</span>
+<span class="nc" id="L44">					result.append(',');</span>
 				}
 			}
 		}
-<span class="fc" id="L48">		result.append(')');</span>
-<span class="fc" id="L49">		return &quot;&quot; + result + &quot;&quot;;</span>
+<span class="nc" id="L48">		result.append(')');</span>
+<span class="nc" id="L49">		return &quot;&quot; + result + &quot;&quot;;</span>
 	}
 
 }

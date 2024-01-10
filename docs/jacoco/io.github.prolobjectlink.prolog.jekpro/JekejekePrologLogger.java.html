@@ -36,37 +36,37 @@ import io.github.prolobjectlink.prolog.PrologLogger;
  * @author Jose Zalacain
  * @since 1.0
  */
-<span class="pc bpc" id="L39" title="1 of 2 branches missed.">final class JekejekePrologLogger extends AbstractLogger implements PrologLogger {</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">final class JekejekePrologLogger extends AbstractLogger implements PrologLogger {</span>
 
 	private static final String MESSAGE = &quot;Logger File Handler can't be created&quot;;
-<span class="fc" id="L42">	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);</span>
+<span class="nc" id="L42">	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);</span>
 
 	JekejekePrologLogger() {
-<span class="fc" id="L45">		this(Level.INFO);</span>
-<span class="fc" id="L46">	}</span>
+<span class="nc" id="L45">		this(Level.INFO);</span>
+<span class="nc" id="L46">	}</span>
 
-<span class="fc" id="L48">	private JekejekePrologLogger(Level level) {</span>
-<span class="fc" id="L49">		LOGGER.setLevel(level);</span>
-<span class="fc" id="L50">		Logger rootlogger = LOGGER.getParent();</span>
-<span class="fc" id="L51">		SimpleDateFormat f = new SimpleDateFormat(&quot;yyyy.MM.dd&quot;);</span>
-<span class="fc" id="L52">		String date = f.format(new Date());</span>
-<span class="fc" id="L53">		Formatter formatter = new JekejekePrologFormatter();</span>
-<span class="fc bfc" id="L54" title="All 2 branches covered.">		for (Handler h : rootlogger.getHandlers()) {</span>
-<span class="fc" id="L55">			h.setFormatter(formatter);</span>
-<span class="fc" id="L56">			h.setLevel(level);</span>
+<span class="nc" id="L48">	private JekejekePrologLogger(Level level) {</span>
+<span class="nc" id="L49">		LOGGER.setLevel(level);</span>
+<span class="nc" id="L50">		Logger rootlogger = LOGGER.getParent();</span>
+<span class="nc" id="L51">		SimpleDateFormat f = new SimpleDateFormat(&quot;yyyy.MM.dd&quot;);</span>
+<span class="nc" id="L52">		String date = f.format(new Date());</span>
+<span class="nc" id="L53">		Formatter formatter = new JekejekePrologFormatter();</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">		for (Handler h : rootlogger.getHandlers()) {</span>
+<span class="nc" id="L55">			h.setFormatter(formatter);</span>
+<span class="nc" id="L56">			h.setLevel(level);</span>
 		}
-<span class="fc" id="L58">		FileHandler file = null;</span>
+<span class="nc" id="L58">		FileHandler file = null;</span>
 		try {
-<span class="fc" id="L60">			file = new FileHandler(&quot;%t/prolobjectlink-&quot; + date + &quot;.log&quot;, true);</span>
+<span class="nc" id="L60">			file = new FileHandler(&quot;%t/prolobjectlink-&quot; + date + &quot;.log&quot;, true);</span>
 <span class="nc" id="L61">		} catch (SecurityException e) {</span>
 <span class="nc" id="L62">			rootlogger.log(Level.SEVERE, MESSAGE, e);</span>
 <span class="nc" id="L63">		} catch (IOException e) {</span>
 <span class="nc" id="L64">			rootlogger.log(Level.SEVERE, MESSAGE, e);</span>
-<span class="pc" id="L65">		}</span>
-<span class="pc bpc" id="L66" title="2 of 4 branches missed.">		assert file != null;</span>
-<span class="fc" id="L67">		file.setFormatter(formatter);</span>
-<span class="fc" id="L68">		LOGGER.addHandler(file);</span>
-<span class="fc" id="L69">	}</span>
+		}
+<span class="nc bnc" id="L66" title="All 4 branches missed.">		assert file != null;</span>
+<span class="nc" id="L67">		file.setFormatter(formatter);</span>
+<span class="nc" id="L68">		LOGGER.addHandler(file);</span>
+<span class="nc" id="L69">	}</span>
 
 	public void log(Object sender, Level level, Object message, Throwable throwable) {
 <span class="nc" id="L72">		LOGGER.log(level, sender + &quot;\n&quot; + message, throwable);</span>

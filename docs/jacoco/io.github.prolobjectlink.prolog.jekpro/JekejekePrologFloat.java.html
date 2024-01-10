@@ -39,51 +39,51 @@ import jekpro.tools.term.TermAtomic;
 final class JekejekePrologFloat extends JekejekePrologTerm implements PrologFloat {
 
 	JekejekePrologFloat(PrologProvider provider, Number value) {
-<span class="fc" id="L42">		super(FLOAT_TYPE, provider, new TermAtomic(value.floatValue()));</span>
-<span class="fc" id="L43">	}</span>
+<span class="nc" id="L42">		super(FLOAT_TYPE, provider, new TermAtomic(value.floatValue()));</span>
+<span class="nc" id="L43">	}</span>
 
 	public PrologInteger getPrologInteger() {
-<span class="fc" id="L46">		return new JekejekePrologInteger(provider, getIntegerValue());</span>
+<span class="nc" id="L46">		return new JekejekePrologInteger(provider, getIntegerValue());</span>
 	}
 
 	public PrologFloat getPrologFloat() {
-<span class="fc" id="L50">		return new JekejekePrologFloat(provider, getFloatValue());</span>
+<span class="nc" id="L50">		return new JekejekePrologFloat(provider, getFloatValue());</span>
 	}
 
 	public PrologDouble getPrologDouble() {
-<span class="fc" id="L54">		return new JekejekePrologDouble(provider, getDoubleValue());</span>
+<span class="nc" id="L54">		return new JekejekePrologDouble(provider, getDoubleValue());</span>
 	}
 
 	public PrologLong getPrologLong() {
-<span class="fc" id="L58">		return new JekejekePrologLong(provider, getLongValue());</span>
+<span class="nc" id="L58">		return new JekejekePrologLong(provider, getLongValue());</span>
 	}
 
 	public long getLongValue() {
-<span class="fc" id="L62">		return ((Number) ((TermAtomic) value).getValue()).longValue();</span>
+<span class="nc" id="L62">		return ((Number) ((TermAtomic) value).getValue()).longValue();</span>
 	}
 
 	public double getDoubleValue() {
-<span class="fc" id="L66">		return ((Number) ((TermAtomic) value).getValue()).doubleValue();</span>
+<span class="nc" id="L66">		return ((Number) ((TermAtomic) value).getValue()).doubleValue();</span>
 	}
 
 	public int getIntegerValue() {
-<span class="fc" id="L70">		return ((Number) ((TermAtomic) value).getValue()).intValue();</span>
+<span class="nc" id="L70">		return ((Number) ((TermAtomic) value).getValue()).intValue();</span>
 	}
 
 	public float getFloatValue() {
-<span class="fc" id="L74">		return ((Number) ((TermAtomic) value).getValue()).floatValue();</span>
+<span class="nc" id="L74">		return ((Number) ((TermAtomic) value).getValue()).floatValue();</span>
 	}
 
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L78">		return new JekejekePrologFloat[0];</span>
+<span class="nc" id="L78">		return new JekejekePrologFloat[0];</span>
 	}
 
 	public int getArity() {
-<span class="fc" id="L82">		throw new ArityError(this);</span>
+<span class="nc" id="L82">		throw new ArityError(this);</span>
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L86">		throw new FunctorError(this);</span>
+<span class="nc" id="L86">		throw new FunctorError(this);</span>
 	}
 
 }
